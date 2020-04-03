@@ -1,0 +1,21 @@
+PODS:
+  - YSRadioButton (0.0.1)
+
+DEPENDENCIES:
+  - YSRadioButton (from `https://github.com/sekies/YSRadioButton.git`)
+
+EXTERNAL SOURCES:
+  YSRadioButton:
+    :git: https://github.com/sekies/YSRadioButton.git
+
+CHECKOUT OPTIONS:
+  YSRadioButton:
+    :commit: 7ae99f408771a159a993cdbaeeb067d141f5f8e5
+    :git: https://github.com/sekies/YSRadioButton.git
+
+SPEC CHECKSUMS:
+  YSRadioButton: d36fff9507fc02527bbe44cc1211a201f42d1218
+
+PODFILE CHECKSUM: e3e6baed9bb6347893d8dbca879b935fc4bd6382
+
+COCOAPODS: 1.8.4

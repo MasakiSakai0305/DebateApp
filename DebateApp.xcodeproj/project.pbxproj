@@ -1,0 +1,437 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3A97E0822435D7C000D4CCCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0812435D7C000D4CCCB /* AppDelegate.swift */; };
+		3A97E0842435D7C000D4CCCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */; };
+		3A97E0862435D7C000D4CCCB /* ResisterFBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0852435D7C000D4CCCB /* ResisterFBViewController.swift */; };
+		3A97E0892435D7C000D4CCCB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A97E0872435D7C000D4CCCB /* Main.storyboard */; };
+		3A97E08B2435D7C200D4CCCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A97E08A2435D7C200D4CCCB /* Assets.xcassets */; };
+		3A97E08E2435D7C200D4CCCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A97E08C2435D7C200D4CCCB /* LaunchScreen.storyboard */; };
+		B46CF6FB34D0A796336CA9BB /* Pods_DebateApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0462CB22654FDC888D42BCB5 /* Pods_DebateApp.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0462CB22654FDC888D42BCB5 /* Pods_DebateApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DebateApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A97E07E2435D7C000D4CCCB /* DebateApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebateApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A97E0812435D7C000D4CCCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		3A97E0852435D7C000D4CCCB /* ResisterFBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResisterFBViewController.swift; sourceTree = "<group>"; };
+		3A97E0882435D7C000D4CCCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3A97E08A2435D7C200D4CCCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3A97E08D2435D7C200D4CCCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3A97E08F2435D7C200D4CCCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41DB64690A41D8FCC5A97A49 /* Pods-DebateApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DebateApp.debug.xcconfig"; path = "Target Support Files/Pods-DebateApp/Pods-DebateApp.debug.xcconfig"; sourceTree = "<group>"; };
+		5B0768A96F0E0CC8132A3E1A /* Pods-DebateApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DebateApp.release.xcconfig"; path = "Target Support Files/Pods-DebateApp/Pods-DebateApp.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3A97E07B2435D7C000D4CCCB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B46CF6FB34D0A796336CA9BB /* Pods_DebateApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3A97E0752435D7C000D4CCCB = {
+			isa = PBXGroup;
+			children = (
+				3A97E0802435D7C000D4CCCB /* DebateApp */,
+				3A97E07F2435D7C000D4CCCB /* Products */,
+				5F04E41E4DC5762E7DBA5A22 /* Pods */,
+				8030737F44C0571902D66974 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3A97E07F2435D7C000D4CCCB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3A97E07E2435D7C000D4CCCB /* DebateApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3A97E0802435D7C000D4CCCB /* DebateApp */ = {
+			isa = PBXGroup;
+			children = (
+				3A97E0972436FA1200D4CCCB /* Model */,
+				3A97E0962436FA0D00D4CCCB /* View */,
+				3A97E0952436F9FC00D4CCCB /* Controller */,
+				3A97E08F2435D7C200D4CCCB /* Info.plist */,
+			);
+			path = DebateApp;
+			sourceTree = "<group>";
+		};
+		3A97E0952436F9FC00D4CCCB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3A97E0812435D7C000D4CCCB /* AppDelegate.swift */,
+				3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */,
+				3A97E0852435D7C000D4CCCB /* ResisterFBViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3A97E0962436FA0D00D4CCCB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3A97E0872435D7C000D4CCCB /* Main.storyboard */,
+				3A97E08A2435D7C200D4CCCB /* Assets.xcassets */,
+				3A97E08C2435D7C200D4CCCB /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3A97E0972436FA1200D4CCCB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5F04E41E4DC5762E7DBA5A22 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				41DB64690A41D8FCC5A97A49 /* Pods-DebateApp.debug.xcconfig */,
+				5B0768A96F0E0CC8132A3E1A /* Pods-DebateApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		8030737F44C0571902D66974 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0462CB22654FDC888D42BCB5 /* Pods_DebateApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3A97E07D2435D7C000D4CCCB /* DebateApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A97E0922435D7C200D4CCCB /* Build configuration list for PBXNativeTarget "DebateApp" */;
+			buildPhases = (
+				6A7BCBB5AA79C1D9FA61D391 /* [CP] Check Pods Manifest.lock */,
+				3A97E07A2435D7C000D4CCCB /* Sources */,
+				3A97E07B2435D7C000D4CCCB /* Frameworks */,
+				3A97E07C2435D7C000D4CCCB /* Resources */,
+				E804F83B7A88D8031C26DDF5 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DebateApp;
+			productName = DebateApp;
+			productReference = 3A97E07E2435D7C000D4CCCB /* DebateApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3A97E0762435D7C000D4CCCB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "Masaki Sakai";
+				TargetAttributes = {
+					3A97E07D2435D7C000D4CCCB = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 3A97E0792435D7C000D4CCCB /* Build configuration list for PBXProject "DebateApp" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3A97E0752435D7C000D4CCCB;
+			productRefGroup = 3A97E07F2435D7C000D4CCCB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3A97E07D2435D7C000D4CCCB /* DebateApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3A97E07C2435D7C000D4CCCB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A97E08E2435D7C200D4CCCB /* LaunchScreen.storyboard in Resources */,
+				3A97E08B2435D7C200D4CCCB /* Assets.xcassets in Resources */,
+				3A97E0892435D7C000D4CCCB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6A7BCBB5AA79C1D9FA61D391 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DebateApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E804F83B7A88D8031C26DDF5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DebateApp/Pods-DebateApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DebateApp/Pods-DebateApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DebateApp/Pods-DebateApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3A97E07A2435D7C000D4CCCB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A97E0862435D7C000D4CCCB /* ResisterFBViewController.swift in Sources */,
+				3A97E0822435D7C000D4CCCB /* AppDelegate.swift in Sources */,
+				3A97E0842435D7C000D4CCCB /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3A97E0872435D7C000D4CCCB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3A97E0882435D7C000D4CCCB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3A97E08C2435D7C200D4CCCB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3A97E08D2435D7C200D4CCCB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3A97E0902435D7C200D4CCCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3A97E0912435D7C200D4CCCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3A97E0932435D7C200D4CCCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41DB64690A41D8FCC5A97A49 /* Pods-DebateApp.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 36QH7628VZ;
+				INFOPLIST_FILE = DebateApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.MasakiProduct.DebateApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3A97E0942435D7C200D4CCCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B0768A96F0E0CC8132A3E1A /* Pods-DebateApp.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 36QH7628VZ;
+				INFOPLIST_FILE = DebateApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.MasakiProduct.DebateApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3A97E0792435D7C000D4CCCB /* Build configuration list for PBXProject "DebateApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A97E0902435D7C200D4CCCB /* Debug */,
+				3A97E0912435D7C200D4CCCB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3A97E0922435D7C200D4CCCB /* Build configuration list for PBXNativeTarget "DebateApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A97E0932435D7C200D4CCCB /* Debug */,
+				3A97E0942435D7C200D4CCCB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3A97E0762435D7C000D4CCCB /* Project object */;
+}
