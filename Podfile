@@ -8,4 +8,5 @@ target 'DebateApp' do
   # Pods for DebateApp
 
 pod 'YSRadioButton', :git => 'https://github.com/sekies/YSRadioButton.git'
+pod 'RealmSwift'
 end

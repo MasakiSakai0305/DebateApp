@@ -1,8 +1,19 @@
 PODS:
+  - Realm (4.4.0):
+    - Realm/Headers (= 4.4.0)
+  - Realm/Headers (4.4.0)
+  - RealmSwift (4.4.0):
+    - Realm (= 4.4.0)
   - YSRadioButton (0.0.1)
 
 DEPENDENCIES:
+  - RealmSwift
   - YSRadioButton (from `https://github.com/sekies/YSRadioButton.git`)
+
+SPEC REPOS:
+  trunk:
+    - Realm
+    - RealmSwift
 
 EXTERNAL SOURCES:
   YSRadioButton:
@@ -14,8 +25,10 @@ CHECKOUT OPTIONS:
     :git: https://github.com/sekies/YSRadioButton.git
 
 SPEC CHECKSUMS:
+  Realm: e125f464884cda953ebefe70c671b75b03b81b9b
+  RealmSwift: 33656a42bd300959a081fc13347376bc478071af
   YSRadioButton: d36fff9507fc02527bbe44cc1211a201f42d1218
 
-PODFILE CHECKSUM: e3e6baed9bb6347893d8dbca879b935fc4bd6382
+PODFILE CHECKSUM: 92cb368fdbe613f748d6ea401a191c722888ddee
 
 COCOAPODS: 1.8.4
