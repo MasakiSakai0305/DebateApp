@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RealmSwift
+
 
 
 class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource{
@@ -35,6 +37,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     
     var CheckedWLButtonTag = 0  //チェックされているボタンのタグ
     var CheckedStyleButtonTag = 10
+    
     //それぞれ画像を読み込む
     let checkedImage = UIImage(named: "checkOn")! as UIImage
     let uncheckedImage = UIImage(named: "checkOff")! as UIImage
@@ -44,6 +47,10 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     
     var WLString:String!
     var styleString:String!
+    var motionTitleString:String!
+    
+
+    
     let center = Int(UIScreen.main.bounds.size.width / 2)
     
     var WLButtonArray = [UIButton]()
@@ -52,8 +59,9 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     
     
     var pickerView: UIPickerView = UIPickerView()
-    var scoreList = ["65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82",                    "83", "84", "85"]
+    var scoreList = ["65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82","83", "84", "85"]
     var score:String!
+    
 
     
     override func viewDidLoad() {
@@ -94,11 +102,56 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         for i in 0..<styleList.count {
             set_styleRadioButton(num: i)
         }
+       
+//
+//        let fb = FeedBack()
+//        let realm = try! Realm()
+//
+////        // DBに書き込む
+////        try! realm.write {
+////            realm.add(fb)
+////        }
+////
+////        let obs = realm.objects(FeedBack.self)
+////        for ob in obs{
+////            print(ob.MotionTitle)
+////        }
+////
+//        try! realm.write {
+//            realm.deleteAll()
+//        }
+
     
     }
     
     
-    //TextFieldの文字をLabelに反映
+    //DBに書きこむ(試し)
+    @IBAction func save(_ sender: Any) {
+        
+        let fb = FeedBack()
+        let realm = try! Realm()
+        
+        fb.MotionTitle = motionTitleString!
+        fb.FeedBackString = FBTextView.text!
+        fb.result = WLString!
+        fb.score = Int(score)!
+        fb.style = styleString!
+        
+        // DBに書き込む
+        try! realm.write {
+            realm.add(fb)
+        }
+        
+        let obs = realm.objects(FeedBack.self)
+        for ob in obs{
+            print(ob.MotionTitle)
+            print(ob)
+        }
+        
+    }
+    
+    
+    //TextFieldの文字をLabelに反映(決定ボタン)
     @IBAction func motionDecide(_ sender: Any) {
         print("button was pushed")
         
@@ -108,6 +161,9 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         } else {
             motionLabel.text = motionTextField.text!
         }
+        
+        
+        motionTitleString = motionLabel.text
         
         //キーボード閉じる
         motionTextField.resignFirstResponder()
@@ -219,6 +275,8 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         motionTextField.resignFirstResponder()
         return true
     }
+    
+    
     
     @objc func done() {
         scoreTextField.text = score

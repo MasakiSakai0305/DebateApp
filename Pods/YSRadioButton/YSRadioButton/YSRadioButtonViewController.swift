@@ -9,8 +9,7 @@
 import UIKit
 
 public protocol YSRadioButtonViewControllerDelegate {
-    func didYSRadioButtonSelect(no:Int, List:[String])
-    
+    func didYSRadioButtonSelect(no:Int)
 }
 
 
@@ -64,7 +63,6 @@ public class YSRadioButtonViewController: UIViewController,YSRadioButtonModelDel
 
     
     public init(labels: [String]) {
-        print("public init(labels: [String])")
         super.init(nibName: nil, bundle: nil)
         radioGroupView.btnLabels = labels
         model.delegate = self
@@ -93,12 +91,10 @@ public class YSRadioButtonViewController: UIViewController,YSRadioButtonModelDel
         }
         sender.drawSelectedCircle()
         selectedBtn = sender
-        model.set(no: sender.tag )
+        model.set(no: sender.tag)
     }
     
-    //radioGroupView.btnLabels
     func ysRadioButtonModelDidSet(no: Int?) {
-        delegate?.didYSRadioButtonSelect(no: no!, List: ["aa"])
-        
+        delegate?.didYSRadioButtonSelect(no: no!)
     }
 }
