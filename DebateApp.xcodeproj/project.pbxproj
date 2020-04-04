@@ -29,6 +29,7 @@
 		3A97E08D2435D7C200D4CCCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A97E08F2435D7C200D4CCCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AC1557024383D6B0076D8D8 /* ExViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExViewController.swift; sourceTree = "<group>"; };
+		3AC15572243845F20076D8D8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5387CFAF2F8D2AC23D0C4591 /* Pods-DebateApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DebateApp.release.xcconfig"; path = "Target Support Files/Pods-DebateApp/Pods-DebateApp.release.xcconfig"; sourceTree = "<group>"; };
 		C223A50565834FEAB5F5E06B /* Pods_DebateApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DebateApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED4112CCA20702B0248AA4A8 /* Pods-DebateApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DebateApp.debug.xcconfig"; path = "Target Support Files/Pods-DebateApp/Pods-DebateApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -71,6 +72,7 @@
 				3A97E0962436FA0D00D4CCCB /* View */,
 				3A97E0952436F9FC00D4CCCB /* Controller */,
 				3A97E08F2435D7C200D4CCCB /* Info.plist */,
+				3AC15572243845F20076D8D8 /* README.md */,
 			);
 			path = DebateApp;
 			sourceTree = "<group>";
