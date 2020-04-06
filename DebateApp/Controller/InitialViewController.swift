@@ -20,6 +20,9 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     var objectArray = [FeedBack]()
     
+    let date = Date()
+    let dateFormatter = DateFormatter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("--viewDidLoad--")
@@ -40,6 +43,10 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.register(UINib(nibName: "FeedBackCell", bundle: nil), forCellReuseIdentifier: "cell")
         
         
+        // DateFormatter を使用して書式とロケールを指定する
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHm", options: 0, locale: Locale(identifier: "en_JP"))
+
+        
     }
     
 
@@ -50,7 +57,8 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         //print(objectArray[indexPath.row].MotionTitle!)
         //cell.MotionLabel.text = objectArray[indexPath.row].MotionTitle
         cell.MotionLabel.text = "a"
-        cell.TimeStampLabel.text = "0000000000000000000000000000000000000000000000000000000"
+        cell.TimeStampLabel.text = "Created at: " + dateFormatter.string(from: date)
+        cell.TimeStampLabel.adjustsFontSizeToFitWidth = true
         
         
         
