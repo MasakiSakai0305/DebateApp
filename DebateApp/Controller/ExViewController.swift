@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 
+//Realm試し用
 class ExViewController: UIViewController {
 
     override func viewDidLoad() {
