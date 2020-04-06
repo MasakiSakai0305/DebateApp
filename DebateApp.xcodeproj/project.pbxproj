@@ -11,6 +11,7 @@
 		3A742712243B2C19005D6F78 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A742711243B2C19005D6F78 /* InitialViewController.swift */; };
 		3A742715243B51CB005D6F78 /* FeedBackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A742713243B51CB005D6F78 /* FeedBackCell.swift */; };
 		3A742716243B51CB005D6F78 /* FeedBackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A742714243B51CB005D6F78 /* FeedBackCell.xib */; };
+		3A872ED6243B5F9B00CC5EF3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3A872ED5243B5F9B00CC5EF3 /* README.md */; };
 		3A97E0822435D7C000D4CCCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0812435D7C000D4CCCB /* AppDelegate.swift */; };
 		3A97E0842435D7C000D4CCCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */; };
 		3A97E0862435D7C000D4CCCB /* ResisterFBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0852435D7C000D4CCCB /* ResisterFBViewController.swift */; };
@@ -26,6 +27,7 @@
 		3A742711243B2C19005D6F78 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		3A742713243B51CB005D6F78 /* FeedBackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackCell.swift; sourceTree = "<group>"; };
 		3A742714243B51CB005D6F78 /* FeedBackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedBackCell.xib; sourceTree = "<group>"; };
+		3A872ED5243B5F9B00CC5EF3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3A97E07E2435D7C000D4CCCB /* DebateApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebateApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A97E0812435D7C000D4CCCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 		3A97E0752435D7C000D4CCCB = {
 			isa = PBXGroup;
 			children = (
+				3A872ED5243B5F9B00CC5EF3 /* README.md */,
 				3A97E0802435D7C000D4CCCB /* DebateApp */,
 				3A97E07F2435D7C000D4CCCB /* Products */,
 				5F04E41E4DC5762E7DBA5A22 /* Pods */,
@@ -192,6 +195,7 @@
 			files = (
 				3A97E08E2435D7C200D4CCCB /* LaunchScreen.storyboard in Resources */,
 				3A97E08B2435D7C200D4CCCB /* Assets.xcassets in Resources */,
+				3A872ED6243B5F9B00CC5EF3 /* README.md in Resources */,
 				3A742716243B51CB005D6F78 /* FeedBackCell.xib in Resources */,
 				3A97E0892435D7C000D4CCCB /* Main.storyboard in Resources */,
 			);
