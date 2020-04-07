@@ -13,26 +13,29 @@ import RealmSwift
 
 class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate{
     
-
+    //決定ボタン(TextFieldのMotionをLabelに反映)
     @IBOutlet weak var doneButton: UIButton!
     //モーションを表示するLabel
     @IBOutlet weak var motionLabel: UILabel!
     //モーションを入力するTextField
     @IBOutlet weak var motionTextField: UITextField!
+    //スコアを入力するTextField
+    @IBOutlet weak var scoreTextField: UITextField!
+    //FBを入力するTextView
+    @IBOutlet weak var FBTextView: UITextView!
     
-    
-    
+    //ラベル各種
     @IBOutlet weak var styleLabel: UILabel!
     @IBOutlet weak var WLLabel: UILabel!
-    
-    
-    
     @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var scoreTextField: UITextField!
     
-
+    //スコア入力用のPickerView
+    var pickerView: UIPickerView = UIPickerView()
+   
     
-    @IBOutlet weak var FBTextView: UITextView!
+    //ナビゲーションアイテムのボタン宣言
+    var addBarButtonItem: UIBarButtonItem!
+    
     var NumberOfButtons: Int = 2  //ボタンの数
     
     var CheckedWLButtonTag = 0  //チェックされているボタンのタグ
@@ -44,11 +47,14 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     
     let WLList = ["勝ち", "負け"]
     let styleList = ["NA", "BP", "Asian"]
+    var scoreList = ["65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82","83", "84", "85"]
+    
     
     var motionTitleString:String!
     //デフォルトで設定
     var WLString = "勝ち"
     var styleString = "NA"
+    var score = "65"
     
 
     
@@ -56,14 +62,6 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     
     var WLButtonArray = [UIButton]()
     var styleButtonArray = [UIButton]()
-    
-    
-    
-    var pickerView: UIPickerView = UIPickerView()
-    var scoreList = ["65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82","83", "84", "85"]
-    //デフォルトで65
-    var score = "65"
-    
     
 
     override func viewDidLoad() {
@@ -78,6 +76,12 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
         let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
         toolBar.setItems([doneItem], animated: true)
+        
+        
+        //[保存せず戻る]ボタン追加
+        addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(addBarButtonTapped(_:)))
+        self.navigationItem.rightBarButtonItems = [addBarButtonItem]
+
         
         scoreTextField.inputView = pickerView
         scoreTextField.inputAccessoryView = toolBar
@@ -136,7 +140,17 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         if viewController is InitialViewController {
             print("viewController is InitialViewController")
             
+            saveData()
+            
         }
+    }
+    
+    @objc func addBarButtonTapped(_ sender: UIBarButtonItem){
+        print("[保存せず終了ボタン]が押された")
+        self.navigationController?.popViewController(animated: true)
+        //画面遷移(InitialVCに戻る)
+        self.navigationController?.popViewController(animated: true)
+        
     }
     
     
@@ -146,7 +160,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         let fb = FeedBack()
         let realm = try! Realm()
         
-        fb.MotionTitle = motionTitleString!
+        fb.MotionTitle = motionTitleString
         fb.FeedBackString = FBTextView.text!
         fb.result = WLString
         fb.score = Int(score)!
@@ -162,7 +176,27 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
             print(ob.MotionTitle!)
             print(ob)
         }
+    }
+    
+    //DBに書きこむ(試し)
+    func saveData() {
         
+        let fb = FeedBack()
+        let realm = try! Realm()
+        
+        fb.MotionTitle = motionTitleString
+        fb.FeedBackString = FBTextView.text!
+        fb.result = WLString
+        fb.score = Int(score)!
+        fb.style = styleString
+        
+        // DBに書き込む
+        try! realm.write {
+            realm.add(fb)
+        }
+        
+        let obs = realm.objects(FeedBack.self)
+        print(obs)
     }
     
     
@@ -303,13 +337,10 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         return true
     }
     
-    
-    
     @objc func done() {
         scoreTextField.text = score
         scoreTextField.endEditing(true)
     }
-    
     
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

@@ -55,6 +55,11 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     //追加ボタン
     @objc func addBarButtonTapped(_ sender: UIBarButtonItem) {
         print("【+】ボタンが押された!")

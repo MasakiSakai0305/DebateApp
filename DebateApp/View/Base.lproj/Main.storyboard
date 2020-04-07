@@ -168,7 +168,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="PNV-gi-uuX"/>
+                    <navigationItem key="navigationItem" id="PNV-gi-uuX">
+                        <barButtonItem key="rightBarButtonItem" title="保存せず終了" id="5z0-59-Dar"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="FBTextView" destination="1ar-MI-dPJ" id="Tcw-1B-OR3"/>
                         <outlet property="WLLabel" destination="dT3-Pp-gPB" id="Ypd-Ir-mgt"/>
