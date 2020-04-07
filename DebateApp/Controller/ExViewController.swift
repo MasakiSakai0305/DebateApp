@@ -28,6 +28,13 @@ class ExViewController: UIViewController {
         let results = realm.objects(FeedBack.self).filter("score == 65")
         print(results)
         
+        print("--update--")
+        try! realm.write({
+            obs[0].MotionTitle = "THW ban tabacco"
+        })
+        
+        print(obs)
+        
 //        print("--delete--")
 //        try! realm.write {
 //            realm.delete(results[0])
