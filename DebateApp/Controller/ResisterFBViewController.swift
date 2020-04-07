@@ -61,10 +61,11 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     
     var pickerView: UIPickerView = UIPickerView()
     var scoreList = ["65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82","83", "84", "85"]
-    var score:String!
+    //デフォルトで65
+    var score = "65"
+    
     
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -80,6 +81,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         
         scoreTextField.inputView = pickerView
         scoreTextField.inputAccessoryView = toolBar
+        scoreTextField.text = score
         
         WLLabel.frame = CGRect(x: center - 170, y: 200, width: 80, height: 30)
         styleLabel.frame = CGRect(x: center + 10, y: 200, width: 80, height: 30)
