@@ -45,9 +45,10 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     let WLList = ["勝ち", "負け"]
     let styleList = ["NA", "BP", "Asian"]
     
-    var WLString:String!
-    var styleString:String!
     var motionTitleString:String!
+    //デフォルトで設定
+    var WLString = "勝ち"
+    var styleString = "NA"
     
 
     
@@ -86,20 +87,20 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         scoreLabel.frame = CGRect(x: center - 170, y: 340, width: 60, height: 30)
         scoreTextField.frame = CGRect(x: center - 100, y: 340, width: 40, height: 30)
         
-
-        
         FBTextView.layer.borderColor = UIColor.black.cgColor
         FBTextView.layer.borderWidth = 1.0
         
         doneButton.tag = 100
         motionLabel.numberOfLines = 3
         
+        //ラジオボタン設置(勝敗)
         for i in 0..<WLList.count {
             set_WLRadioButton(num: i)
         }
      
         print(self.view!)
         
+        //ラジオボタン設置(スタイル)
         for i in 0..<styleList.count {
             set_styleRadioButton(num: i)
         }
@@ -145,9 +146,9 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         
         fb.MotionTitle = motionTitleString!
         fb.FeedBackString = FBTextView.text!
-        fb.result = WLString!
+        fb.result = WLString
         fb.score = Int(score)!
-        fb.style = styleString!
+        fb.style = styleString
         
         // DBに書き込む
         try! realm.write {
@@ -189,22 +190,25 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         let y = 240+45*num  //ボタン同士が重ならないようyを調整
         button.setImage(uncheckedImage, for: .normal)
         button.addTarget(self, action: #selector(WLButttonClicked(_:)), for: .touchUpInside)
-        button.frame = CGRect(x: center - 170,y: y,
-                              width: 30,height: 30)
+        button.frame = CGRect(x: center - 170,y: y,width: 30,height: 30)
         button.tag = num
         
-        self.view.addSubview(button)
+        //デフォルトで"勝ち"にチェックを入れる
+        if num == 0{
+            button.setImage(checkedImage, for: .normal)
+            CheckedWLButtonTag = button.tag
+        }
+        
         WLButtonArray.append(button)
         
         
         let label = UILabel()
         label.text = WLList[num]
-        label.frame = CGRect(x: center - 130,y: y,
-                              width: 70,height: 30)
+        label.frame = CGRect(x: center - 130,y: y,width: 70,height: 30)
        
-        self.view.addSubview(label)
         
-    
+        self.view.addSubview(button)
+        self.view.addSubview(label)
     }
     
     //ラジオボタン(スタイル)を配置する
@@ -217,36 +221,45 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         button.frame = CGRect(x: center + 20,y: y,
                               width: 30,height: 30)
         button.tag = num + 10
-        self.view.addSubview(button)
+        
+        
+        //デフォルトで"NA"にチェックを入れる
+        if num == 0{
+            button.setImage(checkedImage, for: .normal)
+            CheckedStyleButtonTag = button.tag
+        }
+        
         styleButtonArray.append(button)
         
         let label = UILabel()
         label.text = styleList[num]
-        label.frame = CGRect(x: center + 60,y: y,
-                              width: 70,height: 30)
+        label.frame = CGRect(x: center + 60,y: y, width: 70,height: 30)
+        self.view.addSubview(button)
         self.view.addSubview(label)
-    
     }
 
     //押されたボタンの画像をcheck_on.pngに変える(勝敗)
     @objc func WLButttonClicked(_ sender: UIButton) {
+        print("\n--WLButttonClicked--")
+        print("CheckedWLButtonTag: ", CheckedWLButtonTag)
         ChangeToUncheckedWL(num: CheckedWLButtonTag)
         let button = sender
         button.setImage(checkedImage, for: .normal)
         CheckedWLButtonTag = button.tag  //check_on.pngになっているボタンのtagを更新
         WLString = WLList[CheckedWLButtonTag]
-        print("checkd: ", WLString!)
+        print("checkd: ", WLString)
   
     }
     
     //押されたボタンの画像をcheck_on.pngに変える(スタイル)
     @objc func styleButttonClicked(_ sender: UIButton) {
+        print("\n--styleButttonClicked--")
         ChangeToUncheckedStyle(num: CheckedStyleButtonTag)
         let button = sender
         button.setImage(checkedImage, for: .normal)
         CheckedStyleButtonTag = button.tag  //check_on.pngになっているボタンのtagを更新
         styleString = styleList[CheckedStyleButtonTag - 10]
-        print("checkd: ", styleString!)
+        print("checkd: ", styleString)
 
     }
 
