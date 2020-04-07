@@ -12,6 +12,9 @@ import RealmSwift
 //Realm試し用
 class ExViewController: UIViewController {
 
+    
+    @IBOutlet weak var label: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,7 +45,7 @@ class ExViewController: UIViewController {
 //        print(realm.objects(FeedBack.self))
 
 
-        
+        label.text = obs[0].MotionTitle
         
     }
     

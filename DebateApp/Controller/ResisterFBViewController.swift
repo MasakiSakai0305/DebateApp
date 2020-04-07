@@ -11,7 +11,7 @@ import RealmSwift
 
 
 
-class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource{
+class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate{
     
 
     @IBOutlet weak var doneButton: UIButton!
@@ -71,6 +71,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         FBTextView.delegate = self
         pickerView.delegate = self
         pickerView.dataSource = self
+        navigationController?.delegate = self
         
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
         let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
@@ -124,6 +125,17 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     
     }
     
+    //前の画面に戻るとき,textviewの中身をメモに格納
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        print("\n--navigationController from ResisterFB--")
+        print(viewController)
+        //前の画面に戻るとき
+        if viewController is InitialViewController {
+            print("viewController is InitialViewController")
+            
+        }
+    }
+    
     
     //DBに書きこむ(試し)
     @IBAction func save(_ sender: Any) {
@@ -144,7 +156,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         
         let obs = realm.objects(FeedBack.self)
         for ob in obs{
-            print(ob.MotionTitle)
+            print(ob.MotionTitle!)
             print(ob)
         }
         

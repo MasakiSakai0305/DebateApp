@@ -11,13 +11,15 @@ import RealmSwift
 
 class InitialViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
+    //ナビゲーションアイテムのプラスボタン宣言
+    var addBarButtonItem: UIBarButtonItem!
     
     @IBOutlet weak var tableView: UITableView!
+    
     //DBに登録してるデータ数
     var objectCount = 0
     let realm2 = try! Realm()
-
+    //オブジェクトを格納する配列
     var objectArray = [FeedBack]()
     
     let date = Date()
@@ -45,11 +47,24 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // DateFormatter を使用して書式とロケールを指定する
         dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHm", options: 0, locale: Locale(identifier: "en_JP"))
+        
+        //[+]ボタン追加
+        addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBarButtonTapped(_:)))
+        self.navigationItem.rightBarButtonItems = [addBarButtonItem]
 
         
     }
     
+    //追加ボタン
+    @objc func addBarButtonTapped(_ sender: UIBarButtonItem) {
+        print("【+】ボタンが押された!")
+          
+        let ResisterFBVC = storyboard?.instantiateViewController(withIdentifier: "Resister")  as! ResisterFBViewController
 
+                          
+        //画面遷移
+        navigationController?.pushViewController(ResisterFBVC, animated: true)
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! FeedBackCell
@@ -63,7 +78,6 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         
         return cell
-        
     }
     
     //セルの数を決める

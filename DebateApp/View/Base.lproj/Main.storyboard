@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4nc-sB-q44">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
@@ -27,6 +27,7 @@
                     <navigationItem key="navigationItem" id="UKK-bf-rkT"/>
                     <connections>
                         <outlet property="tableView" destination="mVl-yF-EXZ" id="5DX-wi-ebK"/>
+                        <segue destination="BYZ-38-t0r" kind="show" id="ztt-J2-tuz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JC3-Lg-2fJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -80,7 +81,7 @@
         <!--ResisterFB View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ResisterFBViewController" customModule="DebateApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Resister" id="BYZ-38-t0r" customClass="ResisterFBViewController" customModule="DebateApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -146,7 +147,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mF7-Kn-2rc">
-                                <rect key="frame" x="30" y="599" width="161" height="48"/>
+                                <rect key="frame" x="32" y="569" width="161" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.45009386540000001" green="0.98132258650000004" blue="0.4743030667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="保存"/>
@@ -155,7 +156,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pDB-gs-ycj">
-                                <rect key="frame" x="242" y="599" width="102" height="45"/>
+                                <rect key="frame" x="242" y="570" width="102" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.67024181459999999" green="1" blue="0.98163117870000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="遷移"/>
@@ -167,6 +168,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="PNV-gi-uuX"/>
                     <connections>
                         <outlet property="FBTextView" destination="1ar-MI-dPJ" id="Tcw-1B-OR3"/>
                         <outlet property="WLLabel" destination="dT3-Pp-gPB" id="Ypd-Ir-mgt"/>
@@ -180,7 +182,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3895.1999999999998" y="126.38680659670166"/>
+            <point key="canvasLocation" x="3328.8000000000002" y="-99.400299850074973"/>
         </scene>
         <!--Ex View Controller-->
         <scene sceneID="v0z-4o-fnD">
@@ -189,13 +191,25 @@
                     <view key="view" contentMode="scaleToFill" id="Nih-3z-bSg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MoZ-gC-yH0">
+                                <rect key="frame" x="64" y="103" width="231" height="289"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="4V0-hj-TXz"/>
                     </view>
+                    <connections>
+                        <outlet property="label" destination="MoZ-gC-yH0" id="sPn-za-EN5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YYr-yI-N0h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4810.3999999999996" y="126.38680659670166"/>
+            <point key="canvasLocation" x="4620" y="-99.400299850074973"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="k2D-tF-UEb">
