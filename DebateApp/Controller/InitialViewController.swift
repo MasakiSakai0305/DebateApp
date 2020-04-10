@@ -9,7 +9,9 @@
 import UIKit
 import RealmSwift
 
-class InitialViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class InitialViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, updateTableDelegate {
+    
+
     
     //ナビゲーションアイテムのプラスボタン宣言
     var addBarButtonItem: UIBarButtonItem!
@@ -60,11 +62,13 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.reloadData()
     }
     
+    
     //追加ボタン
     @objc func addBarButtonTapped(_ sender: UIBarButtonItem) {
         print("【+】ボタンが押された!")
           
         let ResisterFBVC = storyboard?.instantiateViewController(withIdentifier: "Resister")  as! ResisterFBViewController
+        ResisterFBVC.delegate = self
 
                           
         //画面遷移
@@ -98,6 +102,21 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
+    }
+    
+    
+    //保存したデータをテーブルに反映
+    func updateTable() {
+        print("updateTable")
+        
+        //objectCount更新
+        let realm = try! Realm()
+        let objects = realm.objects(FeedBack.self)
+        objectCount = objects.count
+        
+        //リロード
+        tableView.reloadData()
+        
     }
     
 

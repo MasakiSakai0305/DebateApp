@@ -9,9 +9,16 @@
 import UIKit
 import RealmSwift
 
+protocol updateTableDelegate {
+    
+    func updateTable()
+    
+}
 
 
 class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate{
+    
+    var delegate:updateTableDelegate?
     
     //決定ボタン(TextFieldのMotionをLabelに反映)
     @IBOutlet weak var doneButton: UIButton!
@@ -72,6 +79,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         pickerView.delegate = self
         pickerView.dataSource = self
         navigationController?.delegate = self
+        
         
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
         let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
@@ -142,6 +150,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
             
             saveData()
             
+            delegate?.updateTable()
         }
     }
     
@@ -154,27 +163,32 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     }
     
     
-    //DBに書きこむ(試し)
+    //DBの中身削除(試し)
     @IBAction func save(_ sender: Any) {
         
-        let fb = FeedBack()
+//        let fb = FeedBack()
+//        let realm = try! Realm()
+//
+//        fb.MotionTitle = motionTitleString
+//        fb.FeedBackString = FBTextView.text!
+//        fb.result = WLString
+//        fb.score = Int(score)!
+//        fb.style = styleString
+//
+//        // DBに書き込む
+//        try! realm.write {
+//            realm.add(fb)
+//        }
+//
+//        let obs = realm.objects(FeedBack.self)
+//        for ob in obs{
+//            print(ob.MotionTitle!)
+//            print(ob)
+//        }
+        
         let realm = try! Realm()
-        
-        fb.MotionTitle = motionTitleString
-        fb.FeedBackString = FBTextView.text!
-        fb.result = WLString
-        fb.score = Int(score)!
-        fb.style = styleString
-        
-        // DBに書き込む
         try! realm.write {
-            realm.add(fb)
-        }
-        
-        let obs = realm.objects(FeedBack.self)
-        for ob in obs{
-            print(ob.MotionTitle!)
-            print(ob)
+            realm.deleteAll()
         }
     }
     
@@ -183,20 +197,22 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         
         let fb = FeedBack()
         let realm = try! Realm()
-        
+
         fb.MotionTitle = motionTitleString
         fb.FeedBackString = FBTextView.text!
         fb.result = WLString
         fb.score = Int(score)!
         fb.style = styleString
-        
+
         // DBに書き込む
         try! realm.write {
             realm.add(fb)
         }
-        
+
         let obs = realm.objects(FeedBack.self)
         print(obs)
+        
+
     }
     
     
@@ -319,6 +335,10 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         }
     }
     
+    
+    
+    /*---入力時のキーボード関連---*/
+    
     //入力画面ないしkeyboardの外を押したら、キーボードを閉じる処理
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if (self.FBTextView.isFirstResponder) {
@@ -337,12 +357,16 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         return true
     }
     
+    //決定ボタン(モーション入力終了)
     @objc func done() {
         scoreTextField.text = score
         scoreTextField.endEditing(true)
     }
     
     
+    
+    
+    /*---Picker view関連---*/
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -363,5 +387,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         score = scoreList[row]
         return scoreList[row]
     }
+    
+    
 }
 
