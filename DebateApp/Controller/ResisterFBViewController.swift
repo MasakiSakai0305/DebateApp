@@ -41,9 +41,10 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
    
     
     //ナビゲーションアイテムのボタン宣言
-    var addBarButtonItem: UIBarButtonItem!
+    var notSaveBarButtonItem: UIBarButtonItem!
     
-    var NumberOfButtons: Int = 2  //ボタンの数
+    //セーブするかどうかを判断するフラグ
+    var isSave = true
     
     var CheckedWLButtonTag = 0  //チェックされているボタンのタグ
     var CheckedStyleButtonTag = 10
@@ -87,8 +88,8 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         
         
         //[保存せず戻る]ボタン追加
-        addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(addBarButtonTapped(_:)))
-        self.navigationItem.rightBarButtonItems = [addBarButtonItem]
+        notSaveBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(notSaveBarButtonTapped(_:)))
+        self.navigationItem.rightBarButtonItems = [notSaveBarButtonItem]
 
         
         scoreTextField.inputView = pickerView
@@ -144,19 +145,30 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         print("\n--navigationController from ResisterFB--")
         print(viewController)
+        
         //前の画面に戻るとき
         if viewController is InitialViewController {
             print("viewController is InitialViewController")
             
-            saveData()
-            
-            delegate?.updateTable()
+            //セーブするか判断
+            if isSave == true{
+                print("Save")
+                saveData()
+                delegate?.updateTable()
+            } else {
+                print("Not save")
+                delegate?.updateTable()
+            }
+        
         }
     }
     
-    @objc func addBarButtonTapped(_ sender: UIBarButtonItem){
+    @objc func notSaveBarButtonTapped(_ sender: UIBarButtonItem){
         print("[保存せず終了ボタン]が押された")
-        self.navigationController?.popViewController(animated: true)
+        
+        //セーブしない
+        isSave = false
+        
         //画面遷移(InitialVCに戻る)
         self.navigationController?.popViewController(animated: true)
         

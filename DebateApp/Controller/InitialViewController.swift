@@ -107,7 +107,7 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //保存したデータをテーブルに反映
     func updateTable() {
-        print("updateTable")
+        print("updateTable protocol was called")
         
         //objectCount更新
         let realm = try! Realm()
