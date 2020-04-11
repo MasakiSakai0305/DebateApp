@@ -39,7 +39,6 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     //スコア入力用のPickerView
     var pickerView: UIPickerView = UIPickerView()
    
-    
     //ナビゲーションアイテムのボタン宣言
     var notSaveBarButtonItem: UIBarButtonItem!
     
@@ -58,12 +57,12 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     var scoreList = ["65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82","83", "84", "85"]
     
     
-    var motionTitleString:String!
+    
     //デフォルトで設定
     var WLString = "勝ち"
     var styleString = "NA"
     var score = "65"
-    
+    var motionTitleString = "No title"
 
     
     let center = Int(UIScreen.main.bounds.size.width / 2)
@@ -81,27 +80,31 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         pickerView.dataSource = self
         navigationController?.delegate = self
         
-        
+        //スコア入力機能設定
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
         let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
         toolBar.setItems([doneItem], animated: true)
+        scoreTextField.inputView = pickerView
+        scoreTextField.inputAccessoryView = toolBar
+        scoreTextField.text = score
         
         
         //[保存せず戻る]ボタン追加
         notSaveBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(notSaveBarButtonTapped(_:)))
         self.navigationItem.rightBarButtonItems = [notSaveBarButtonItem]
 
+        //モーションラベル
+        motionLabel.text = motionTitleString
         
-        scoreTextField.inputView = pickerView
-        scoreTextField.inputAccessoryView = toolBar
-        scoreTextField.text = score
-        
+        //"勝敗"ラベル設定
         WLLabel.frame = CGRect(x: center - 170, y: 200, width: 80, height: 30)
         styleLabel.frame = CGRect(x: center + 10, y: 200, width: 80, height: 30)
         
+        //"スコア"ラベル設定
         scoreLabel.frame = CGRect(x: center - 170, y: 340, width: 60, height: 30)
         scoreTextField.frame = CGRect(x: center - 100, y: 340, width: 40, height: 30)
         
+        //FBテキストビュー設定
         FBTextView.layer.borderColor = UIColor.black.cgColor
         FBTextView.layer.borderWidth = 1.0
         
@@ -202,6 +205,11 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         try! realm.write {
             realm.deleteAll()
         }
+        
+        print("--All delete--\n")
+        let obs = realm.objects(FeedBack.self)
+        print(obs)
+        
     }
     
     //DBに書きこむ(試し)
@@ -240,7 +248,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         }
         
         
-        motionTitleString = motionLabel.text
+        motionTitleString = motionLabel.text!
         
         //キーボード閉じる
         motionTextField.resignFirstResponder()

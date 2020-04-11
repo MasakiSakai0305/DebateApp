@@ -11,6 +11,7 @@
 		3A742712243B2C19005D6F78 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A742711243B2C19005D6F78 /* InitialViewController.swift */; };
 		3A742715243B51CB005D6F78 /* FeedBackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A742713243B51CB005D6F78 /* FeedBackCell.swift */; };
 		3A742716243B51CB005D6F78 /* FeedBackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A742714243B51CB005D6F78 /* FeedBackCell.xib */; };
+		3A7E52BB24418D6900174180 /* EditFBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E52BA24418D6900174180 /* EditFBViewController.swift */; };
 		3A872ED6243B5F9B00CC5EF3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3A872ED5243B5F9B00CC5EF3 /* README.md */; };
 		3A97E0822435D7C000D4CCCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0812435D7C000D4CCCB /* AppDelegate.swift */; };
 		3A97E0842435D7C000D4CCCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */; };
@@ -27,6 +28,7 @@
 		3A742711243B2C19005D6F78 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		3A742713243B51CB005D6F78 /* FeedBackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackCell.swift; sourceTree = "<group>"; };
 		3A742714243B51CB005D6F78 /* FeedBackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedBackCell.xib; sourceTree = "<group>"; };
+		3A7E52BA24418D6900174180 /* EditFBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFBViewController.swift; sourceTree = "<group>"; };
 		3A872ED5243B5F9B00CC5EF3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3A97E07E2435D7C000D4CCCB /* DebateApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebateApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A97E0812435D7C000D4CCCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,8 +92,9 @@
 				3A97E0812435D7C000D4CCCB /* AppDelegate.swift */,
 				3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */,
 				3A97E0852435D7C000D4CCCB /* ResisterFBViewController.swift */,
-				3AC1557024383D6B0076D8D8 /* ExViewController.swift */,
+				3A7E52BA24418D6900174180 /* EditFBViewController.swift */,
 				3A742711243B2C19005D6F78 /* InitialViewController.swift */,
+				3AC1557024383D6B0076D8D8 /* ExViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 			files = (
 				3A742715243B51CB005D6F78 /* FeedBackCell.swift in Sources */,
 				3A97E0862435D7C000D4CCCB /* ResisterFBViewController.swift in Sources */,
+				3A7E52BB24418D6900174180 /* EditFBViewController.swift in Sources */,
 				3AC1557124383D6B0076D8D8 /* ExViewController.swift in Sources */,
 				3A97E0822435D7C000D4CCCB /* AppDelegate.swift in Sources */,
 				3A742712243B2C19005D6F78 /* InitialViewController.swift in Sources */,

@@ -57,11 +57,6 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tableView.reloadData()
-    }
-    
     
     //追加ボタン
     @objc func addBarButtonTapped(_ sender: UIBarButtonItem) {
@@ -75,24 +70,46 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         navigationController?.pushViewController(ResisterFBVC, animated: true)
     }
     
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! FeedBackCell
         print("--cellForRowAt--")
         //print(objectArray[indexPath.row].MotionTitle!)
         //cell.MotionLabel.text = objectArray[indexPath.row].MotionTitle
-        cell.MotionLabel.text = "a"
+        
+        let realm = try! Realm()
+        let objects = realm.objects(FeedBack.self)
+        let object = objects[indexPath.row]
+        
+        print(indexPath.row, "object.MotionTitle: ", object.MotionTitle)
+        cell.MotionLabel.text = object.MotionTitle
         cell.TimeStampLabel.text = "Created at: " + dateFormatter.string(from: date)
         cell.TimeStampLabel.adjustsFontSizeToFitWidth = true
-        
-        
         
         return cell
     }
     
+    //セルがタップされたとき, EditFBViewControllerに遷移
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("didSelectRowAt")
+        //タップした時にメモの中身を渡す
+        let EditFBVC = storyboard?.instantiateViewController(withIdentifier: "Edit")  as! EditFBViewController
+
+        EditFBVC.delegate = self
+
+        //中身とセルの順番を渡す
+        print("\(String(indexPath.row)) is selected")
+
+        
+        EditFBVC.cellNumber = indexPath.row
+        
+        //画面遷移
+        navigationController?.pushViewController(EditFBVC, animated: true)
+    }
+    
     //セルの数を決める
     func numberOfSections(in tableView: UITableView) -> Int {
-        print("numberOfSections: ", objectCount)
-        return objectCount
+        return 1
     }
     
     //高さを決める
@@ -101,7 +118,8 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        print("numberOfRowsSections: ", objectCount)
+        return objectCount
     }
     
     
