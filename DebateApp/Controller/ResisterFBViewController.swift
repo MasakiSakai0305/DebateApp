@@ -16,6 +16,8 @@ protocol updateTableDelegate {
 }
 
 
+
+
 class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate{
     
     var delegate:updateTableDelegate?
@@ -69,13 +71,21 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     
     let center = Int(UIScreen.main.bounds.size.width / 2)
     
+    //スクリーンのサイズ
+    let screenSize = UIScreen.main.bounds.size
+    //textViewのyを記憶するための変数
+    var textViewHeight = CGFloat()
+    
     var WLButtonArray = [UIButton]()
     var styleButtonArray = [UIButton]()
+    
+
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
         motionTextField.delegate = self
         FBTextView.delegate = self
         pickerView.delegate = self
@@ -126,9 +136,19 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         
         // DateFormatter を使用して書式とロケールを指定する
         dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHm", options: 0, locale: Locale(identifier: "en_JP"))
+        
+        
+        //キーボードが出てきた時に,keyboardWillShowを呼ぶ
+        NotificationCenter.default.addObserver(self, selector: #selector(ResisterFBViewController.keyboardWillShow(_ :)), name: UIResponder.keyboardDidShowNotification, object: nil)
+            
+        //キーボードが閉じる時に,keyboardWillHideを呼ぶ
+        NotificationCenter.default.addObserver(self, selector: #selector(ResisterFBViewController.keyboardWillHide(_ :)), name: UIResponder.keyboardDidHideNotification, object: nil)
+       //yの位置を記憶
+        textViewHeight = FBTextView.frame.origin.y
+        //textViewが重なる時に上に来るようにする
+        self.view.bringSubviewToFront(FBTextView)
        
-//
-//        let fb = FeedBack()
+        //        let fb = FeedBack()
 //        let realm = try! Realm()
 //
 ////        // DBに書き込む
@@ -147,6 +167,40 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
 
     
     }
+    
+    
+    //キーボードに隠れないように, textViewの位置を上げる
+    @objc func keyboardWillShow(_ notification: NSNotification){
+        
+        //キーボードの高さを取得
+        let keyboardHeight = ((notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as Any) as AnyObject).cgRectValue.height
+        
+        //キーボードが上がってくる時
+        //メッセージフィールドが現れる位置(y軸) = スクリーンの高さ - キーボードの高さ - メッセージの高さ
+        FBTextView.frame.origin.y = screenSize.height - keyboardHeight - FBTextView.frame.height
+    }
+    
+    //キーボードが下がるので, 同時にtextViewの位置も下げる
+    @objc func keyboardWillHide(_ notification:NSNotification){
+        
+        //キーボードを閉じる時
+        //メッセージフィールドが現れる位置(y軸) = スクリーンの高さ -　メッセージの高さ
+        FBTextView.frame.origin.y = textViewHeight
+
+        guard let rect = (notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
+            
+        //キーボードを閉じる時間を計測
+            let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else { return }
+        
+        UIView.animate(withDuration: duration) {
+            
+            //位置を戻すアニメーション
+            let transform = CGAffineTransform(translationX: 0, y: 0)
+            self.view.transform = transform
+        }
+
+    }
+    
     
     //前の画面に戻るとき,textviewの中身をメモに格納
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
