@@ -174,7 +174,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
             //セーブするか判断
             if isSave == true{
                 print("Save")
-                //updateData()
+                updateData()
                 delegate?.updateTable()
             } else {
                 print("Not save")
@@ -194,6 +194,25 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         self.navigationController?.popViewController(animated: true)
         
     }
+    
+    
+    @IBAction func motionDecide(_ sender: Any) {
+        print("決定 button was pushed")
+        
+        if motionTextField.text == ""{
+            print("no content")
+            motionLabel.text = "No title"
+        } else {
+            motionLabel.text = motionTextField.text!
+        }
+        
+        
+        motionTitleString = motionLabel.text!
+        print("motionTitleString:", motionTitleString)
+        //キーボード閉じる
+        motionTextField.resignFirstResponder()
+    }
+    
     
     //DBに書きこむ(FBを更新)
     func updateData() {
@@ -339,7 +358,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
       return true
   }
   
-  //決定ボタン(モーション入力終了)
+  //スコア決定
   @objc func done() {
       scoreTextField.text = score
       scoreTextField.endEditing(true)

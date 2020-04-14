@@ -377,7 +377,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         return true
     }
     
-    //決定ボタン(モーション入力終了)
+    //決定ボタン(スコア入力終了)
     @objc func done() {
         scoreTextField.text = score
         scoreTextField.endEditing(true)
