@@ -49,14 +49,17 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     let styleList = ["NA", "BP", "Asian"]
     var scoreList = ["65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82","83", "84", "85"]
    
-   
-
+    
+    //デフォルト
     var WLString = "勝ち"
     var styleString = "NA"
     var score = "65"
     var motionTitleString = "No title"
     var FBString:String!
 
+    //日時を取得する際に使用
+    let date = Date()
+    let dateFormatter = DateFormatter()
 
    
     let center = Int(UIScreen.main.bounds.size.width / 2)
@@ -121,7 +124,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         
        
         //ラジオボタン設置(勝敗)
-        //勝敗をチェック
+        //DBを読み込んで勝敗をチェック
         switch WLString {
             case "勝ち":
                 set_WLRadioButton(num: 0, isCheck:true)
@@ -136,7 +139,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     
        
         //ラジオボタン設置(スタイル)
-        //スタイルをチェック
+        //DBを読み込んでスタイルをチェック
         switch styleString {
             case "NA":
                 set_styleRadioButton(num: 0, isCheck:true)
@@ -153,13 +156,12 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
                 set_styleRadioButton(num: 2, isCheck:true)
 
             default:
-                
                 print("Error in set_styleRadioButton")
         }
-    
         
+        // DateFormatter を使用して書式とロケールを指定する
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHm", options: 0, locale: Locale(identifier: "en_JP"))
 
-        
     }
     
     //前の画面に戻るとき,textviewの中身をメモに格納
@@ -228,6 +230,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
             object.result = WLString
             object.score = Int(score)!
             object.style = styleString
+            object.date = dateFormatter.string(from: date)
         })
 
         let obs = realm.objects(FeedBack.self)

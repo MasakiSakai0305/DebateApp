@@ -81,9 +81,10 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         let objects = realm.objects(FeedBack.self)
         let object = objects[indexPath.row]
         
-        print(indexPath.row, "object.MotionTitle: ", object.MotionTitle)
+        print(indexPath.row, "object.MotionTitle: ", object.MotionTitle!)
         cell.MotionLabel.text = object.MotionTitle
-        cell.TimeStampLabel.text = "Created at: " + dateFormatter.string(from: date)
+        cell.TimeStampLabel.text = "Created at: " + object.date
+        
         cell.TimeStampLabel.adjustsFontSizeToFitWidth = true
         
         return cell
@@ -100,7 +101,6 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         //中身とセルの順番を渡す
         print("\(String(indexPath.row)) is selected")
 
-        
         EditFBVC.cellNumber = indexPath.row
         
         //画面遷移

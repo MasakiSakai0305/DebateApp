@@ -23,6 +23,6 @@ class FeedBack:Object{
     //フィードバック
     @objc dynamic var FeedBackString:String!
     //タイムスタンプ
-    @objc dynamic var date:Date!
+    @objc dynamic var date:String!
     
 }

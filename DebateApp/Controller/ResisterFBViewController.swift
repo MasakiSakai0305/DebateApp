@@ -56,13 +56,15 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     let styleList = ["NA", "BP", "Asian"]
     var scoreList = ["65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82","83", "84", "85"]
     
-    
-    
     //デフォルトで設定
     var WLString = "勝ち"
     var styleString = "NA"
     var score = "65"
     var motionTitleString = "No title"
+    
+    //日時を取得する際に使用
+    let date = Date()
+    let dateFormatter = DateFormatter()
 
     
     let center = Int(UIScreen.main.bounds.size.width / 2)
@@ -116,12 +118,14 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
             set_WLRadioButton(num: i)
         }
      
-        print(self.view!)
         
         //ラジオボタン設置(スタイル)
         for i in 0..<styleList.count {
             set_styleRadioButton(num: i)
         }
+        
+        // DateFormatter を使用して書式とロケールを指定する
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHm", options: 0, locale: Locale(identifier: "en_JP"))
        
 //
 //        let fb = FeedBack()
@@ -212,7 +216,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         
     }
     
-    //DBに書きこむ(試し)
+    //DBにFBを書きこむ
     func saveData() {
         
         let fb = FeedBack()
@@ -223,6 +227,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         fb.result = WLString
         fb.score = Int(score)!
         fb.style = styleString
+        fb.date = dateFormatter.string(from: date)
 
         // DBに書き込む
         try! realm.write {
