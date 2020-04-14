@@ -75,12 +75,13 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     let screenSize = UIScreen.main.bounds.size
     //textViewのyを記憶するための変数
     var textViewHeight = CGFloat()
+    //textViewを編集しているかどうかを確認
+    var isTextViewEditing = Bool()
+    
     
     var WLButtonArray = [UIButton]()
     var styleButtonArray = [UIButton]()
-    
 
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,6 +149,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         //textViewが重なる時に上に来るようにする
         self.view.bringSubviewToFront(FBTextView)
        
+        
         //        let fb = FeedBack()
 //        let realm = try! Realm()
 //
@@ -167,40 +169,6 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
 
     
     }
-    
-    
-    //キーボードに隠れないように, textViewの位置を上げる
-    @objc func keyboardWillShow(_ notification: NSNotification){
-        
-        //キーボードの高さを取得
-        let keyboardHeight = ((notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as Any) as AnyObject).cgRectValue.height
-        
-        //キーボードが上がってくる時
-        //メッセージフィールドが現れる位置(y軸) = スクリーンの高さ - キーボードの高さ - メッセージの高さ
-        FBTextView.frame.origin.y = screenSize.height - keyboardHeight - FBTextView.frame.height
-    }
-    
-    //キーボードが下がるので, 同時にtextViewの位置も下げる
-    @objc func keyboardWillHide(_ notification:NSNotification){
-        
-        //キーボードを閉じる時
-        //メッセージフィールドが現れる位置(y軸) = スクリーンの高さ -　メッセージの高さ
-        FBTextView.frame.origin.y = textViewHeight
-
-        guard let rect = (notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
-            
-        //キーボードを閉じる時間を計測
-            let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else { return }
-        
-        UIView.animate(withDuration: duration) {
-            
-            //位置を戻すアニメーション
-            let transform = CGAffineTransform(translationX: 0, y: 0)
-            self.view.transform = transform
-        }
-
-    }
-    
     
     //前の画面に戻るとき,textviewの中身をメモに格納
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
@@ -417,7 +385,51 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     
     
     /*---入力時のキーボード関連---*/
-    
+   //textFieldがタップされた
+   func textFieldDidBeginEditing(_ textField: UITextField) {
+       isTextViewEditing = false
+   }
+   //textViewがタップされた
+   func textViewDidBeginEditing(_ textView: UITextView) {
+       isTextViewEditing = true
+   }
+   
+   //キーボードに隠れないように, textViewの位置を上げる
+   @objc func keyboardWillShow(_ notification: NSNotification){
+       //textViewを編集している時のみ
+       if isTextViewEditing == true {
+           //キーボードの高さを取得
+           let keyboardHeight = ((notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as Any) as AnyObject).cgRectValue.height
+           
+           //キーボードが上がってくる時
+           //メッセージフィールドが現れる位置(y軸) = スクリーンの高さ - キーボードの高さ - メッセージの高さ
+           FBTextView.frame.origin.y = screenSize.height - keyboardHeight - FBTextView.frame.height
+       }
+   }
+   
+   //キーボードが下がるので, 同時にtextViewの位置も下げる
+   @objc func keyboardWillHide(_ notification:NSNotification){
+       //textViewを編集している時のみ
+       if isTextViewEditing == true {
+           //キーボードを閉じる時
+           //メッセージフィールドが現れる位置(y軸) = スクリーンの高さ -　メッセージの高さ
+           FBTextView.frame.origin.y = textViewHeight
+
+           guard let rect = (notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
+               
+           //キーボードを閉じる時間を計測
+               let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else { return }
+           
+           UIView.animate(withDuration: duration) {
+               
+               //位置を戻すアニメーション
+               let transform = CGAffineTransform(translationX: 0, y: 0)
+               self.view.transform = transform
+           }
+       }
+   }
+
+
     //入力画面ないしkeyboardの外を押したら、キーボードを閉じる処理
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if (self.FBTextView.isFirstResponder) {
