@@ -34,6 +34,9 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
   
     //ナビゲーションアイテムのボタン宣言
     var notSaveBarButtonItem: UIBarButtonItem!
+    
+    //アラート(保存せず終了する際に使用)
+    var alertController: UIAlertController!
    
     //セーブするかどうかを判断するフラグ
     var isSave = true
@@ -209,12 +212,35 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     @objc func notSaveBarButtonTapped(_ sender: UIBarButtonItem){
         print("[保存せず終了ボタン]が押された")
         
-        //セーブしない
-        isSave = false
-        
-        //画面遷移(InitialVCに戻る)
-        self.navigationController?.popViewController(animated: true)
-        
+        alert(title: "", message: "フィードバックを保存せず終了しますか？")
+    }
+    
+    //アラート(保存せず終了するボタン)
+    func alert(title:String, message:String) {
+         alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+         let okAction = UIAlertAction(title: "OK", style: .default, handler:{
+             (action: UIAlertAction!) in
+             //OKが押された時の処理
+             print("OK was pushed\n")
+             //セーブしない
+             self.isSave = false
+            
+             //画面遷移(InitialVCに戻る)
+             self.navigationController?.popViewController(animated: true)
+     
+             
+         })
+         let ngAction = UIAlertAction(title: "NG", style: .destructive, handler: {
+             (action: UIAlertAction!) in
+             //NGが押された時の処理
+             print("NG was pushed\n")
+         })
+         
+         
+         alertController.addAction(okAction)
+         alertController.addAction(ngAction)
+         
+           present(alertController, animated: true)
     }
     
     
