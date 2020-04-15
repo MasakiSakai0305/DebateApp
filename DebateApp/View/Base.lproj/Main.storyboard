@@ -44,7 +44,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBt-PY-T59">
-                                <rect key="frame" x="95" y="430" width="192" height="154"/>
+                                <rect key="frame" x="161" y="430" width="192" height="154"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.45009386540000001" green="0.98132258650000004" blue="0.4743030667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
@@ -52,11 +52,24 @@
                                     <segue destination="FVI-6w-40q" kind="show" id="vZY-6N-a8W"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F8U-rV-nlE" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="292"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9SW-yu-I0S" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="44" width="375" height="308"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F8U-rV-nlE" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="22" width="375" height="292"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dd7-0D-paU">
+                                <rect key="frame" x="16" y="456" width="116" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="図形切り替え"/>
+                                <connections>
+                                    <action selector="switchChart:" destination="itU-7q-ojP" eventType="touchUpInside" id="KOP-tB-Its"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="aqh-NO-9wh"/>
@@ -64,6 +77,7 @@
                     <tabBarItem key="tabBarItem" systemItem="history" id="dPB-iP-mmg"/>
                     <navigationItem key="navigationItem" id="JLq-Ad-rCt"/>
                     <connections>
+                        <outlet property="barChartView" destination="9SW-yu-I0S" id="fhQ-w9-ZbI"/>
                         <outlet property="pieChartView" destination="F8U-rV-nlE" id="kZv-G8-L8o"/>
                     </connections>
                 </viewController>
