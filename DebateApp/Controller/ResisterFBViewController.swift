@@ -286,7 +286,6 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         let obs = realm.objects(FeedBack.self)
         print(obs)
         
-
     }
     
     

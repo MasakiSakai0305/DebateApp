@@ -22,22 +22,25 @@ class ExViewController: UIViewController {
         
         let realm = try! Realm()
         let obs = realm.objects(FeedBack.self)
-        for ob in obs{
-            print(ob.MotionTitle)
-            print(ob)
+        
+        if obs.count > 0{
+            for ob in obs{
+                print(ob.MotionTitle)
+                print(ob)
+            }
+            
+            print("--search--")
+            let results = realm.objects(FeedBack.self).filter("score == 65")
+            print(results)
+            
+            print("--update--")
+            try! realm.write({
+                obs[0].MotionTitle = "THW ban tabacco"
+            })
+            
+            print(obs)
+            label.text = obs[0].MotionTitle
         }
-        
-        print("--search--")
-        let results = realm.objects(FeedBack.self).filter("score == 65")
-        print(results)
-        
-        print("--update--")
-        try! realm.write({
-            obs[0].MotionTitle = "THW ban tabacco"
-        })
-        
-        print(obs)
-        
 //        print("--delete--")
 //        try! realm.write {
 //            realm.delete(results[0])
@@ -45,9 +48,39 @@ class ExViewController: UIViewController {
 //        print(realm.objects(FeedBack.self))
 
 
-        label.text = obs[0].MotionTitle
+
         
     }
+    
+    //耐久チェック(どれくらい作って問題ないのか)
+    @IBAction func makeManyData(_ sender: Any) {
+        print("--makeManyData--")
+        let realm = try! Realm()
+        let max = 300
+        
+        for i in 0..<max{
+            let fb = FeedBack()
+            fb.MotionTitle = "test\(i)"
+            fb.FeedBackString = "test\(i)"
+            fb.result = "勝ち"
+            fb.score = 65
+            fb.style = "N"
+            fb.date = "1"
+            
+            // DBに書き込む
+            try! realm.write {
+                realm.add(fb)
+            }
+        }
+        
+        print("\(max)個のデータ作成完了")
+        let obs = realm.objects(FeedBack.self)
+        print(obs[50])
+        print(obs[99])
+        
+        
+    }
+    
     
 
     /*

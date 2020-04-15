@@ -150,7 +150,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     
        
         //ラジオボタン設置(スタイル)
-        //DBを読み込んでスタイルをチェック
+        //InitialVCから受け取った値を参照してスタイルをチェック
         switch styleString {
             case "NA":
                 set_styleRadioButton(num: 0, isCheck:true)
@@ -211,7 +211,6 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     
     @objc func notSaveBarButtonTapped(_ sender: UIBarButtonItem){
         print("[保存せず終了ボタン]が押された")
-        
         alert(title: "", message: "フィードバックを保存せず終了しますか？")
     }
     
@@ -224,11 +223,8 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
              print("OK was pushed\n")
              //セーブしない
              self.isSave = false
-            
              //画面遷移(InitialVCに戻る)
              self.navigationController?.popViewController(animated: true)
-     
-             
          })
          let ngAction = UIAlertAction(title: "NG", style: .destructive, handler: {
              (action: UIAlertAction!) in
@@ -236,11 +232,10 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
              print("NG was pushed\n")
          })
          
-         
          alertController.addAction(okAction)
          alertController.addAction(ngAction)
          
-           present(alertController, animated: true)
+         present(alertController, animated: true)
     }
     
     

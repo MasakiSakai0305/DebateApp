@@ -162,7 +162,7 @@
                                 <color key="backgroundColor" red="0.67024181459999999" green="1" blue="0.98163117870000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="遷移"/>
                                 <connections>
-                                    <segue destination="e5b-v3-pQX" kind="presentation" id="TPq-b8-gYW"/>
+                                    <segue destination="e5b-v3-pQX" kind="presentation" id="4l7-6w-FpV"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -283,12 +283,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MoZ-gC-yH0">
-                                <rect key="frame" x="64" y="103" width="231" height="289"/>
+                                <rect key="frame" x="64" y="103" width="231" height="176"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOm-pB-jup">
+                                <rect key="frame" x="56" y="358" width="247" height="133"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.84175064030000002" blue="0.86362296299999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <state key="normal" title="データ大量作成"/>
+                                <connections>
+                                    <action selector="makeManyData:" destination="e5b-v3-pQX" eventType="touchUpInside" id="uwe-4P-dRi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="4V0-hj-TXz"/>
