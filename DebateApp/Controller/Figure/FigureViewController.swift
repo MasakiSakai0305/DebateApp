@@ -8,6 +8,7 @@
 
 import UIKit
 import Charts
+import RealmSwift
 
 class FigureViewController: UIViewController {
 
@@ -16,6 +17,8 @@ class FigureViewController: UIViewController {
     @IBOutlet weak var barChartView: BarChartView!
     
     var flag = String()
+    
+    let calc = ResultCalculation()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +31,21 @@ class FigureViewController: UIViewController {
         //setBarGragh()
         self.view.bringSubviewToFront(pieChartView)
         //pieChartView.removeFromSuperview()
+        
+        calc.resultCaluculation()
+        
+        
+        
     }
+    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        calc.resultCaluculation()
+     
+    }
+    
+
     
     //円グラフセット
     func setPieGraph() {

@@ -46,6 +46,13 @@ class ExViewController: UIViewController {
 //            realm.delete(results[0])
 //        }
 //        print(realm.objects(FeedBack.self))
+        
+        
+        
+        // 空オブジェクトを書き込み
+        try! realm.write {
+            realm.add(TotalResult())
+        }
 
 
 
@@ -60,23 +67,70 @@ class ExViewController: UIViewController {
         
         for i in 0..<max{
             let fb = FeedBack()
+            
             fb.MotionTitle = "test\(i)"
             fb.FeedBackString = "test\(i)"
             fb.result = "勝ち"
             fb.score = 65
-            fb.style = "N"
+            fb.style = "NA"
             fb.date = "1"
+            
+            if i % 2 == 0{
+                fb.result = "負け"
+            }
             
             // DBに書き込む
             try! realm.write {
                 realm.add(fb)
             }
+            
+            //saveTotalResult(result: fb.result, realmObj: realm)
         }
         
         print("\(max)個のデータ作成完了")
         let obs = realm.objects(FeedBack.self)
         print(obs[50])
         print(obs[99])
+        
+        //成功しているか確認
+//        print("--check--")
+//        let objects = realm.objects(TotalResult.self)
+//        print(objects)
+        
+        //集計
+        var total = obs.count
+        var win = 0
+        var lose = 0
+        
+        for i in 0..<obs.count{
+            if obs[i].result == "勝ち" {
+                win += 1
+            }
+            else if obs[i].result == "負け"{
+                lose += 1
+            }
+        }
+        
+        print("total:", total, ", win:", win, ", lose:", lose)
+        
+        
+    }
+    
+    func saveTotalResult(result:String, realmObj:Realm){
+       // let totalResult = TotalResult()
+        let object = realmObj.objects(TotalResult.self)[0]
+        
+        //書き込み
+        try! realmObj.write({
+            object.totalCount += 1
+            if result == "勝ち"{
+                object.winCount += 1
+            } else if result == "負け"{
+                object.loseCount += 1
+            }
+          })
+        
+        
         
         
     }
