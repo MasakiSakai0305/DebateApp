@@ -18,10 +18,12 @@ class FigureViewController: UIViewController {
     
     var flag = String()
     
-    let calc = ResultCalculation()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let calc = ResultCalculation()
+        calc.resultCaluculation()
         
         barChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
         pieChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
@@ -32,7 +34,7 @@ class FigureViewController: UIViewController {
         self.view.bringSubviewToFront(pieChartView)
         //pieChartView.removeFromSuperview()
         
-        calc.resultCaluculation()
+       
         
         
         
@@ -41,7 +43,12 @@ class FigureViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let calc = ResultCalculation()
         calc.resultCaluculation()
+        
+        setPieGraph()
+        self.view.bringSubviewToFront(pieChartView)
+
      
     }
     
@@ -49,27 +56,31 @@ class FigureViewController: UIViewController {
     
     //円グラフセット
     func setPieGraph() {
-            pieChartView.usePercentValuesEnabled = true
+        pieChartView.usePercentValuesEnabled = true
+        let calc = ResultCalculation()
+        calc.resultCaluculation()
+        let values: [Double] = [calc.totalWinRate, 1 - calc.totalWinRate]
+        let date : [Double] = [1,2,3,4,5]
+        var entries: [ChartDataEntry] = Array()
+        for (i, value) in values.enumerated(){
+            entries.append(ChartDataEntry(x: date[i], y: value, icon: UIImage(named: "icon", in: Bundle(for: self.classForCoder), compatibleWith: nil)))
+        }
+        
+        print("entries")
+        print(entries)
             
-            let values: [Double] = [0, 1, 1, 1, 1]
-            let date : [Double] = [1,2,3,4,5]
-            var entries: [ChartDataEntry] = Array()
-            for (i, value) in values.enumerated(){
-                entries.append(ChartDataEntry(x: date[i], y: value, icon: UIImage(named: "icon", in: Bundle(for: self.classForCoder), compatibleWith: nil)))
-            }
+        let dataSet = PieChartDataSet(entries: entries, label: "勝率")
             
-        let dataSet = PieChartDataSet(entries: entries, label: "ラベル")
-            
-            dataSet.colors = ChartColorTemplates.vordiplom()
+        dataSet.colors = ChartColorTemplates.vordiplom()
 
-            let chartData = PieChartData(dataSet: dataSet)
-            
-            pieChartView.data = chartData
+        let chartData = PieChartData(dataSet: dataSet)
+        
+        pieChartView.data = chartData
         flag = "pie"
     }
     
     func setBarGragh(){
-        let rawData: [Int] = [20, 50, 70, 30, 60, 90, 40]
+        let rawData: [Int] = [20, 50, 70, 30, 60, 1000, 40, 40,40,40,40,40,40,40,40,40,40,40,40,40]
         let entries = rawData.enumerated().map { BarChartDataEntry(x: Double($0.offset), y: Double($0.element)) }
         let dataSet = BarChartDataSet(entries: entries)
         let data = BarChartData(dataSet: dataSet)

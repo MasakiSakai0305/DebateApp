@@ -10,6 +10,29 @@ import Foundation
 import RealmSwift
 
 class ResultCalculation{
+    
+    //集計
+    var totalCount = 0.0
+    var winCount = 0.0
+    var loseCount = 0.0
+    
+    var totalNACount = 0.0
+    var NAWinCount = 0.0
+    var NALoseCount = 0.0
+    
+    var totalBPCount = 0.0
+    var BPWinCount = 0.0
+    var BPLoseCount = 0.0
+    
+    var totalAsianCount = 0.0
+    var AsianWinCount = 0.0
+    var AsianLoseCount = 0.0
+    
+    //勝率
+    var totalWinRate = Double()
+    var NAWinRate = Double()
+    var BPWinRate = Double()
+    var AsianWinRate = Double()
 
     func resultCaluculation(){
         print("\n--resultCaluculation, 集計チェック--")
@@ -17,22 +40,7 @@ class ResultCalculation{
         let obs = realm.objects(FeedBack.self)
         print("obs.count:", obs.count)
         
-        //集計
-        let totalCount = obs.count
-        var winCount = 0
-        var loseCount = 0
-        
-        var totalNACount = 0
-        var NAWinCount = 0
-        var NALoseCount = 0
-        
-        var totalBPCount = 0
-        var BPWinCount = 0
-        var BPLoseCount = 0
-        
-        var totalAsianCount = 0
-        var AsianWinCount = 0
-        var AsianLoseCount = 0
+        totalCount = Double(obs.count)
         
         for i in 0..<obs.count{
             if obs[i].result == "勝ち" {
@@ -74,6 +82,12 @@ class ResultCalculation{
         print("BPTotal:", totalBPCount, ", win:", BPWinCount, ", lose:", BPLoseCount)
         print("AsianTotal:", totalAsianCount, ", win:", AsianWinCount, ", lose:", AsianLoseCount)
         
+        
+        totalWinRate = winCount / totalCount
+        print("totalWinRate:", totalWinRate)
+        NAWinRate = Double(totalNACount / NAWinCount)
+        BPWinRate = Double(totalBPCount / BPWinCount)
+        //AsianWinRate = Double(totalAsianCount / AsianWinCount)
         
     }
 
