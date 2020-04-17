@@ -1,40 +1,32 @@
 PODS:
-  - Charts (3.4.0):
-    - Charts/Core (= 3.4.0)
-  - Charts/Core (3.4.0)
+  - Charts (3.5.0):
+    - Charts/Core (= 3.5.0)
+  - Charts/Core (3.5.0)
   - Realm (4.4.0):
     - Realm/Headers (= 4.4.0)
   - Realm/Headers (4.4.0)
   - RealmSwift (4.4.0):
     - Realm (= 4.4.0)
-  - YSRadioButton (0.0.1)
+  - ScrollableGraphView (4.0.6)
 
 DEPENDENCIES:
   - Charts
   - RealmSwift
-  - YSRadioButton (from `https://github.com/sekies/YSRadioButton.git`)
+  - ScrollableGraphView
 
 SPEC REPOS:
   trunk:
     - Charts
     - Realm
     - RealmSwift
-
-EXTERNAL SOURCES:
-  YSRadioButton:
-    :git: https://github.com/sekies/YSRadioButton.git
-
-CHECKOUT OPTIONS:
-  YSRadioButton:
-    :commit: 7ae99f408771a159a993cdbaeeb067d141f5f8e5
-    :git: https://github.com/sekies/YSRadioButton.git
+    - ScrollableGraphView
 
 SPEC CHECKSUMS:
-  Charts: 74c9f256eaf0460c0c416522d1cf8c634ea6b286
+  Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
   Realm: e125f464884cda953ebefe70c671b75b03b81b9b
   RealmSwift: 33656a42bd300959a081fc13347376bc478071af
-  YSRadioButton: d36fff9507fc02527bbe44cc1211a201f42d1218
+  ScrollableGraphView: 4af35d4ea9ecdec665d34a74da51da161ddff8ac
 
-PODFILE CHECKSUM: a0cfa6658704f9d5b7eea21d0e2dd336f2c436af
+PODFILE CHECKSUM: 9ca55ae0cfaf0f188dea31c579ee95da385d8ae9
 
 COCOAPODS: 1.8.4

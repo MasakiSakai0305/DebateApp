@@ -85,10 +85,10 @@
             </objects>
             <point key="canvasLocation" x="1437.5999999999999" y="874.81259370314854"/>
         </scene>
-        <!--View Controller-->
+        <!--Ex Figure View Controller-->
         <scene sceneID="Und-w8-kDt">
             <objects>
-                <viewController id="FVI-6w-40q" sceneMemberID="viewController">
+                <viewController id="FVI-6w-40q" customClass="ExFigureViewController" customModule="DebateApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ads-Os-uqs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

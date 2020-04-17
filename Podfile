@@ -9,4 +9,5 @@ target 'DebateApp' do
 
 pod 'RealmSwift'
 pod 'Charts'
+pod 'ScrollableGraphView'
 end

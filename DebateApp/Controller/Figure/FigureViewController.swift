@@ -9,6 +9,7 @@
 import UIKit
 import Charts
 import RealmSwift
+import ScrollableGraphView
 
 class FigureViewController: UIViewController {
 
@@ -27,6 +28,12 @@ class FigureViewController: UIViewController {
         
         barChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
         pieChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
+        
+        barChartView.highlightFullBarEnabled = false
+        barChartView.doubleTapToZoomEnabled = false
+        
+        barChartView.animate(xAxisDuration: 0.2, yAxisDuration: 3.5, easing: .none)
+        
 
         // Do any additional setup after loading the view.
         setPieGraph()
@@ -86,6 +93,8 @@ class FigureViewController: UIViewController {
         let data = BarChartData(dataSet: dataSet)
         barChartView.data = data
         flag = "bar"
+        
+
         
     }
     

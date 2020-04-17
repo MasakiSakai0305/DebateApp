@@ -711,11 +711,11 @@ Prohibited Jurisdiction, or otherwise in violation of any such restrictions or
 regulations.
 
 
-## YSRadioButton
+## ScrollableGraphView
 
-MIT License
+The MIT License (MIT)
 
-Copyright (c) 2018 Yosuke Seki
+Copyright (c) 2016 Phillip
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

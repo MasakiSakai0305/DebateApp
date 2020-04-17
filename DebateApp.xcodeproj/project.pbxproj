@@ -22,6 +22,7 @@
 		3A97E0892435D7C000D4CCCB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A97E0872435D7C000D4CCCB /* Main.storyboard */; };
 		3A97E08B2435D7C200D4CCCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A97E08A2435D7C200D4CCCB /* Assets.xcassets */; };
 		3A97E08E2435D7C200D4CCCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A97E08C2435D7C200D4CCCB /* LaunchScreen.storyboard */; };
+		3AB6A122244944BA0065CEBC /* ExFigureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB6A121244944BA0065CEBC /* ExFigureViewController.swift */; };
 		3AC1557124383D6B0076D8D8 /* ExViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC1557024383D6B0076D8D8 /* ExViewController.swift */; };
 		51CBEE61B3DF41E7C5499261 /* Pods_DebateApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6303956212BA5D74BCB99AD5 /* Pods_DebateApp.framework */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 		3A97E08A2435D7C200D4CCCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A97E08D2435D7C200D4CCCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A97E08F2435D7C200D4CCCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3AB6A121244944BA0065CEBC /* ExFigureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExFigureViewController.swift; sourceTree = "<group>"; };
 		3AC1557024383D6B0076D8D8 /* ExViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExViewController.swift; sourceTree = "<group>"; };
 		6303956212BA5D74BCB99AD5 /* Pods_DebateApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DebateApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B7C5B718907B9CA8A67D898 /* Pods-DebateApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DebateApp.release.xcconfig"; path = "Target Support Files/Pods-DebateApp/Pods-DebateApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				3A7E52BE2446DC0500174180 /* FigureViewController.swift */,
+				3AB6A121244944BA0065CEBC /* ExFigureViewController.swift */,
 			);
 			path = Figure;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				3A7E52BB24418D6900174180 /* EditFBViewController.swift in Sources */,
 				3AC1557124383D6B0076D8D8 /* ExViewController.swift in Sources */,
 				3A97E0822435D7C000D4CCCB /* AppDelegate.swift in Sources */,
+				3AB6A122244944BA0065CEBC /* ExFigureViewController.swift in Sources */,
 				3A7E52BF2446DC0500174180 /* FigureViewController.swift in Sources */,
 				3A7E52C12447F35400174180 /* Result.swift in Sources */,
 				3A742712243B2C19005D6F78 /* InitialViewController.swift in Sources */,
