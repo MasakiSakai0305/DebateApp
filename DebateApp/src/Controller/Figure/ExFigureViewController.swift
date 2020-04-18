@@ -9,12 +9,20 @@
 import UIKit
 import ScrollableGraphView
 
-
-
 //グラフ描画試し
 
-class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource {
+class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource, UITableViewDelegate, UITableViewDataSource{
 
+    
+    @IBOutlet weak var tableView: UITableView!
+    var tableData:[String] = [
+        "1. Apple",
+        "2. Swift",
+        "3. iPad",
+        "4. iPhone",
+        "5. MacBook"
+    ]
+    
     
     var linePlotData = [Double()]
    
@@ -23,6 +31,12 @@ class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        //複数選択可
+        tableView.allowsMultipleSelectionDuringEditing = true
         
         for i in 0..<100{
             linePlotData.append(Double(i) + Double.random(in: 0..<10))
@@ -69,6 +83,13 @@ class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource {
 
     }
     
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.isEditing = editing
+
+        print(editing)
+    }
+    
     
     
     func value(forPlot plot: Plot, atIndex pointIndex: Int) -> Double {
@@ -93,6 +114,47 @@ class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource {
         return linePlotData.count
     }
     
-    
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel!.text = self.tableData[indexPath.row]
+        return cell
+
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        print("indexPath.row: \(indexPath.row) 削除")
+        // 先にデータを削除しないと、エラーが発生します。
+        self.tableData.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.tableData.count
+    }
 }
+
+
+
+//extension ExFigureViewController: UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//
+//        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+//        cell.textLabel!.text = self.tableData[indexPath.row]
+//        return cell
+//    }
+//
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return self.tableData.count
+//    }
+//}
+//
+//extension ExFigureViewController: UITableViewDelegate {
+//
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//
+//        // 先にデータを削除しないと、エラーが発生します。
+//        self.tableData.remove(at: indexPath.row)
+//        tableView.deleteRows(at: [indexPath], with: .automatic)
+//    }
+//}

@@ -176,7 +176,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     //前の画面に戻るとき,textviewの中身をメモに格納
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         print("\n--navigationController from ResisterFB--")
-        print(viewController)
+        //print(viewController)
         
         //前の画面に戻るとき
         if viewController is InitialViewController {
@@ -184,7 +184,6 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
             
             //セーブするか判断
             if isSave == true{
-                print("Save")
                 saveData()
                 delegate?.updateTable()
             } else {
@@ -267,7 +266,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     
     //DBにFBを書きこむ
     func saveData() {
-        
+        print("SaveData methods(in ResisterFBViewController) was called")
         let fb = FeedBack()
         let realm = try! Realm()
 

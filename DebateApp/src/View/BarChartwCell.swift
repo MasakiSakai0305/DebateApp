@@ -34,8 +34,6 @@ class BarChartwCell: UITableViewCell {
         let dataSet = BarChartDataSet(entries: entries)
         let data = BarChartData(dataSet: dataSet)
         barChartView.data = data
-       
-        
 
         
     }

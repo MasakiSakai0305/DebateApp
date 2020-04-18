@@ -9,9 +9,9 @@
 import UIKit
 import RealmSwift
 
-class InitialViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, updateTableDelegate {
-    
 
+
+class InitialViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, updateTableDelegate {
     
     //ナビゲーションアイテムのプラスボタン宣言
     var addBarButtonItem: UIBarButtonItem!
@@ -121,7 +121,29 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         print("numberOfRowsSections: ", objectCount)
         return objectCount
     }
+
+
+    //横スライドでセルを削除
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        print("indexPath.row: \(indexPath.row) 削除")
+        // 先にデータを削除しないと、エラーが発生します。
+        deleteData(number: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
     
+    func deleteData(number:Int){
+        print("--deleteData--")
+        let realm = try! Realm()
+        let objects = realm.objects(FeedBack.self)
+            
+        try! realm.write {
+            realm.delete(objects[number])
+        }
+        objectCount = objects.count
+        print("\(number)削除")
+        print(objects)
+
+    }
     
     //保存したデータをテーブルに反映
     func updateTable() {
