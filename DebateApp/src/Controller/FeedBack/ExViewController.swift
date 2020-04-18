@@ -63,7 +63,7 @@ class ExViewController: UIViewController {
     @IBAction func makeManyData(_ sender: Any) {
         print("--makeManyData--")
         let realm = try! Realm()
-        let max = 300
+        let max = 5
         
         for i in 0..<max{
             let fb = FeedBack()
@@ -73,7 +73,7 @@ class ExViewController: UIViewController {
             fb.result = "勝ち"
             fb.score = 65
             fb.style = "NA"
-            fb.date = "1"
+            fb.date = "\(Int.random(in: 0..<10))"
             
             if i % 2 == 0{
                 fb.result = "負け"
@@ -89,8 +89,12 @@ class ExViewController: UIViewController {
         
         print("\(max)個のデータ作成完了")
         let obs = realm.objects(FeedBack.self)
-        print(obs[50])
-        print(obs[99])
+        print(obs)
+        sortDate()
+        
+        
+//        print(obs[50])
+//        print(obs[99])
         
         //成功しているか確認
 //        print("--check--")
@@ -116,6 +120,25 @@ class ExViewController: UIViewController {
         
     }
     
+    
+    //ソート機能試し
+    func sortDate(){
+        print("--sortDate--")
+        let realm = try! Realm()
+        var objects = realm.objects(FeedBack.self)
+        let sorted = objects.sorted(byKeyPath: "date")
+        print(sorted)
+        
+        //データ更新
+        try! realm.write({
+            objects = sorted
+        })
+        
+        print("objects\n--", objects)
+        
+    }
+    
+    
     func saveTotalResult(result:String, realmObj:Realm){
        // let totalResult = TotalResult()
         let object = realmObj.objects(TotalResult.self)[0]
@@ -130,9 +153,7 @@ class ExViewController: UIViewController {
             }
           })
         
-        
-        
-        
+
     }
     
     

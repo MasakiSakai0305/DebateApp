@@ -139,7 +139,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         }
         
         // DateFormatter を使用して書式とロケールを指定する
-        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHm", options: 0, locale: Locale(identifier: "en_JP"))
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHm", options: 0, locale: Locale(identifier: "ja_JP"))
         
         
         //キーボードが出てきた時に,keyboardWillShowを呼ぶ
@@ -276,6 +276,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         fb.score = Int(score)!
         fb.style = styleString
         fb.date = dateFormatter.string(from: date)
+//        fb.date = date
 
         // DBに書き込む
         try! realm.write {

@@ -10,6 +10,25 @@ import UIKit
 import RealmSwift
 
 
+class DateUtils {
+    class func dateFromString(string: String, format: String) -> Date {
+        let formatter: DateFormatter = DateFormatter()
+        
+        //formatter.calendar = Calendar(identifier: .gregorian)
+        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHm", options: 0, locale: Locale(identifier: "ja_JP"))
+        print(string)
+        print(formatter.date(from: string)!)
+        return formatter.date(from: string)!
+    }
+
+    class func stringFromDate(date: Date, format: String) -> String {
+        let formatter: DateFormatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .gregorian)
+        formatter.dateFormat = format
+        return formatter.string(from: date)
+    }
+}
+
 
 class InitialViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, updateTableDelegate {
     
@@ -27,18 +46,21 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
     let date = Date()
     let dateFormatter = DateFormatter()
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("--viewDidLoad--")
         
         
         let realm = try! Realm()
-        let objects = realm.objects(FeedBack.self)
-        objectCount = objects.count
+//        let objects = realm.objects(FeedBack.self)
+        let sortedData = sortDate()
+        objectCount = sortedData.count
         
-        print(objects)
+        print(sortedData)
         
-        for object in objects{
+        for object in sortedData{
             objectArray.append(object)
         }
         
@@ -48,13 +70,26 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         
         // DateFormatter を使用して書式とロケールを指定する
-        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHm", options: 0, locale: Locale(identifier: "en_JP"))
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHm", options: 0, locale: Locale(identifier: "ja_JP"))
+        print("date", date)
         
         //[+]ボタン追加
         addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBarButtonTapped(_:)))
         self.navigationItem.rightBarButtonItems = [addBarButtonItem]
 
         
+//        print("日時ソート")
+//        var array = ["2020年4月18日 13:50", "200年4月18日 13:50", "2020年8月18日 13:50"]
+//        let soreted = array.sorted()
+//        print(soreted)
+        
+    }
+    
+    func sortDate() -> Results<FeedBack>{
+        let realm = try! Realm()
+        let objects = realm.objects(FeedBack.self)
+        let sorted = objects.sorted(byKeyPath: "date")
+        return sorted
     }
     
     
@@ -70,20 +105,29 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         navigationController?.pushViewController(ResisterFBVC, animated: true)
     }
     
-
+    
+    //セルの構成
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! FeedBackCell
         print("--cellForRowAt--")
         //print(objectArray[indexPath.row].MotionTitle!)
         //cell.MotionLabel.text = objectArray[indexPath.row].MotionTitle
         
-        let realm = try! Realm()
-        let objects = realm.objects(FeedBack.self)
-        let object = objects[indexPath.row]
+        //let realm = try! Realm()
+        //let objects = realm.objects(FeedBack.self)
+        
+        let sortedData = sortDate()
+        let object = sortedData[indexPath.row]
+        
+        //let object = objects[indexPath.row]
         
         print(indexPath.row, "object.MotionTitle: ", object.MotionTitle!)
         cell.MotionLabel.text = object.MotionTitle
         cell.TimeStampLabel.text = "Created at: " + object.date
+        
+        
+       // print("\n\ndata型に変換", DateUtils.dateFromString(string: object.date, format: "yMMMdHm"))
+        
         
         cell.TimeStampLabel.adjustsFontSizeToFitWidth = true
         
@@ -134,14 +178,15 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
     func deleteData(number:Int){
         print("--deleteData--")
         let realm = try! Realm()
-        let objects = realm.objects(FeedBack.self)
+//        let objects = realm.objects(FeedBack.self)
+        let sortedData = sortDate()
             
         try! realm.write {
-            realm.delete(objects[number])
+            realm.delete(sortedData[number])
         }
-        objectCount = objects.count
+        objectCount = sortedData.count
         print("\(number)削除")
-        print(objects)
+        print(sortedData)
 
     }
     
@@ -152,6 +197,7 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         //objectCount更新
         let realm = try! Realm()
         let objects = realm.objects(FeedBack.self)
+        
         objectCount = objects.count
         
         //リロード

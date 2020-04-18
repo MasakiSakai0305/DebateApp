@@ -126,7 +126,6 @@
 		3A97E0952436F9FC00D4CCCB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				3A7E52C22447FFDE00174180 /* ResultCalculation.swift */,
 				3A7E52BD2446DBD200174180 /* FeedBack */,
 				3A7E52BC2446DBCB00174180 /* Figure */,
 				3A97E0812435D7C000D4CCCB /* AppDelegate.swift */,
@@ -156,6 +155,7 @@
 			children = (
 				3A2CD2A324370BCB008FC787 /* FeedBack.swift */,
 				3A7E52C02447F35400174180 /* Result.swift */,
+				3A7E52C22447FFDE00174180 /* ResultCalculation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

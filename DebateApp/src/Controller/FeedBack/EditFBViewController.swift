@@ -171,7 +171,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         }
         
         // DateFormatter を使用して書式とロケールを指定する
-        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHm", options: 0, locale: Locale(identifier: "en_JP"))
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHm", options: 0, locale: Locale(identifier: "ja_JP"))
         
          //キーボードが出てきた時に,keyboardWillShowを呼ぶ
          NotificationCenter.default.addObserver(self, selector: #selector(ResisterFBViewController.keyboardWillShow(_ :)), name: UIResponder.keyboardDidShowNotification, object: nil)
@@ -260,8 +260,8 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     func updateData() {
         
         let realm = try! Realm()
-        let objects = realm.objects(FeedBack.self)
-        let object = objects[cellNumber]
+        let sortedData = sortDate()
+        let object = sortedData[cellNumber]
         
         //データ更新
         try! realm.write({
@@ -277,6 +277,15 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         print(obs)
     }
 
+    //データを日付でソートする
+    func sortDate() -> Results<FeedBack>{
+        let realm = try! Realm()
+        let objects = realm.objects(FeedBack.self)
+        let sorted = objects.sorted(byKeyPath: "date")
+        return sorted
+    }
+    
+    
     //ラジオボタン(勝敗)を配置する
     func set_WLRadioButton(num:Int, isCheck:Bool){
       let button = UIButton()
