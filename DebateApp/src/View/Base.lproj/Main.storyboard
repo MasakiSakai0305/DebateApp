@@ -35,7 +35,7 @@
             </objects>
             <point key="canvasLocation" x="1991.2" y="-137.18140929535232"/>
         </scene>
-        <!--Figure View Controller-->
+        <!--Result-->
         <scene sceneID="wde-yE-89h">
             <objects>
                 <viewController id="itU-7q-ojP" customClass="FigureViewController" customModule="DebateApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -83,7 +83,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="aqh-NO-9wh"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="history" id="dPB-iP-mmg"/>
+                    <tabBarItem key="tabBarItem" title="Result" image="chart.bar" catalog="system" id="dPB-iP-mmg"/>
                     <navigationItem key="navigationItem" id="JLq-Ad-rCt"/>
                     <connections>
                         <outlet property="barChartView" destination="9SW-yu-I0S" id="fhQ-w9-ZbI"/>
@@ -406,11 +406,11 @@
             </objects>
             <point key="canvasLocation" x="197.59999999999999" y="137.18140929535232"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Feedback-->
         <scene sceneID="Mxh-VZ-otq">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="L3d-4M-BMv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="featured" id="d9U-um-BVt"/>
+                    <tabBarItem key="tabBarItem" title="Feedback" image="pencil" catalog="system" id="d9U-um-BVt"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nqD-71-gE0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -426,4 +426,8 @@
             <point key="canvasLocation" x="1052" y="-137.18140929535232"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="chart.bar" catalog="system" width="128" height="90"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
+    </resources>
 </document>

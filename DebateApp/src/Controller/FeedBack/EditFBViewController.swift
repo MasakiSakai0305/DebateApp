@@ -281,7 +281,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     func sortDate() -> Results<FeedBack>{
         let realm = try! Realm()
         let objects = realm.objects(FeedBack.self)
-        let sorted = objects.sorted(byKeyPath: "date")
+        let sorted = objects.sorted(byKeyPath: "date", ascending: false)
         return sorted
     }
     

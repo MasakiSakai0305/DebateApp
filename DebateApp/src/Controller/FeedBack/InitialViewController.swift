@@ -88,7 +88,7 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
     func sortDate() -> Results<FeedBack>{
         let realm = try! Realm()
         let objects = realm.objects(FeedBack.self)
-        let sorted = objects.sorted(byKeyPath: "date")
+        let sorted = objects.sorted(byKeyPath: "date", ascending: false)
         return sorted
     }
     
@@ -175,6 +175,7 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
+    //データを削除(１つ)
     func deleteData(number:Int){
         print("--deleteData--")
         let realm = try! Realm()
@@ -190,7 +191,7 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     }
     
-    //保存したデータをテーブルに反映
+    //保存したデータをテーブルに反映(デリゲートメソッド)
     func updateTable() {
         print("updateTable protocol was called")
         
