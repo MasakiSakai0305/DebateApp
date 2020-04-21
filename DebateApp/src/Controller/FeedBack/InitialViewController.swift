@@ -10,25 +10,6 @@ import UIKit
 import RealmSwift
 
 
-class DateUtils {
-    class func dateFromString(string: String, format: String) -> Date {
-        let formatter: DateFormatter = DateFormatter()
-        
-        //formatter.calendar = Calendar(identifier: .gregorian)
-        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHm", options: 0, locale: Locale(identifier: "ja_JP"))
-        print(string)
-        print(formatter.date(from: string)!)
-        return formatter.date(from: string)!
-    }
-
-    class func stringFromDate(date: Date, format: String) -> String {
-        let formatter: DateFormatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: .gregorian)
-        formatter.dateFormat = format
-        return formatter.string(from: date)
-    }
-}
-
 
 class InitialViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, updateTableDelegate {
     
@@ -124,11 +105,6 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         print(indexPath.row, "object.MotionTitle: ", object.MotionTitle!)
         cell.MotionLabel.text = object.MotionTitle
         cell.TimeStampLabel.text = "Created at: " + object.date
-        
-        
-       // print("\n\ndata型に変換", DateUtils.dateFromString(string: object.date, format: "yMMMdHm"))
-        
-        
         cell.TimeStampLabel.adjustsFontSizeToFitWidth = true
         
         return cell

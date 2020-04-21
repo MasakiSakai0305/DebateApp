@@ -57,7 +57,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     var WLString = "勝ち"
     var styleString = "NA"
     var score = "65"
-    var motionTitleString = "No title"
+    //var motionTitleString = "No title"
     var FBString:String!
 
     //日時を取得する際に使用
@@ -249,8 +249,6 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
             motionLabel.text = motionTextField.text!
         }
         
-        motionTitleString = motionLabel.text!
-        print("motionTitleString:", motionTitleString)
         //キーボード閉じる
         motionTextField.resignFirstResponder()
     }
@@ -265,7 +263,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         
         //データ更新
         try! realm.write({
-            object.MotionTitle = motionTitleString
+            object.MotionTitle = motionLabel.text
             object.FeedBackString = FBTextView.text!
             object.result = WLString
             object.score = Int(score)!
