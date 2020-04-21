@@ -77,6 +77,7 @@ class FigureViewController: UIViewController {
         print(entries)
             
         let dataSet = PieChartDataSet(entries: entries, label: "勝率")
+        
             
         dataSet.colors = ChartColorTemplates.vordiplom()
 

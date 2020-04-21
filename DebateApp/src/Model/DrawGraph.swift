@@ -17,26 +17,30 @@ class DrawGraph{
            let calc = ResultCalculation()
            calc.resultCaluculation()
            let date : [Double] = [1,2,3,4,5]
-           var entries: [ChartDataEntry] = Array()
+           var entries: [PieChartDataEntry] = Array()
+    
+        print("setPieGraph", calc.winCount, calc.totalCount - calc.winCount)
            
            switch filter {
            case "All":
-               let values: [Double] = [calc.totalWinRate, 100 - calc.totalWinRate]
-               for (i, value) in values.enumerated(){
-                   entries.append(ChartDataEntry(x: date[i], y: value, icon: UIImage(named: "icon", in: Bundle(for: cell.classForCoder), compatibleWith: nil)))}
+            let values: [Double] = [calc.winCount, calc.totalCount - calc.winCount]
+            print(values)
+                entries.append(PieChartDataEntry(value: values[0], label: "勝ち"))
+                entries.append(PieChartDataEntry(value: values[1], label: "負け"))
+            print(values[0], values[1])
+            
            case "NA":
-               let NARate: [Double] = [calc.NAWinRate, 100 - calc.NAWinRate]
-               for (i, value) in NARate.enumerated(){
-                   entries.append(ChartDataEntry(x: date[i], y: value, icon: UIImage(named: "icon", in: Bundle(for: cell.classForCoder), compatibleWith: nil)))}
+               let NARate: [Double] = [calc.NAWinCount, calc.totalNACount - calc.NAWinCount]
+               entries.append(PieChartDataEntry(value: NARate[0], label: "勝ち"))
+               entries.append(PieChartDataEntry(value: NARate[1], label: "負け"))
            case "BP":
-               let BPRate: [Double] = [calc.BPWinRate, 100 - calc.BPWinRate]
-               for (i, value) in BPRate.enumerated(){
-                   entries.append(ChartDataEntry(x: date[i], y: value, icon: UIImage(named: "icon", in: Bundle(for: cell.classForCoder), compatibleWith: nil)))}
+               let BPRate: [Double] = [calc.BPWinCount, calc.totalBPCount - calc.BPWinCount]
+               entries.append(PieChartDataEntry(value: BPRate[0], label: "勝ち"))
+               entries.append(PieChartDataEntry(value: BPRate[1], label: "負け"))
            case "Asian":
-                print(calc.AsianWinRate, 100 - calc.AsianWinRate)
-               let AsianRate: [Double] = [calc.AsianWinRate, 100 - calc.AsianWinRate]
-               for (i, value) in AsianRate.enumerated(){
-                   entries.append(ChartDataEntry(x: date[i], y: value, icon: UIImage(named: "icon", in: Bundle(for: cell.classForCoder), compatibleWith: nil)))}
+               let AsianRate: [Double] = [calc.AsianWinCount, calc.totalAsianCount - calc.AsianWinCount]
+               entries.append(PieChartDataEntry(value: AsianRate[0], label: "勝ち"))
+               entries.append(PieChartDataEntry(value: AsianRate[1], label: "負け"))
            default:
                print("Error :func setPieGraph(filter:String) in PieChartCell")
            }
@@ -47,13 +51,29 @@ class DrawGraph{
            print("entries")
            print(entries)
                
-           let dataSet = PieChartDataSet(entries: entries, label: "勝率")
-               
+           let dataSet = PieChartDataSet(entries: entries)
            dataSet.colors = ChartColorTemplates.vordiplom()
 
            let chartData = PieChartData(dataSet: dataSet)
            
            chartView.data = chartData
+        
+        
+        // グラフのデータの値の色
+        dataSet.valueTextColor = UIColor.black
+        // グラフのデータのタイトルの色
+        dataSet.entryLabelColor = UIColor.black
+        
+        //パーセント表示
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .percent
+        formatter.maximumFractionDigits = 2
+        formatter.multiplier = 1.0
+        chartView.data?.setValueFormatter(DefaultValueFormatter(formatter: formatter))
+        chartView.usePercentValuesEnabled = true
+        
+        //グラフがぐるぐる動くのを無効化
+        chartView.rotationEnabled = false
        }
     
 }

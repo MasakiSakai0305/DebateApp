@@ -24,7 +24,7 @@ class GraphScrollViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.register(UINib(nibName: "BarChartwCell", bundle: nil), forCellReuseIdentifier: "bar")
         tableView.register(UINib(nibName: "NAPieChartViewCell", bundle: nil), forCellReuseIdentifier: "NA")
         tableView.register(UINib(nibName: "BPPieChartViewCell", bundle: nil), forCellReuseIdentifier: "BP")
-        tableView.register(UINib(nibName: "AsianPieChartViewCell", bundle: nil), forCellReuseIdentifier: "Asian")
+        tableView.register(UINib(nibName: "AsianPieChartViewCell2", bundle: nil), forCellReuseIdentifier: "Asian")
     }
     
 
@@ -37,25 +37,27 @@ class GraphScrollViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("--cellForRowAt--: ", indexPath.row)
-        print("indexPath: ", indexPath, indexPath[0])
-
         
+        //円グラフを表示するカスタムセル
         switch indexPath[0] {
         case 0:
-            let cell0 = tableView.dequeueReusableCell(withIdentifier: "pie", for: indexPath) as! PieChartCell
-            return cell0
+            let totalCell = tableView.dequeueReusableCell(withIdentifier: "pie", for: indexPath) as! PieChartCell
+            totalCell.pieChartView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height/2.5)
+            return totalCell
         case 1:
             let cell1 = tableView.dequeueReusableCell(withIdentifier: "bar", for: indexPath) as! BarChartwCell
             return cell1
         case 2:
             let NACell = tableView.dequeueReusableCell(withIdentifier: "NA", for: indexPath) as! NAPieChartViewCell
+            NACell.pieChartView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height/2.5)
             return NACell
         case 3:
             let BPCell = tableView.dequeueReusableCell(withIdentifier: "BP", for: indexPath) as! BPPieChartViewCell
+            BPCell.pieChartView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height/2.5)
             return BPCell
         case 4:
             let AsianCell = tableView.dequeueReusableCell(withIdentifier: "Asian", for: indexPath) as! AsianPieChartViewCell
+            AsianCell.pieChartView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height/2.5)
             return AsianCell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "pie", for: indexPath) as! PieChartCell

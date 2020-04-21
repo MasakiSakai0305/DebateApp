@@ -19,6 +19,7 @@ class NAPieChartViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
+
         let drawGraph = DrawGraph()
         drawGraph.setPieGraph(filter:"NA", chartView:pieChartView, cell: self)
     }

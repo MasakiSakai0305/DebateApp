@@ -85,9 +85,9 @@ class ResultCalculation{
         
         totalWinRate = winCount / totalCount * 100
         print("totalWinRate:", totalWinRate)
-        NAWinRate = Double(totalNACount / NAWinCount) * 100
-        BPWinRate = Double(totalBPCount / BPWinCount) * 100
-        AsianWinRate = Double(totalAsianCount / AsianWinCount) * 100
+        NAWinRate = Double(NAWinCount / totalNACount) * 100
+        BPWinRate = Double(BPWinCount / totalBPCount) * 100
+        AsianWinRate = Double(AsianWinCount / totalAsianCount) * 100
         print("AsianWinRate:", AsianWinRate)
     }
 
