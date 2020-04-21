@@ -74,7 +74,7 @@
                                 <rect key="frame" x="195" y="554" width="125" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.84175064030000002" blue="0.86362296299999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="グラフスクロール"/>
                                 <connections>
                                     <segue destination="J4b-mF-rAT" kind="presentation" id="5M4-eF-pkh"/>
                                 </connections>
@@ -94,10 +94,10 @@
             </objects>
             <point key="canvasLocation" x="1437.5999999999999" y="874.81259370314854"/>
         </scene>
-        <!--Ex Figure2 View Controller-->
+        <!--Graph Scroll View Controller-->
         <scene sceneID="TMT-gL-qNY">
             <objects>
-                <viewController id="J4b-mF-rAT" customClass="ExFigure2ViewController" customModule="DebateApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="J4b-mF-rAT" customClass="GraphScrollViewController" customModule="DebateApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cFm-D3-KDu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

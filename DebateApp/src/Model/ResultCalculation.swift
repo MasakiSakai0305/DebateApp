@@ -83,12 +83,12 @@ class ResultCalculation{
         print("AsianTotal:", totalAsianCount, ", win:", AsianWinCount, ", lose:", AsianLoseCount)
         
         
-        totalWinRate = winCount / totalCount
+        totalWinRate = winCount / totalCount * 100
         print("totalWinRate:", totalWinRate)
-        NAWinRate = Double(totalNACount / NAWinCount)
-        BPWinRate = Double(totalBPCount / BPWinCount)
-        //AsianWinRate = Double(totalAsianCount / AsianWinCount)
-        
+        NAWinRate = Double(totalNACount / NAWinCount) * 100
+        BPWinRate = Double(totalBPCount / BPWinCount) * 100
+        AsianWinRate = Double(totalAsianCount / AsianWinCount) * 100
+        print("AsianWinRate:", AsianWinRate)
     }
 
 }

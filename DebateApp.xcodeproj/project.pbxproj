@@ -27,7 +27,14 @@
 		3AB6A12F24495CC90065CEBC /* PieChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AB6A12D24495CC90065CEBC /* PieChartCell.xib */; };
 		3AB6A13224495CF10065CEBC /* BarChartwCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB6A13024495CF10065CEBC /* BarChartwCell.swift */; };
 		3AB6A13324495CF10065CEBC /* BarChartwCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AB6A13124495CF10065CEBC /* BarChartwCell.xib */; };
-		3AB6A13524495E5D0065CEBC /* ExFigure2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB6A13424495E5D0065CEBC /* ExFigure2ViewController.swift */; };
+		3AB6A13524495E5D0065CEBC /* GraphScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB6A13424495E5D0065CEBC /* GraphScrollViewController.swift */; };
+		3AB6A137244EEEB50065CEBC /* DrawGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB6A136244EEEB50065CEBC /* DrawGraph.swift */; };
+		3AB6A13A244EEFFE0065CEBC /* NAPieChartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB6A138244EEFFE0065CEBC /* NAPieChartViewCell.swift */; };
+		3AB6A13B244EEFFE0065CEBC /* NAPieChartViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AB6A139244EEFFE0065CEBC /* NAPieChartViewCell.xib */; };
+		3AB6A13E244EF0270065CEBC /* BPPieChartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB6A13C244EF0270065CEBC /* BPPieChartViewCell.swift */; };
+		3AB6A13F244EF0270065CEBC /* BPPieChartViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AB6A13D244EF0270065CEBC /* BPPieChartViewCell.xib */; };
+		3AB6A142244EF03A0065CEBC /* AsianPieChartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB6A140244EF03A0065CEBC /* AsianPieChartViewCell.swift */; };
+		3AB6A143244EF03A0065CEBC /* AsianPieChartViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AB6A141244EF03A0065CEBC /* AsianPieChartViewCell.xib */; };
 		3AC1557124383D6B0076D8D8 /* ExViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC1557024383D6B0076D8D8 /* ExViewController.swift */; };
 		51CBEE61B3DF41E7C5499261 /* Pods_DebateApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6303956212BA5D74BCB99AD5 /* Pods_DebateApp.framework */; };
 /* End PBXBuildFile section */
@@ -55,7 +62,14 @@
 		3AB6A12D24495CC90065CEBC /* PieChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PieChartCell.xib; sourceTree = "<group>"; };
 		3AB6A13024495CF10065CEBC /* BarChartwCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartwCell.swift; sourceTree = "<group>"; };
 		3AB6A13124495CF10065CEBC /* BarChartwCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarChartwCell.xib; sourceTree = "<group>"; };
-		3AB6A13424495E5D0065CEBC /* ExFigure2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExFigure2ViewController.swift; sourceTree = "<group>"; };
+		3AB6A13424495E5D0065CEBC /* GraphScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphScrollViewController.swift; sourceTree = "<group>"; };
+		3AB6A136244EEEB50065CEBC /* DrawGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawGraph.swift; sourceTree = "<group>"; };
+		3AB6A138244EEFFE0065CEBC /* NAPieChartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAPieChartViewCell.swift; sourceTree = "<group>"; };
+		3AB6A139244EEFFE0065CEBC /* NAPieChartViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NAPieChartViewCell.xib; sourceTree = "<group>"; };
+		3AB6A13C244EF0270065CEBC /* BPPieChartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPPieChartViewCell.swift; sourceTree = "<group>"; };
+		3AB6A13D244EF0270065CEBC /* BPPieChartViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BPPieChartViewCell.xib; sourceTree = "<group>"; };
+		3AB6A140244EF03A0065CEBC /* AsianPieChartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsianPieChartViewCell.swift; sourceTree = "<group>"; };
+		3AB6A141244EF03A0065CEBC /* AsianPieChartViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AsianPieChartViewCell.xib; sourceTree = "<group>"; };
 		3AC1557024383D6B0076D8D8 /* ExViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExViewController.swift; sourceTree = "<group>"; };
 		6303956212BA5D74BCB99AD5 /* Pods_DebateApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DebateApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B7C5B718907B9CA8A67D898 /* Pods-DebateApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DebateApp.release.xcconfig"; path = "Target Support Files/Pods-DebateApp/Pods-DebateApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -79,7 +93,7 @@
 			children = (
 				3A7E52BE2446DC0500174180 /* FigureViewController.swift */,
 				3AB6A121244944BA0065CEBC /* ExFigureViewController.swift */,
-				3AB6A13424495E5D0065CEBC /* ExFigure2ViewController.swift */,
+				3AB6A13424495E5D0065CEBC /* GraphScrollViewController.swift */,
 			);
 			path = Figure;
 			sourceTree = "<group>";
@@ -137,15 +151,12 @@
 		3A97E0962436FA0D00D4CCCB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3AB6A144244EF3090065CEBC /* GraphCell */,
 				3A97E0872435D7C000D4CCCB /* Main.storyboard */,
 				3A97E08A2435D7C200D4CCCB /* Assets.xcassets */,
 				3A97E08C2435D7C200D4CCCB /* LaunchScreen.storyboard */,
 				3A742713243B51CB005D6F78 /* FeedBackCell.swift */,
 				3A742714243B51CB005D6F78 /* FeedBackCell.xib */,
-				3AB6A12C24495CC90065CEBC /* PieChartCell.swift */,
-				3AB6A12D24495CC90065CEBC /* PieChartCell.xib */,
-				3AB6A13024495CF10065CEBC /* BarChartwCell.swift */,
-				3AB6A13124495CF10065CEBC /* BarChartwCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -156,6 +167,7 @@
 				3A2CD2A324370BCB008FC787 /* FeedBack.swift */,
 				3A7E52C02447F35400174180 /* Result.swift */,
 				3A7E52C22447FFDE00174180 /* ResultCalculation.swift */,
+				3AB6A136244EEEB50065CEBC /* DrawGraph.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -168,6 +180,23 @@
 				3A97E0952436F9FC00D4CCCB /* Controller */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		3AB6A144244EF3090065CEBC /* GraphCell */ = {
+			isa = PBXGroup;
+			children = (
+				3AB6A140244EF03A0065CEBC /* AsianPieChartViewCell.swift */,
+				3AB6A141244EF03A0065CEBC /* AsianPieChartViewCell.xib */,
+				3AB6A12C24495CC90065CEBC /* PieChartCell.swift */,
+				3AB6A12D24495CC90065CEBC /* PieChartCell.xib */,
+				3AB6A13024495CF10065CEBC /* BarChartwCell.swift */,
+				3AB6A13124495CF10065CEBC /* BarChartwCell.xib */,
+				3AB6A138244EEFFE0065CEBC /* NAPieChartViewCell.swift */,
+				3AB6A139244EEFFE0065CEBC /* NAPieChartViewCell.xib */,
+				3AB6A13C244EF0270065CEBC /* BPPieChartViewCell.swift */,
+				3AB6A13D244EF0270065CEBC /* BPPieChartViewCell.xib */,
+			);
+			path = GraphCell;
 			sourceTree = "<group>";
 		};
 		5F04E41E4DC5762E7DBA5A22 /* Pods */ = {
@@ -248,6 +277,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AB6A12F24495CC90065CEBC /* PieChartCell.xib in Resources */,
+				3AB6A143244EF03A0065CEBC /* AsianPieChartViewCell.xib in Resources */,
+				3AB6A13B244EEFFE0065CEBC /* NAPieChartViewCell.xib in Resources */,
+				3AB6A13F244EF0270065CEBC /* BPPieChartViewCell.xib in Resources */,
 				3A97E08E2435D7C200D4CCCB /* LaunchScreen.storyboard in Resources */,
 				3A97E08B2435D7C200D4CCCB /* Assets.xcassets in Resources */,
 				3A872ED6243B5F9B00CC5EF3 /* README.md in Resources */,
@@ -310,16 +342,20 @@
 				3A97E0862435D7C000D4CCCB /* ResisterFBViewController.swift in Sources */,
 				3A7E52BB24418D6900174180 /* EditFBViewController.swift in Sources */,
 				3AC1557124383D6B0076D8D8 /* ExViewController.swift in Sources */,
+				3AB6A13E244EF0270065CEBC /* BPPieChartViewCell.swift in Sources */,
 				3AB6A13224495CF10065CEBC /* BarChartwCell.swift in Sources */,
 				3A97E0822435D7C000D4CCCB /* AppDelegate.swift in Sources */,
 				3AB6A122244944BA0065CEBC /* ExFigureViewController.swift in Sources */,
 				3AB6A12E24495CC90065CEBC /* PieChartCell.swift in Sources */,
 				3A7E52BF2446DC0500174180 /* FigureViewController.swift in Sources */,
 				3A7E52C12447F35400174180 /* Result.swift in Sources */,
-				3AB6A13524495E5D0065CEBC /* ExFigure2ViewController.swift in Sources */,
+				3AB6A137244EEEB50065CEBC /* DrawGraph.swift in Sources */,
+				3AB6A142244EF03A0065CEBC /* AsianPieChartViewCell.swift in Sources */,
+				3AB6A13524495E5D0065CEBC /* GraphScrollViewController.swift in Sources */,
 				3A742712243B2C19005D6F78 /* InitialViewController.swift in Sources */,
 				3A2CD2A424370BCB008FC787 /* FeedBack.swift in Sources */,
 				3A7E52C32447FFDE00174180 /* ResultCalculation.swift in Sources */,
+				3AB6A13A244EEFFE0065CEBC /* NAPieChartViewCell.swift in Sources */,
 				3A97E0842435D7C000D4CCCB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
