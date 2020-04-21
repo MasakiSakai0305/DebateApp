@@ -93,8 +93,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         
         
         //DBを読み込んで値をUIに書き込む
-        let realm = try! Realm()
-        let objects = realm.objects(FeedBack.self)
+        let objects = sortDate()
         let object = objects[cellNumber]
         motionLabel.text = object.MotionTitle
         scoreTextField.text = String(object.score)
