@@ -8,6 +8,7 @@
 
 import UIKit
 import ScrollableGraphView
+import RealmSwift
 
 
 extension UIColor {
@@ -34,8 +35,11 @@ class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource, U
         "5. MacBook"
     ]
     
-    
-    var linePlotData = [Double()]
+    //プロットするデータ
+    var TotalPlotData = [Double()]
+    var NAPlotData = [Double()]
+    var BPPlotData = [Double()]
+    var AsianPlotData = [Double()]
    
 
     override func viewDidLoad() {
@@ -49,12 +53,34 @@ class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource, U
         //複数選択可
         tableView.allowsMultipleSelectionDuringEditing = true
         
-        for i in 0..<100{
-            linePlotData.append(Double(Int.random(in: 65..<86)))
+        
+        let realm = try! Realm()
+        let TotalObjects = realm.objects(FeedBack.self).sorted(byKeyPath: "date", ascending: false)
+        let NAObjects = realm.objects(FeedBack.self).filter("style == 'NA'").sorted(byKeyPath: "date", ascending: false)
+        let BPObjects = realm.objects(FeedBack.self).filter("style == 'BP'").sorted(byKeyPath: "date", ascending: false)
+        let AsianObjects = realm.objects(FeedBack.self).filter("style == 'Asian'").sorted(byKeyPath: "date", ascending: false)
+        
+        
+        //DBを読んで配列にデータを追加
+        for i in 0..<TotalObjects.count{
+            TotalPlotData.append(Double(TotalObjects[i].score))
+        }
+        for i in 0..<NAObjects.count{
+            NAPlotData.append(Double(TotalObjects[i].score))
+        }
+        for i in 0..<BPObjects.count{
+            BPPlotData.append(Double(BPObjects[i].score))
+        }
+        for i in 0..<AsianObjects.count{
+            AsianPlotData.append(Double(AsianObjects[i].score))
         }
         
         //一番最初に0が入ってしまうので削除
-        linePlotData.remove(at: 0)
+        TotalPlotData.remove(at: 0)
+        NAPlotData.remove(at: 0)
+        BPPlotData.remove(at: 0)
+        AsianPlotData.remove(at: 0)
+    
         
         // Compose the graph view by creating a graph, then adding any plots
         // and reference lines before adding the graph to the view hierarchy.
@@ -107,6 +133,7 @@ class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource, U
         self.view.addSubview(graphView)
 
     }
+
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
@@ -121,11 +148,11 @@ class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource, U
         // Return the data for each plot.
         switch(plot.identifier) {
         case "line":
-            return linePlotData[pointIndex]
+            return TotalPlotData[pointIndex]
         case "bar":
-            return linePlotData[pointIndex]
+            return TotalPlotData[pointIndex]
         case "dot":
-            return linePlotData[pointIndex]
+            return TotalPlotData[pointIndex]
         default:
             return 0
         }
@@ -136,7 +163,7 @@ class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource, U
     }
     
     func numberOfPoints() -> Int {
-        return linePlotData.count
+        return TotalPlotData.count
     }
     
 

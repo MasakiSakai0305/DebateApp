@@ -9,7 +9,7 @@
 import UIKit
 
 
-class GraphScrollViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class WinRatePieChartsScrollViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
     @IBOutlet weak var tableView: UITableView!

@@ -22,12 +22,12 @@
 		3A97E0892435D7C000D4CCCB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A97E0872435D7C000D4CCCB /* Main.storyboard */; };
 		3A97E08B2435D7C200D4CCCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A97E08A2435D7C200D4CCCB /* Assets.xcassets */; };
 		3A97E08E2435D7C200D4CCCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A97E08C2435D7C200D4CCCB /* LaunchScreen.storyboard */; };
-		3AB6A122244944BA0065CEBC /* ExFigureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB6A121244944BA0065CEBC /* ExFigureViewController.swift */; };
+		3AB6A122244944BA0065CEBC /* ScoreBarChartsScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB6A121244944BA0065CEBC /* ScoreBarChartsScrollViewController.swift */; };
 		3AB6A12E24495CC90065CEBC /* PieChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB6A12C24495CC90065CEBC /* PieChartCell.swift */; };
 		3AB6A12F24495CC90065CEBC /* PieChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AB6A12D24495CC90065CEBC /* PieChartCell.xib */; };
 		3AB6A13224495CF10065CEBC /* BarChartwCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB6A13024495CF10065CEBC /* BarChartwCell.swift */; };
 		3AB6A13324495CF10065CEBC /* BarChartwCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AB6A13124495CF10065CEBC /* BarChartwCell.xib */; };
-		3AB6A13524495E5D0065CEBC /* GraphScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB6A13424495E5D0065CEBC /* GraphScrollViewController.swift */; };
+		3AB6A13524495E5D0065CEBC /* WinRatePieChartsScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB6A13424495E5D0065CEBC /* WinRatePieChartsScrollViewController.swift */; };
 		3AB6A137244EEEB50065CEBC /* DrawGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB6A136244EEEB50065CEBC /* DrawGraph.swift */; };
 		3AB6A13A244EEFFE0065CEBC /* NAPieChartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB6A138244EEFFE0065CEBC /* NAPieChartViewCell.swift */; };
 		3AB6A13B244EEFFE0065CEBC /* NAPieChartViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AB6A139244EEFFE0065CEBC /* NAPieChartViewCell.xib */; };
@@ -57,12 +57,12 @@
 		3A97E08A2435D7C200D4CCCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A97E08D2435D7C200D4CCCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A97E08F2435D7C200D4CCCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3AB6A121244944BA0065CEBC /* ExFigureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExFigureViewController.swift; sourceTree = "<group>"; };
+		3AB6A121244944BA0065CEBC /* ScoreBarChartsScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBarChartsScrollViewController.swift; sourceTree = "<group>"; };
 		3AB6A12C24495CC90065CEBC /* PieChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartCell.swift; sourceTree = "<group>"; };
 		3AB6A12D24495CC90065CEBC /* PieChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PieChartCell.xib; sourceTree = "<group>"; };
 		3AB6A13024495CF10065CEBC /* BarChartwCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartwCell.swift; sourceTree = "<group>"; };
 		3AB6A13124495CF10065CEBC /* BarChartwCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarChartwCell.xib; sourceTree = "<group>"; };
-		3AB6A13424495E5D0065CEBC /* GraphScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphScrollViewController.swift; sourceTree = "<group>"; };
+		3AB6A13424495E5D0065CEBC /* WinRatePieChartsScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinRatePieChartsScrollViewController.swift; sourceTree = "<group>"; };
 		3AB6A136244EEEB50065CEBC /* DrawGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawGraph.swift; sourceTree = "<group>"; };
 		3AB6A138244EEFFE0065CEBC /* NAPieChartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAPieChartViewCell.swift; sourceTree = "<group>"; };
 		3AB6A139244EEFFE0065CEBC /* NAPieChartViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NAPieChartViewCell.xib; sourceTree = "<group>"; };
@@ -92,8 +92,8 @@
 			isa = PBXGroup;
 			children = (
 				3A7E52BE2446DC0500174180 /* FigureViewController.swift */,
-				3AB6A121244944BA0065CEBC /* ExFigureViewController.swift */,
-				3AB6A13424495E5D0065CEBC /* GraphScrollViewController.swift */,
+				3AB6A121244944BA0065CEBC /* ScoreBarChartsScrollViewController.swift */,
+				3AB6A13424495E5D0065CEBC /* WinRatePieChartsScrollViewController.swift */,
 			);
 			path = Figure;
 			sourceTree = "<group>";
@@ -107,6 +107,28 @@
 				3AC1557024383D6B0076D8D8 /* ExViewController.swift */,
 			);
 			path = FeedBack;
+			sourceTree = "<group>";
+		};
+		3A979250244FF2B5002AFDC5 /* WinRate */ = {
+			isa = PBXGroup;
+			children = (
+				3AB6A140244EF03A0065CEBC /* AsianPieChartViewCell2.swift */,
+				3AB6A141244EF03A0065CEBC /* AsianPieChartViewCell2.xib */,
+				3AB6A12C24495CC90065CEBC /* PieChartCell.swift */,
+				3AB6A12D24495CC90065CEBC /* PieChartCell.xib */,
+				3AB6A138244EEFFE0065CEBC /* NAPieChartViewCell.swift */,
+				3AB6A139244EEFFE0065CEBC /* NAPieChartViewCell.xib */,
+				3AB6A13C244EF0270065CEBC /* BPPieChartViewCell.swift */,
+				3AB6A13D244EF0270065CEBC /* BPPieChartViewCell.xib */,
+			);
+			path = WinRate;
+			sourceTree = "<group>";
+		};
+		3A979251244FF2E7002AFDC5 /* Score */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Score;
 			sourceTree = "<group>";
 		};
 		3A97E0752435D7C000D4CCCB = {
@@ -185,16 +207,10 @@
 		3AB6A144244EF3090065CEBC /* GraphCell */ = {
 			isa = PBXGroup;
 			children = (
-				3AB6A140244EF03A0065CEBC /* AsianPieChartViewCell2.swift */,
-				3AB6A141244EF03A0065CEBC /* AsianPieChartViewCell2.xib */,
-				3AB6A12C24495CC90065CEBC /* PieChartCell.swift */,
-				3AB6A12D24495CC90065CEBC /* PieChartCell.xib */,
+				3A979251244FF2E7002AFDC5 /* Score */,
+				3A979250244FF2B5002AFDC5 /* WinRate */,
 				3AB6A13024495CF10065CEBC /* BarChartwCell.swift */,
 				3AB6A13124495CF10065CEBC /* BarChartwCell.xib */,
-				3AB6A138244EEFFE0065CEBC /* NAPieChartViewCell.swift */,
-				3AB6A139244EEFFE0065CEBC /* NAPieChartViewCell.xib */,
-				3AB6A13C244EF0270065CEBC /* BPPieChartViewCell.swift */,
-				3AB6A13D244EF0270065CEBC /* BPPieChartViewCell.xib */,
 			);
 			path = GraphCell;
 			sourceTree = "<group>";
@@ -345,13 +361,13 @@
 				3AB6A13E244EF0270065CEBC /* BPPieChartViewCell.swift in Sources */,
 				3AB6A13224495CF10065CEBC /* BarChartwCell.swift in Sources */,
 				3A97E0822435D7C000D4CCCB /* AppDelegate.swift in Sources */,
-				3AB6A122244944BA0065CEBC /* ExFigureViewController.swift in Sources */,
+				3AB6A122244944BA0065CEBC /* ScoreBarChartsScrollViewController.swift in Sources */,
 				3AB6A12E24495CC90065CEBC /* PieChartCell.swift in Sources */,
 				3A7E52BF2446DC0500174180 /* FigureViewController.swift in Sources */,
 				3A7E52C12447F35400174180 /* Result.swift in Sources */,
 				3AB6A137244EEEB50065CEBC /* DrawGraph.swift in Sources */,
 				3AB6A142244EF03A0065CEBC /* AsianPieChartViewCell2.swift in Sources */,
-				3AB6A13524495E5D0065CEBC /* GraphScrollViewController.swift in Sources */,
+				3AB6A13524495E5D0065CEBC /* WinRatePieChartsScrollViewController.swift in Sources */,
 				3A742712243B2C19005D6F78 /* InitialViewController.swift in Sources */,
 				3A2CD2A424370BCB008FC787 /* FeedBack.swift in Sources */,
 				3A7E52C32447FFDE00174180 /* ResultCalculation.swift in Sources */,

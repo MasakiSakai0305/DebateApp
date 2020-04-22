@@ -94,10 +94,10 @@
             </objects>
             <point key="canvasLocation" x="1437.5999999999999" y="874.81259370314854"/>
         </scene>
-        <!--Graph Scroll View Controller-->
+        <!--Win Rate Pie Charts Scroll View Controller-->
         <scene sceneID="TMT-gL-qNY">
             <objects>
-                <viewController id="J4b-mF-rAT" customClass="GraphScrollViewController" customModule="DebateApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="J4b-mF-rAT" customClass="WinRatePieChartsScrollViewController" customModule="DebateApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cFm-D3-KDu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -128,7 +128,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LCc-cl-Jb1">
-                                <rect key="frame" x="0.0" y="379" width="375" height="268"/>
+                                <rect key="frame" x="0.0" y="282" width="375" height="268"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
