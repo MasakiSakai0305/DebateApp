@@ -9,6 +9,17 @@
 import UIKit
 import ScrollableGraphView
 
+
+extension UIColor {
+    convenience init(hex: String, alpha: CGFloat = 1.0) {
+        let v = Int("000000" + hex, radix: 16) ?? 0
+        let r = CGFloat(v / Int(powf(256, 2)) % 256) / 255
+        let g = CGFloat(v / Int(powf(256, 1)) % 256) / 255
+        let b = CGFloat(v / Int(powf(256, 0)) % 256) / 255
+        self.init(red: r, green: g, blue: b, alpha: min(max(alpha, 0), 1))
+    }
+}
+
 //グラフ描画試し
 
 class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource, UITableViewDelegate, UITableViewDataSource{
@@ -39,30 +50,44 @@ class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource, U
         tableView.allowsMultipleSelectionDuringEditing = true
         
         for i in 0..<100{
-            linePlotData.append(Double(i) + Double.random(in: 0..<10))
+            linePlotData.append(Double(Int.random(in: 65..<86)))
         }
-        linePlotData.append(1000.0)
+        
+        //一番最初に0が入ってしまうので削除
+        linePlotData.remove(at: 0)
         
         // Compose the graph view by creating a graph, then adding any plots
         // and reference lines before adding the graph to the view hierarchy.
-        let graphView = ScrollableGraphView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height/3), dataSource: self)
-        //graphView.rangeMax = 100
-        graphView.shouldAdaptRange = true
-        graphView.backgroundFillColor = UIColor.black
+        let graphView = ScrollableGraphView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height/2), dataSource: self)
+        graphView.rangeMax = 85
+        graphView.rangeMin = 65
+       //graphView.shouldAdaptRange = true
+        graphView.backgroundFillColor = UIColor(hex: "333333")
         
+        graphView.dataPointSpacing = 50
+
         //デフォでture
-        //graphView.shouldAnimateOnAdapt = true
-        //graphView.shouldAnimateOnStartup = true
+        graphView.shouldAnimateOnAdapt = false
+        graphView.shouldAnimateOnStartup = false
         
         let linePlot = LinePlot(identifier: "line") // Identifier should be unique for each plot.
-        linePlot.lineStyle = ScrollableGraphViewLineStyle.smooth
-        linePlot.shouldFill = true
-        linePlot.fillType = ScrollableGraphViewFillType.gradient
-        linePlot.fillGradientType = ScrollableGraphViewGradientType.linear
-        linePlot.fillGradientStartColor = UIColor.lightGray
-        linePlot.fillGradientEndColor = UIColor.darkGray
+        linePlot.lineStyle = ScrollableGraphViewLineStyle.straight
+        linePlot.lineColor = UIColor(hex: "16aafc")
         
+        
+//        linePlot.shouldFill = true
+//        linePlot.fillType = ScrollableGraphViewFillType.gradient
+//        linePlot.fillGradientType = ScrollableGraphViewGradientType.linear
+//        linePlot.fillGradientStartColor = UIColor.lightGray
+//        linePlot.fillGradientEndColor = UIColor.darkGray
+//
         let referenceLines = ReferenceLines()
+        referenceLines.relativePositions = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6,0.7, 0.8, 0.9, 1]
+        
+        referenceLines.referenceLineLabelFont = UIFont.boldSystemFont(ofSize: 8)
+        referenceLines.referenceLineColor = UIColor.white.withAlphaComponent(0.2)
+        referenceLines.referenceLineLabelColor = UIColor.white
+        referenceLines.dataPointLabelColor = UIColor.white.withAlphaComponent(0.5)
         
         let barPlot = BarPlot(identifier: "bar")
         //barPlot.shouldRoundBarCorners = true
@@ -71,8 +96,8 @@ class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource, U
         
         let dotPlot = DotPlot(identifier: "dot")
         dotPlot.dataPointType = ScrollableGraphViewDataPointType.circle
-        dotPlot.dataPointFillColor = .white
-        dotPlot.dataPointSize = 2
+        dotPlot.dataPointFillColor = .systemBlue
+        dotPlot.dataPointSize = 4
 
         graphView.addPlot(plot: linePlot)
 //        graphView.addPlot(plot: barPlot)
@@ -107,7 +132,7 @@ class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource, U
     }
     
     func label(atIndex pointIndex: Int) -> String {
-        return "04/21"
+        return "\(pointIndex)\n(04/21)"
     }
     
     func numberOfPoints() -> Int {
