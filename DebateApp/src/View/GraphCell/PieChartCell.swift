@@ -15,6 +15,8 @@ class PieChartCell: UITableViewCell {
 
     @IBOutlet weak var pieChartView: PieChartView!
     
+    var resultLabel = UILabel()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,6 +26,10 @@ class PieChartCell: UITableViewCell {
         
         let drawGraph = DrawGraph()
         drawGraph.setPieGraph(filter:"All", chartView:pieChartView, cell: self)
+        
+        
+//        resultLabel.frame = CGRect(x:  self.contentView.frame.size.width * (2/3), y: self.contentView.frame.size.height * (1/3), width: self.contentView.frame.size.width/3, height: self.contentView.frame.size.height/5)
+        self.contentView.addSubview(resultLabel)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

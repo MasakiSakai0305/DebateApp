@@ -51,7 +51,7 @@ class DrawGraph{
            print("entries")
            print(entries)
                
-           let dataSet = PieChartDataSet(entries: entries)
+           let dataSet = PieChartDataSet(entries: entries, label: "")
            dataSet.colors = ChartColorTemplates.vordiplom()
 
            let chartData = PieChartData(dataSet: dataSet)
@@ -74,6 +74,8 @@ class DrawGraph{
         
         //グラフがぐるぐる動くのを無効化
         chartView.rotationEnabled = false
+        //タップしてもハイライトをしない
+        chartView.highlightPerTapEnabled = false
        }
     
 }

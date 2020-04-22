@@ -15,6 +15,8 @@ class NAPieChartViewCell: UITableViewCell {
 
     @IBOutlet weak var pieChartView: PieChartView!
     
+    var resultLabel = UILabel()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,6 +24,8 @@ class NAPieChartViewCell: UITableViewCell {
 
         let drawGraph = DrawGraph()
         drawGraph.setPieGraph(filter:"NA", chartView:pieChartView, cell: self)
+        
+        self.contentView.addSubview(resultLabel)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

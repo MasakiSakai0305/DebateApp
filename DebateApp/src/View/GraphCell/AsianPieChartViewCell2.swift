@@ -14,13 +14,16 @@ class AsianPieChartViewCell: UITableViewCell {
 
     @IBOutlet weak var pieChartView: PieChartView!
     
+    var resultLabel = UILabel()
+  
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
             let drawGraph = DrawGraph()
             drawGraph.setPieGraph(filter:"Asian", chartView:pieChartView, cell: self)
-        
+          self.contentView.addSubview(resultLabel)
         
     }
 

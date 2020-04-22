@@ -14,12 +14,17 @@ import Charts
 class BPPieChartViewCell: UITableViewCell {
 
     @IBOutlet weak var pieChartView: PieChartView!
+    
+    var resultLabel = UILabel()
+   
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
             let drawGraph = DrawGraph()
             drawGraph.setPieGraph(filter:"BP", chartView:pieChartView, cell: self)
+         self.contentView.addSubview(resultLabel)
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
