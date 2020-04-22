@@ -18,29 +18,25 @@ class DrawGraph{
            calc.resultCaluculation()
            let date : [Double] = [1,2,3,4,5]
            var entries: [PieChartDataEntry] = Array()
-    
-        print("setPieGraph", calc.winCount, calc.totalCount - calc.winCount)
+
            
            switch filter {
            case "All":
-            let values: [Double] = [calc.winCount, calc.totalCount - calc.winCount]
-            print(values)
+                let values: [Double] = [calc.winCount, calc.totalCount - calc.winCount]
                 entries.append(PieChartDataEntry(value: values[0], label: "勝ち"))
                 entries.append(PieChartDataEntry(value: values[1], label: "負け"))
-            print(values[0], values[1])
-            
            case "NA":
-               let NARate: [Double] = [calc.NAWinCount, calc.totalNACount - calc.NAWinCount]
-               entries.append(PieChartDataEntry(value: NARate[0], label: "勝ち"))
-               entries.append(PieChartDataEntry(value: NARate[1], label: "負け"))
+                let NARate: [Double] = [calc.NAWinCount, calc.totalNACount - calc.NAWinCount]
+                entries.append(PieChartDataEntry(value: NARate[0], label: "勝ち"))
+                entries.append(PieChartDataEntry(value: NARate[1], label: "負け"))
            case "BP":
-               let BPRate: [Double] = [calc.BPWinCount, calc.totalBPCount - calc.BPWinCount]
-               entries.append(PieChartDataEntry(value: BPRate[0], label: "勝ち"))
-               entries.append(PieChartDataEntry(value: BPRate[1], label: "負け"))
+                let BPRate: [Double] = [calc.BPWinCount, calc.totalBPCount - calc.BPWinCount]
+                entries.append(PieChartDataEntry(value: BPRate[0], label: "勝ち"))
+                entries.append(PieChartDataEntry(value: BPRate[1], label: "負け"))
            case "Asian":
-               let AsianRate: [Double] = [calc.AsianWinCount, calc.totalAsianCount - calc.AsianWinCount]
-               entries.append(PieChartDataEntry(value: AsianRate[0], label: "勝ち"))
-               entries.append(PieChartDataEntry(value: AsianRate[1], label: "負け"))
+                let AsianRate: [Double] = [calc.AsianWinCount, calc.totalAsianCount - calc.AsianWinCount]
+                entries.append(PieChartDataEntry(value: AsianRate[0], label: "勝ち"))
+                entries.append(PieChartDataEntry(value: AsianRate[1], label: "負け"))
            default:
                print("Error :func setPieGraph(filter:String) in PieChartCell")
            }
@@ -76,6 +72,10 @@ class DrawGraph{
         chartView.rotationEnabled = false
         //タップしてもハイライトをしない
         chartView.highlightPerTapEnabled = false
+        //真ん中を塗りつぶす
+        chartView.drawHoleEnabled = false
+        
+        
        }
     
 }

@@ -52,8 +52,8 @@ class GraphScrollViewController: UIViewController, UITableViewDelegate, UITableV
             totalCell.frame.size = CGSize(width: view.frame.size.width, height: view.frame.size.height/2)
             
             totalCell.pieChartView.frame = CGRect(x: 0, y: 0, width: totalCell.frame.size.width, height: totalCell.frame.size.height * 0.9)
-            totalCell.resultLabel.text = "勝利:\(Int(calc.winCount)),  敗北:\(Int(calc.loseCount))"
-            totalCell.resultLabel.frame = CGRect(x:  totalCell.frame.size.width * 0.6, y: totalCell.frame.size.height * 0.8, width: totalCell.frame.size.width/3, height: totalCell.frame.size.height/5)
+            totalCell.resultLabel.text = "Total 勝利:\(Int(calc.winCount)),  敗北:\(Int(calc.loseCount))"
+            totalCell.resultLabel.frame = CGRect(x:  totalCell.frame.size.width * 0.5, y: totalCell.frame.size.height * 0.8, width: totalCell.frame.size.width/2, height: totalCell.frame.size.height/5)
             return totalCell
             
         case 1:
@@ -65,8 +65,8 @@ class GraphScrollViewController: UIViewController, UITableViewDelegate, UITableV
             NACell.frame.size = CGSize(width: view.frame.size.width, height: view.frame.size.height/2)
             
             NACell.pieChartView.frame = CGRect(x: 0, y: 0, width: NACell.frame.size.width, height: NACell.frame.size.height * 0.9)
-            NACell.resultLabel.text = "勝利:\(Int(calc.NAWinCount)),  敗北:\(Int(calc.NALoseCount))"
-            NACell.resultLabel.frame = CGRect(x:  NACell.frame.size.width * 0.6, y: NACell.frame.size.height * 0.8, width: NACell.frame.size.width/3, height: NACell.frame.size.height/5)
+            NACell.resultLabel.text = "NA 勝利:\(Int(calc.NAWinCount)),  敗北:\(Int(calc.NALoseCount))"
+            NACell.resultLabel.frame = CGRect(x:  NACell.frame.size.width * 0.5, y: NACell.frame.size.height * 0.8, width: NACell.frame.size.width/2, height: NACell.frame.size.height/5)
             return NACell
             
         case 3:
@@ -74,8 +74,8 @@ class GraphScrollViewController: UIViewController, UITableViewDelegate, UITableV
             BPCell.frame.size = CGSize(width: view.frame.size.width, height: view.frame.size.height/2)
             
             BPCell.pieChartView.frame = CGRect(x: 0, y: 0, width: BPCell.frame.size.width, height: BPCell.frame.size.height * 0.9)
-            BPCell.resultLabel.text = "勝利:\(Int(calc.BPWinCount)),  敗北:\(Int(calc.BPLoseCount))"
-            BPCell.resultLabel.frame = CGRect(x:  BPCell.frame.size.width * 0.6, y: BPCell.frame.size.height * 0.8, width: BPCell.frame.size.width/3, height: BPCell.frame.size.height/5)
+            BPCell.resultLabel.text = "BP 勝利:\(Int(calc.BPWinCount)),  敗北:\(Int(calc.BPLoseCount))"
+            BPCell.resultLabel.frame = CGRect(x:  BPCell.frame.size.width * 0.5, y: BPCell.frame.size.height * 0.8, width: BPCell.frame.size.width/2, height: BPCell.frame.size.height/5)
             return BPCell
             
         case 4:
@@ -83,9 +83,9 @@ class GraphScrollViewController: UIViewController, UITableViewDelegate, UITableV
             AsianCell.frame.size = CGSize(width: view.frame.size.width, height: view.frame.size.height/2)
             
             AsianCell.pieChartView.frame = CGRect(x: 0, y: 0, width: AsianCell.frame.size.width, height: AsianCell.frame.size.height * 0.8)
-            AsianCell.resultLabel.text = "勝利:\(Int(calc.AsianWinCount)),  敗北:\(Int(calc.AsianLoseCount))"
+            AsianCell.resultLabel.text = "Asian 勝利:\(Int(calc.AsianWinCount)),  敗北:\(Int(calc.AsianLoseCount))"
             //一番下だけ見えにくくなるので数値を少し変更
-            AsianCell.resultLabel.frame = CGRect(x:  AsianCell.frame.size.width * 0.6, y: AsianCell.frame.size.height * 0.7, width: AsianCell.frame.size.width/3, height: AsianCell.frame.size.height/5)
+            AsianCell.resultLabel.frame = CGRect(x:  AsianCell.frame.size.width * 0.5, y: AsianCell.frame.size.height * 0.7, width: AsianCell.frame.size.width/2, height: AsianCell.frame.size.height/5)
             return AsianCell
             
         default:
