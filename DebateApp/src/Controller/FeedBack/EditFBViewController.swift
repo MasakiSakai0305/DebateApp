@@ -103,7 +103,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         print("--確認--")
         print(WLString, styleString)
         print(object)
-        
+        print(object.score)
        
        //スコア入力機能設定
        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
@@ -111,7 +111,6 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
        toolBar.setItems([doneItem], animated: true)
        scoreTextField.inputView = pickerView
        scoreTextField.inputAccessoryView = toolBar
-       scoreTextField.text = score
        
        
        //[保存せず戻る]ボタン追加
