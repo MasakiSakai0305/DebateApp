@@ -16,6 +16,8 @@
 		3A7E52C12447F35400174180 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E52C02447F35400174180 /* Result.swift */; };
 		3A7E52C32447FFDE00174180 /* ResultCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E52C22447FFDE00174180 /* ResultCalculation.swift */; };
 		3A872ED6243B5F9B00CC5EF3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3A872ED5243B5F9B00CC5EF3 /* README.md */; };
+		3A979254245287D9002AFDC5 /* TotalScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A979252245287D9002AFDC5 /* TotalScoreCell.swift */; };
+		3A979255245287D9002AFDC5 /* TotalScoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A979253245287D9002AFDC5 /* TotalScoreCell.xib */; };
 		3A97E0822435D7C000D4CCCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0812435D7C000D4CCCB /* AppDelegate.swift */; };
 		3A97E0842435D7C000D4CCCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */; };
 		3A97E0862435D7C000D4CCCB /* ResisterFBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0852435D7C000D4CCCB /* ResisterFBViewController.swift */; };
@@ -49,6 +51,8 @@
 		3A7E52C02447F35400174180 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		3A7E52C22447FFDE00174180 /* ResultCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCalculation.swift; sourceTree = "<group>"; };
 		3A872ED5243B5F9B00CC5EF3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3A979252245287D9002AFDC5 /* TotalScoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalScoreCell.swift; sourceTree = "<group>"; };
+		3A979253245287D9002AFDC5 /* TotalScoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TotalScoreCell.xib; sourceTree = "<group>"; };
 		3A97E07E2435D7C000D4CCCB /* DebateApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebateApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A97E0812435D7C000D4CCCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +131,8 @@
 		3A979251244FF2E7002AFDC5 /* Score */ = {
 			isa = PBXGroup;
 			children = (
+				3A979252245287D9002AFDC5 /* TotalScoreCell.swift */,
+				3A979253245287D9002AFDC5 /* TotalScoreCell.xib */,
 			);
 			path = Score;
 			sourceTree = "<group>";
@@ -300,6 +306,7 @@
 				3A97E08B2435D7C200D4CCCB /* Assets.xcassets in Resources */,
 				3A872ED6243B5F9B00CC5EF3 /* README.md in Resources */,
 				3AB6A13324495CF10065CEBC /* BarChartwCell.xib in Resources */,
+				3A979255245287D9002AFDC5 /* TotalScoreCell.xib in Resources */,
 				3A742716243B51CB005D6F78 /* FeedBackCell.xib in Resources */,
 				3A97E0892435D7C000D4CCCB /* Main.storyboard in Resources */,
 			);
@@ -369,6 +376,7 @@
 				3AB6A142244EF03A0065CEBC /* AsianPieChartViewCell2.swift in Sources */,
 				3AB6A13524495E5D0065CEBC /* WinRatePieChartsScrollViewController.swift in Sources */,
 				3A742712243B2C19005D6F78 /* InitialViewController.swift in Sources */,
+				3A979254245287D9002AFDC5 /* TotalScoreCell.swift in Sources */,
 				3A2CD2A424370BCB008FC787 /* FeedBack.swift in Sources */,
 				3A7E52C32447FFDE00174180 /* ResultCalculation.swift in Sources */,
 				3AB6A13A244EEFFE0065CEBC /* NAPieChartViewCell.swift in Sources */,

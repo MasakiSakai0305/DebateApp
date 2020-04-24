@@ -203,14 +203,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="スコア:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Oj-AE-cja">
-                                <rect key="frame" x="16" y="361" width="68" height="36"/>
+                                <rect key="frame" x="16" y="331" width="68" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a6E-K7-j4F">
-                                <rect key="frame" x="89" y="362" width="60" height="34"/>
+                                <rect key="frame" x="89" y="331" width="60" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -241,6 +241,19 @@
                                     <segue destination="e5b-v3-pQX" kind="presentation" id="4l7-6w-FpV"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="日付:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jdl-bS-CuR">
+                                <rect key="frame" x="16" y="370" width="68" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L7X-tD-lzl">
+                                <rect key="frame" x="89" y="370" width="88" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -249,6 +262,8 @@
                     <connections>
                         <outlet property="FBTextView" destination="1ar-MI-dPJ" id="Tcw-1B-OR3"/>
                         <outlet property="WLLabel" destination="dT3-Pp-gPB" id="Ypd-Ir-mgt"/>
+                        <outlet property="dateLabel" destination="Jdl-bS-CuR" id="bKo-Mq-LuZ"/>
+                        <outlet property="dateTextField" destination="L7X-tD-lzl" id="3cf-Ab-65t"/>
                         <outlet property="doneButton" destination="UgQ-cH-Jfv" id="2uf-ZR-ELM"/>
                         <outlet property="motionLabel" destination="cG9-CU-xTH" id="7Di-Ej-Qdh"/>
                         <outlet property="motionTextField" destination="PNI-yX-R06" id="N2N-IA-VSr"/>
@@ -259,7 +274,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3193" y="-349"/>
+            <point key="canvasLocation" x="3192.8000000000002" y="-349.47526236881561"/>
         </scene>
         <!--EditFB View Controller-->
         <scene sceneID="AYp-vn-3iy">

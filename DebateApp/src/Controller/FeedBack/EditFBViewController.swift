@@ -102,6 +102,8 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         styleString = object.style
         print("--確認--")
         print(WLString, styleString)
+        print(object)
+        
        
        //スコア入力機能設定
        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))

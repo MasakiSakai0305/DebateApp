@@ -41,11 +41,7 @@ class DrawGraph{
                print("Error :func setPieGraph(filter:String) in PieChartCell")
            }
            //let values: [Double] = [calc.totalWinRate, 1 - calc.totalWinRate]
-           
-
-           
-           print("entries")
-           print(entries)
+        
                
            let dataSet = PieChartDataSet(entries: entries, label: "")
            dataSet.colors = ChartColorTemplates.vordiplom()

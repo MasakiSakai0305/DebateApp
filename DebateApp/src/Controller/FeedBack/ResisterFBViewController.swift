@@ -30,6 +30,8 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     @IBOutlet weak var motionTextField: UITextField!
     //スコアを入力するTextField
     @IBOutlet weak var scoreTextField: UITextField!
+    //日付を入力するTextField
+    @IBOutlet weak var dateTextField: UITextField!
     //FBを入力するTextView
     @IBOutlet weak var FBTextView: UITextView!
     
@@ -37,9 +39,13 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     @IBOutlet weak var styleLabel: UILabel!
     @IBOutlet weak var WLLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    
     
     //スコア入力用のPickerView
-    var pickerView: UIPickerView = UIPickerView()
+    var pickerViewScore: UIPickerView = UIPickerView()
+    //日付入力用のPickerView
+    var pickerViewDate: UIPickerView = UIPickerView()
    
     //ナビゲーションアイテムのボタン宣言
     var notSaveBarButtonItem: UIBarButtonItem!
@@ -60,12 +66,19 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     let WLList = ["勝ち", "負け"]
     let styleList = ["NA", "BP", "Asian"]
     var scoreList = ["65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82","83", "84", "85"]
+    let yearList = ["2020年", "2021年", "2022年", "2023年", "2024年", "2025年", "2026年", "2027年", "2028年", "2029年"]
+    let monthList = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
+    let dayList = ["1日", "2日", "3日", "4日", "5日", "6日", "7日", "8日", "9日", "10日", "11日", "12日", "13日", "14日", "15日", "16日", "17日", "18日", "19日", "20日", "21日", "22日", "23日", "24日", "25日", "26日", "27日", "28日", "29日", "30日", "31日"]
     
     //デフォルトで設定
     var WLString = "勝ち"
     var styleString = "NA"
     var score = "65"
     var motionTitleString = "No title"
+    var year = ""
+    var month = ""
+    var day = ""
+    var dates = "2020/01/01"
     
     //日時を取得する際に使用
     let date = Date()
@@ -90,19 +103,31 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         super.viewDidLoad()
         
 
+    
+        
         motionTextField.delegate = self
         FBTextView.delegate = self
-        pickerView.delegate = self
-        pickerView.dataSource = self
+        pickerViewScore.delegate = self
+        pickerViewScore.dataSource = self
+        pickerViewDate.delegate = self
+        pickerViewDate.dataSource = self
         navigationController?.delegate = self
         
         //スコア入力機能設定
-        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
-        let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
-        toolBar.setItems([doneItem], animated: true)
-        scoreTextField.inputView = pickerView
-        scoreTextField.inputAccessoryView = toolBar
+        let toolBarScore = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
+        let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneScore))
+        toolBarScore.setItems([doneItem], animated: true)
+        scoreTextField.inputView = pickerViewScore
+        scoreTextField.inputAccessoryView = toolBarScore
         scoreTextField.text = score
+        
+        //日付入力機能
+        let toolBarDate = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
+        let doneItemDate = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDate))
+        toolBarDate.setItems([doneItemDate], animated: true)
+        dateTextField.inputView = pickerViewDate
+        dateTextField.inputAccessoryView = toolBarDate
+        dateTextField.text = dates
         
         
         //[保存せず戻る]ボタン追加
@@ -110,15 +135,20 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         self.navigationItem.rightBarButtonItems = [notSaveBarButtonItem]
 
         //モーションラベル
+        motionLabel.frame = CGRect(x:view.frame.size.width/20, y: view.frame.size.height/20, width: view.frame.size.width, height: view.frame.size.height/5)
         motionLabel.text = motionTitleString
         
-        //"勝敗"ラベル設定
-        WLLabel.frame = CGRect(x: center - 170, y: 200, width: 80, height: 30)
+        //"勝敗", "スタイル"ラベル設定
+        WLLabel.frame = CGRect(x:view.frame.size.width/17, y: view.frame.size.height/3.4, width: 80, height: view.frame.size.height/15)
         styleLabel.frame = CGRect(x: center + 10, y: 200, width: 80, height: 30)
         
         //"スコア"ラベル設定
-        scoreLabel.frame = CGRect(x: center - 170, y: 340, width: 60, height: 30)
+        scoreLabel.frame = CGRect(x: view.frame.size.width/18, y: 340, width: 60, height: 30)
         scoreTextField.frame = CGRect(x: center - 100, y: 340, width: 40, height: 30)
+        
+        //"日付"ラベル設定
+        dateLabel.frame = CGRect(x:view.frame.size.width/18, y: 370, width: 60, height: 30)
+        dateTextField.frame = CGRect(x:view.frame.size.width/5, y: 370, width: view.frame.size.width/3, height: 30)
         
         //FBテキストビュー設定
         FBTextView.layer.borderColor = UIColor.black.cgColor
@@ -275,7 +305,8 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         fb.result = WLString
         fb.score = Int(score)!
         fb.style = styleString
-        fb.date = dateFormatter.string(from: date)
+        fb.date = dates
+        print(fb.date)
 //        fb.date = date
 
         // DBに書き込む
@@ -475,9 +506,17 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     }
     
     //決定ボタン(スコア入力終了)
-    @objc func done() {
+    @objc func doneScore() {
         scoreTextField.text = score
         scoreTextField.endEditing(true)
+    }
+    
+    //決定ボタン(日付入力終了)
+    @objc func doneDate(){
+        dateTextField.text = year + "/" + month + "/" + day
+        dates =  dateTextField.text!
+        print(dates)
+        dateTextField.endEditing(true)
     }
     
     
@@ -485,26 +524,109 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     
     /*---Picker view関連---*/
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        
+        switch pickerView {
+        //スコアpicker
+        case pickerViewScore:
+            print("pickerView")
+            return 1
+        //日付picker
+        case pickerViewDate:
+            print("pickerViewDate")
+            return 3
+        default:
+            print("Error in numberOfComponents ResisterVC")
+            return 1
+        }
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return scoreList.count
+        
+        switch pickerView {
+        //スコアpicker
+        case pickerViewScore:
+            return scoreList.count
+        //日付picker
+        case pickerViewDate:
+            switch component {
+            case 0:
+                return yearList.count
+            case 1:
+                return monthList.count
+            case 2:
+                return dayList.count
+            default:
+                print("Error pickerViewDate component numberOfRowsInComponent ResisterVC")
+                return 0
+            }
+            
+        default:
+            print("Error pickerViewSwitch numberOfComponents numberOfRowsInComponent ResisterVC")
+            return 1
+        }
     }
     
     // UIPickerViewのRowが選択された時の挙動
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        score = scoreList[row]
-        print(scoreList[row])
+        
+        switch pickerView {
+        
+        //スコアpicker
+        case pickerViewScore:
+            score = scoreList[row]
+            print(scoreList[row])
+        //日付picker
+        case pickerViewDate:
+            switch component {
+            case 0:
+                year = yearList[row]
+                print(yearList[row])
+            case 1:
+                month = monthList[row]
+                print(monthList[row])
+            case 2:
+                day = dayList[row]
+                print(dayList[row])
+            default:
+                print("Error pickerViewDate component didSelectRow ResisterVC")
+            }
+            
+        default:
+            print("Error in numberOfComponents ResisterVC")
+        }
     
     }
     
     // UIPickerViewの最初の表示
     func pickerView(_ pickerView: UIPickerView,titleForRow row: Int, forComponent component: Int) -> String? {
-        score = scoreList[row]
-        return scoreList[row]
+        
+        switch pickerView {
+        //スコアpicker
+        case pickerViewScore:
+            score = scoreList[row]
+            return scoreList[row]
+        //日付picker
+        case pickerViewDate:
+            switch component {
+            case 0:
+                year = yearList[row]
+                return yearList[row]
+            case 1:
+                month = monthList[row]
+                return monthList[row]
+            case 2:
+                day = dayList[row]
+                return dayList[row]
+            default:
+                print("Error pickerViewDate component numberOfRowsInComponent ResisterVC")
+                return ""
+            }
+            
+        default:
+            print("Error pickerViewSwitch numberOfComponents numberOfRowsInComponent ResisterVC")
+            return ""
+        }
     }
-    
-    
+
 }
 

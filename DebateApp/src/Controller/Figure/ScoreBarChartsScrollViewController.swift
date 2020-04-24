@@ -11,6 +11,7 @@ import ScrollableGraphView
 import RealmSwift
 
 
+//UIColorで色指定を行い際に、コードを使う
 extension UIColor {
     convenience init(hex: String, alpha: CGFloat = 1.0) {
         let v = Int("000000" + hex, radix: 16) ?? 0
@@ -159,7 +160,7 @@ class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource, U
     }
     
     func label(atIndex pointIndex: Int) -> String {
-        return "\(pointIndex)\n(04/21)"
+        return "04/21"
     }
     
     func numberOfPoints() -> Int {
