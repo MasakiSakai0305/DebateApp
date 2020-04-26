@@ -20,6 +20,10 @@
 		3A979255245287D9002AFDC5 /* TotalScoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A979253245287D9002AFDC5 /* TotalScoreCell.xib */; };
 		3A97925824553FDD002AFDC5 /* NAScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97925624553FDD002AFDC5 /* NAScoreCell.swift */; };
 		3A97925924553FDD002AFDC5 /* NAScoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A97925724553FDD002AFDC5 /* NAScoreCell.xib */; };
+		3A97925C24554442002AFDC5 /* BPScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97925A24554442002AFDC5 /* BPScoreCell.swift */; };
+		3A97925D24554442002AFDC5 /* BPScoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A97925B24554442002AFDC5 /* BPScoreCell.xib */; };
+		3A9792602455445C002AFDC5 /* AsianScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97925E2455445C002AFDC5 /* AsianScoreCell.swift */; };
+		3A9792612455445C002AFDC5 /* AsianScoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A97925F2455445C002AFDC5 /* AsianScoreCell.xib */; };
 		3A97E0822435D7C000D4CCCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0812435D7C000D4CCCB /* AppDelegate.swift */; };
 		3A97E0842435D7C000D4CCCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */; };
 		3A97E0862435D7C000D4CCCB /* ResisterFBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0852435D7C000D4CCCB /* ResisterFBViewController.swift */; };
@@ -57,6 +61,10 @@
 		3A979253245287D9002AFDC5 /* TotalScoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TotalScoreCell.xib; sourceTree = "<group>"; };
 		3A97925624553FDD002AFDC5 /* NAScoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAScoreCell.swift; sourceTree = "<group>"; };
 		3A97925724553FDD002AFDC5 /* NAScoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NAScoreCell.xib; sourceTree = "<group>"; };
+		3A97925A24554442002AFDC5 /* BPScoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPScoreCell.swift; sourceTree = "<group>"; };
+		3A97925B24554442002AFDC5 /* BPScoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BPScoreCell.xib; sourceTree = "<group>"; };
+		3A97925E2455445C002AFDC5 /* AsianScoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsianScoreCell.swift; sourceTree = "<group>"; };
+		3A97925F2455445C002AFDC5 /* AsianScoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AsianScoreCell.xib; sourceTree = "<group>"; };
 		3A97E07E2435D7C000D4CCCB /* DebateApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebateApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A97E0812435D7C000D4CCCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +147,10 @@
 				3A979253245287D9002AFDC5 /* TotalScoreCell.xib */,
 				3A97925624553FDD002AFDC5 /* NAScoreCell.swift */,
 				3A97925724553FDD002AFDC5 /* NAScoreCell.xib */,
+				3A97925A24554442002AFDC5 /* BPScoreCell.swift */,
+				3A97925B24554442002AFDC5 /* BPScoreCell.xib */,
+				3A97925E2455445C002AFDC5 /* AsianScoreCell.swift */,
+				3A97925F2455445C002AFDC5 /* AsianScoreCell.xib */,
 			);
 			path = Score;
 			sourceTree = "<group>";
@@ -305,7 +317,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AB6A12F24495CC90065CEBC /* PieChartCell.xib in Resources */,
+				3A97925D24554442002AFDC5 /* BPScoreCell.xib in Resources */,
 				3AB6A143244EF03A0065CEBC /* AsianPieChartViewCell2.xib in Resources */,
+				3A9792612455445C002AFDC5 /* AsianScoreCell.xib in Resources */,
 				3AB6A13B244EEFFE0065CEBC /* NAPieChartViewCell.xib in Resources */,
 				3AB6A13F244EF0270065CEBC /* BPPieChartViewCell.xib in Resources */,
 				3A97E08E2435D7C200D4CCCB /* LaunchScreen.storyboard in Resources */,
@@ -380,12 +394,14 @@
 				3AB6A12E24495CC90065CEBC /* PieChartCell.swift in Sources */,
 				3A7E52BF2446DC0500174180 /* FigureViewController.swift in Sources */,
 				3A7E52C12447F35400174180 /* Result.swift in Sources */,
+				3A97925C24554442002AFDC5 /* BPScoreCell.swift in Sources */,
 				3AB6A137244EEEB50065CEBC /* DrawGraph.swift in Sources */,
 				3AB6A142244EF03A0065CEBC /* AsianPieChartViewCell2.swift in Sources */,
 				3AB6A13524495E5D0065CEBC /* WinRatePieChartsScrollViewController.swift in Sources */,
 				3A742712243B2C19005D6F78 /* InitialViewController.swift in Sources */,
 				3A979254245287D9002AFDC5 /* TotalScoreCell.swift in Sources */,
 				3A2CD2A424370BCB008FC787 /* FeedBack.swift in Sources */,
+				3A9792602455445C002AFDC5 /* AsianScoreCell.swift in Sources */,
 				3A7E52C32447FFDE00174180 /* ResultCalculation.swift in Sources */,
 				3AB6A13A244EEFFE0065CEBC /* NAPieChartViewCell.swift in Sources */,
 				3A97E0842435D7C000D4CCCB /* SceneDelegate.swift in Sources */,

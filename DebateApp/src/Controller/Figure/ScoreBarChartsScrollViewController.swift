@@ -54,6 +54,9 @@ class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource, U
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "TotalScoreCell", bundle: nil), forCellReuseIdentifier: "totalScore")
+        tableView.register(UINib(nibName: "NAScoreCell", bundle: nil), forCellReuseIdentifier: "NAScore")
+        tableView.register(UINib(nibName: "BPScoreCell", bundle: nil), forCellReuseIdentifier: "BPScore")
+        tableView.register(UINib(nibName: "AsianScoreCell", bundle: nil), forCellReuseIdentifier: "AsianScore")
         tableView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
         
         //複数選択可
@@ -183,15 +186,49 @@ class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource, U
 //        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 //        cell.textLabel!.text = self.tableData[indexPath.row]
         
-        let totalCell = tableView.dequeueReusableCell(withIdentifier: "totalScore", for: indexPath) as! TotalScoreCell
-        totalCell.frame.size = CGSize(width: view.frame.size.width, height: view.frame.size.height/2)
+        //円グラフを表示するカスタムセル
+        switch indexPath[0] {
+        case 0:
+            print("case0")
+            let totalCell = tableView.dequeueReusableCell(withIdentifier: "totalScore", for: indexPath) as! TotalScoreCell
+            totalCell.frame.size = CGSize(width: view.frame.size.width, height: view.frame.size.height/2)
+            
+            totalCell.width = view.frame.size.width
+            totalCell.height = view.frame.size.height * 0.6
+            totalCell.callDrawMethod()
+            return totalCell
         
-        print("高さとはば")
-        print(view.frame.size.width, view.frame.size.height)
-        totalCell.width = view.frame.size.width
-        totalCell.height = view.frame.size.height * 0.6
-        totalCell.callDrawMethod()
-        return totalCell
+        case 1:
+            print("case1")
+            let NACell = tableView.dequeueReusableCell(withIdentifier: "NAScore", for: indexPath) as! NAScoreCell
+            NACell.frame.size = CGSize(width: view.frame.size.width, height: view.frame.size.height/2)
+            
+            NACell.width = view.frame.size.width
+            NACell.height = view.frame.size.height * 0.6
+            NACell.callDrawMethod()
+            return NACell
+        case 2:
+            let BPCell = tableView.dequeueReusableCell(withIdentifier: "BPScore", for: indexPath) as! BPScoreCell
+            BPCell.frame.size = CGSize(width: view.frame.size.width, height: view.frame.size.height/2)
+            
+            BPCell.width = view.frame.size.width
+            BPCell.height = view.frame.size.height * 0.6
+            BPCell.callDrawMethod()
+            return BPCell
+        case 3:
+            let AsianCell = tableView.dequeueReusableCell(withIdentifier: "AsianScore", for: indexPath) as! AsianScoreCell
+            AsianCell.frame.size = CGSize(width: view.frame.size.width, height: view.frame.size.height/2)
+            
+            AsianCell.width = view.frame.size.width
+            AsianCell.height = view.frame.size.height * 0.6
+            AsianCell.callDrawMethod()
+            return AsianCell
+        default:
+            print("Error cellForRowAt scoreGraph")
+            print("indexPath: ", indexPath)
+            let totalCell = tableView.dequeueReusableCell(withIdentifier: "totalScore", for: indexPath) as! TotalScoreCell
+            return totalCell
+        }
 
     }
 
@@ -209,6 +246,11 @@ class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource, U
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return view.frame.size.height * 0.7
     }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 4
+    }
+    
 }
 
 

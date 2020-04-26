@@ -90,6 +90,7 @@ class WinRatePieChartsScrollViewController: UIViewController, UITableViewDelegat
             
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "pie", for: indexPath) as! PieChartCell
+            print("Error cellForRowAt pieGraph")
             print("Error indexPath: ", indexPath)
             return cell
         }

@@ -1,5 +1,5 @@
 //
-//  NAScoreCell.swift
+//  AsianScoreCell.swift
 //  DebateApp
 //
 //  Created by 境将輝 on 2020/04/26.
@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class NAScoreCell: UITableViewCell {
+class AsianScoreCell: UITableViewCell {
     
     var width = CGFloat()
     var height = CGFloat()
@@ -20,27 +20,25 @@ class NAScoreCell: UITableViewCell {
         // Initialization code
         
         //プロットするデータ(スコア)
-        var NAPlotScore = [Double()]
+        var AsianPlotScore = [Double()]
         //プロットするデータ(日付)
-        var NAPlotDate = [String()]
+        var AsianPlotDate = [String()]
         
         let realm = try! Realm()
-        let NAObjects = realm.objects(FeedBack.self).sorted(byKeyPath: "date").filter("style == 'NA'").sorted(byKeyPath: "date")
+        let AsianObjects = realm.objects(FeedBack.self).sorted(byKeyPath: "date").filter("style == 'Asian'").sorted(byKeyPath: "date")
         
-        print("NAObjects")
-        print(NAObjects)
         //DBを読んで配列にデータを追加
-        for i in 0..<NAObjects.count{
-            NAPlotScore.append(Double(NAObjects[i].score))
-            NAPlotDate.append(NAObjects[i].date.components(separatedBy: "年/")[1])
+        for i in 0..<AsianObjects.count{
+            AsianPlotScore.append(Double(AsianObjects[i].score))
+            AsianPlotDate.append(AsianObjects[i].date.components(separatedBy: "年/")[1])
         }
         
         //一番最初に0が入ってしまうので削除
-        NAPlotScore.remove(at: 0)
-        NAPlotDate.remove(at: 0)
+        AsianPlotScore.remove(at: 0)
+        AsianPlotDate.remove(at: 0)
         
         //グラフ描画インスタンス
-        drawTotal = DrawScoreGraph(score:NAPlotScore, date:NAPlotDate)
+        drawTotal = DrawScoreGraph(score:AsianPlotScore, date:AsianPlotDate)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -52,4 +50,5 @@ class NAScoreCell: UITableViewCell {
     func callDrawMethod(){
         drawTotal.drawScoreGraph(cell: self, ViewWidth: width, ViewHeight: height)
     }
+    
 }
