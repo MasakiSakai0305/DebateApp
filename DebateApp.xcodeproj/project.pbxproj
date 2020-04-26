@@ -18,6 +18,8 @@
 		3A872ED6243B5F9B00CC5EF3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3A872ED5243B5F9B00CC5EF3 /* README.md */; };
 		3A979254245287D9002AFDC5 /* TotalScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A979252245287D9002AFDC5 /* TotalScoreCell.swift */; };
 		3A979255245287D9002AFDC5 /* TotalScoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A979253245287D9002AFDC5 /* TotalScoreCell.xib */; };
+		3A97925824553FDD002AFDC5 /* NAScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97925624553FDD002AFDC5 /* NAScoreCell.swift */; };
+		3A97925924553FDD002AFDC5 /* NAScoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A97925724553FDD002AFDC5 /* NAScoreCell.xib */; };
 		3A97E0822435D7C000D4CCCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0812435D7C000D4CCCB /* AppDelegate.swift */; };
 		3A97E0842435D7C000D4CCCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */; };
 		3A97E0862435D7C000D4CCCB /* ResisterFBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0852435D7C000D4CCCB /* ResisterFBViewController.swift */; };
@@ -53,6 +55,8 @@
 		3A872ED5243B5F9B00CC5EF3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3A979252245287D9002AFDC5 /* TotalScoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalScoreCell.swift; sourceTree = "<group>"; };
 		3A979253245287D9002AFDC5 /* TotalScoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TotalScoreCell.xib; sourceTree = "<group>"; };
+		3A97925624553FDD002AFDC5 /* NAScoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAScoreCell.swift; sourceTree = "<group>"; };
+		3A97925724553FDD002AFDC5 /* NAScoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NAScoreCell.xib; sourceTree = "<group>"; };
 		3A97E07E2435D7C000D4CCCB /* DebateApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebateApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A97E0812435D7C000D4CCCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 			children = (
 				3A979252245287D9002AFDC5 /* TotalScoreCell.swift */,
 				3A979253245287D9002AFDC5 /* TotalScoreCell.xib */,
+				3A97925624553FDD002AFDC5 /* NAScoreCell.swift */,
+				3A97925724553FDD002AFDC5 /* NAScoreCell.xib */,
 			);
 			path = Score;
 			sourceTree = "<group>";
@@ -305,6 +311,7 @@
 				3A97E08E2435D7C200D4CCCB /* LaunchScreen.storyboard in Resources */,
 				3A97E08B2435D7C200D4CCCB /* Assets.xcassets in Resources */,
 				3A872ED6243B5F9B00CC5EF3 /* README.md in Resources */,
+				3A97925924553FDD002AFDC5 /* NAScoreCell.xib in Resources */,
 				3AB6A13324495CF10065CEBC /* BarChartwCell.xib in Resources */,
 				3A979255245287D9002AFDC5 /* TotalScoreCell.xib in Resources */,
 				3A742716243B51CB005D6F78 /* FeedBackCell.xib in Resources */,
@@ -368,6 +375,7 @@
 				3AB6A13E244EF0270065CEBC /* BPPieChartViewCell.swift in Sources */,
 				3AB6A13224495CF10065CEBC /* BarChartwCell.swift in Sources */,
 				3A97E0822435D7C000D4CCCB /* AppDelegate.swift in Sources */,
+				3A97925824553FDD002AFDC5 /* NAScoreCell.swift in Sources */,
 				3AB6A122244944BA0065CEBC /* ScoreBarChartsScrollViewController.swift in Sources */,
 				3AB6A12E24495CC90065CEBC /* PieChartCell.swift in Sources */,
 				3A7E52BF2446DC0500174180 /* FigureViewController.swift in Sources */,
