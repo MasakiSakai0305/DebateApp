@@ -36,11 +36,14 @@ class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource, U
         "5. MacBook"
     ]
     
-    //プロットするデータ
-    var TotalPlotData = [Double()]
-    var NAPlotData = [Double()]
-    var BPPlotData = [Double()]
-    var AsianPlotData = [Double()]
+    //プロットするデータ(スコア)
+    var TotalPlotScore = [Double()]
+    var NAPlotScore = [Double()]
+    var BPPlotScore = [Double()]
+    var AsianPlotScore = [Double()]
+    
+    //プロットするデータ(日付)
+    var TotalPlotDate = [String()]
    
 
     override func viewDidLoad() {
@@ -55,32 +58,38 @@ class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource, U
         tableView.allowsMultipleSelectionDuringEditing = true
         
         
+        //降順のソート（日付が新しい物が上に来る）
+        //let TotalObjects = realm.objects(FeedBack.self).sorted(byKeyPath: "date", ascending: false)
+        
         let realm = try! Realm()
-        let TotalObjects = realm.objects(FeedBack.self).sorted(byKeyPath: "date", ascending: false)
+        let TotalObjects = realm.objects(FeedBack.self).sorted(byKeyPath: "date")
         let NAObjects = realm.objects(FeedBack.self).filter("style == 'NA'").sorted(byKeyPath: "date", ascending: false)
         let BPObjects = realm.objects(FeedBack.self).filter("style == 'BP'").sorted(byKeyPath: "date", ascending: false)
         let AsianObjects = realm.objects(FeedBack.self).filter("style == 'Asian'").sorted(byKeyPath: "date", ascending: false)
         
-        
         //DBを読んで配列にデータを追加
         for i in 0..<TotalObjects.count{
-            TotalPlotData.append(Double(TotalObjects[i].score))
+            TotalPlotScore.append(Double(TotalObjects[i].score))
+            TotalPlotDate.append(TotalObjects[i].date.components(separatedBy: "年/")[1])
+            
         }
         for i in 0..<NAObjects.count{
-            NAPlotData.append(Double(TotalObjects[i].score))
+            NAPlotScore.append(Double(TotalObjects[i].score))
         }
         for i in 0..<BPObjects.count{
-            BPPlotData.append(Double(BPObjects[i].score))
+            BPPlotScore.append(Double(BPObjects[i].score))
         }
         for i in 0..<AsianObjects.count{
-            AsianPlotData.append(Double(AsianObjects[i].score))
+            AsianPlotScore.append(Double(AsianObjects[i].score))
         }
         
         //一番最初に0が入ってしまうので削除
-        TotalPlotData.remove(at: 0)
-        NAPlotData.remove(at: 0)
-        BPPlotData.remove(at: 0)
-        AsianPlotData.remove(at: 0)
+        TotalPlotScore.remove(at: 0)
+        NAPlotScore.remove(at: 0)
+        BPPlotScore.remove(at: 0)
+        AsianPlotScore.remove(at: 0)
+        
+        TotalPlotDate.remove(at: 0)
     
         
         // Compose the graph view by creating a graph, then adding any plots
@@ -149,22 +158,22 @@ class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource, U
         // Return the data for each plot.
         switch(plot.identifier) {
         case "line":
-            return TotalPlotData[pointIndex]
+            return TotalPlotScore[pointIndex]
         case "bar":
-            return TotalPlotData[pointIndex]
+            return TotalPlotScore[pointIndex]
         case "dot":
-            return TotalPlotData[pointIndex]
+            return TotalPlotScore[pointIndex]
         default:
             return 0
         }
     }
     
     func label(atIndex pointIndex: Int) -> String {
-        return "04/21"
+        return TotalPlotDate[pointIndex]
     }
     
     func numberOfPoints() -> Int {
-        return TotalPlotData.count
+        return TotalPlotScore.count
     }
     
 
