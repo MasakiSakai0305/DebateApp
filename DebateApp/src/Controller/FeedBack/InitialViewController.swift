@@ -8,13 +8,14 @@
 
 import UIKit
 import RealmSwift
-
+import SideMenu
 
 
 class InitialViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, updateTableDelegate {
     
     //ナビゲーションアイテムのプラスボタン宣言
     var addBarButtonItem: UIBarButtonItem!
+    var BarButtonItem: UIBarButtonItem!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -57,6 +58,9 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         //[+]ボタン追加
         addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBarButtonTapped(_:)))
         self.navigationItem.rightBarButtonItems = [addBarButtonItem]
+        BarButtonItem = UIBarButtonItem(title: "filter", style: .plain, target: self, action: #selector(BarButtonTapped(_:)))
+        self.navigationItem.leftBarButtonItems = [BarButtonItem]
+        //self.navigationController?.navigationBar
 
         
 //        print("日時ソート")
@@ -84,6 +88,38 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
                           
         //画面遷移
         navigationController?.pushViewController(ResisterFBVC, animated: true)
+    }
+    
+    @objc func BarButtonTapped(_ sender: UIBarButtonItem) {
+        // Define the menu
+        let menu = SideMenuNavigationController(rootViewController: SideMenuViewController())
+        SideMenuManager.default.leftMenuNavigationController = menu
+        //let menu = SideMenuManager.default.leftMenuNavigationController!
+        // SideMenuNavigationController is a subclass of UINavigationController, so do any additional configuration
+        // of it here like setting its viewControllers. If you're using storyboards, you'll want to do something like:
+        // let menu = storyboard!.instantiateViewController(withIdentifier: "RightMenu") as! SideMenuNavigationController
+        
+        SideMenuManager.default.addPanGestureToPresent(toView: self.navigationController!.navigationBar)
+        //SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: self.navigationController!.view, forMenu: .left)
+        menu.settings = makeSettings()
+        SideMenuPresentationStyle().menuStartAlpha = 1
+        menu.statusBarEndAlpha = 10.0
+        SideMenuPresentationStyle().backgroundColor = .black
+        
+    
+        present(menu, animated: true, completion: nil)
+    }
+    
+    func makeSettings() -> SideMenuSettings{
+        let presentationStyle: SideMenuPresentationStyle = .menuSlideIn
+        presentationStyle.onTopShadowOpacity = 1.0
+        presentationStyle.menuStartAlpha = 1
+        presentationStyle.presentingEndAlpha = 1
+        var settings = SideMenuSettings()
+        settings.presentationStyle = presentationStyle
+        settings.statusBarEndAlpha = 10.0
+        //settings.statusBarEndAlpha = 0
+        return settings
     }
     
     

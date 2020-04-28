@@ -11,6 +11,8 @@ import Charts
 import RealmSwift
 import ScrollableGraphView
 
+import SideMenu
+
 class FigureViewController: UIViewController {
 
     
@@ -23,6 +25,13 @@ class FigureViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 見た目調整
+        self.navigationController?.navigationBar.tintColor = .clear
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.black
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.backgroundColor = .blue
+         
         let calc = ResultCalculation()
         calc.resultCaluculation()
         
@@ -40,12 +49,19 @@ class FigureViewController: UIViewController {
         //setBarGragh()
         self.view.bringSubviewToFront(pieChartView)
         //pieChartView.removeFromSuperview()
-        
-       
-        
-        
+
         
     }
+    
+    @objc func onTap(_ sender: UITapGestureRecognizer){
+           dismiss(animated: true, completion: nil)
+
+           NotificationCenter.default.post(
+             name: Notification.Name("SelectMenuNotification"),
+             object: nil,
+             userInfo: ["hoge":"fuga"] // 返したいデータをセットするよ
+           )
+       }
     
 
     override func viewWillAppear(_ animated: Bool) {

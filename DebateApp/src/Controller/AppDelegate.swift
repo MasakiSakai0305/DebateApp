@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SideMenu
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let viewController = ViewController()
+        let navigationController = UINavigationController(rootViewController: InitialViewController())
+        var window = UIWindow(frame: UIScreen.main.bounds)
+        window.backgroundColor = UIColor.white
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
+        
+        // Define the menus
+        let leftMenuNavigationController = SideMenuNavigationController(rootViewController: InitialViewController())
+        SideMenuManager.default.leftMenuNavigationController = leftMenuNavigationController
+        
+        // Setup gestures: the left and/or right menus must be set up (above) for these to work.
+        // Note that these continue to work on the Navigation Controller independent of the view controller it displays!
+        SideMenuManager.default.addPanGestureToPresent(toView: navigationController.navigationBar)
+        SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: navigationController.view, forMenu: .left)
+        
         return true
     }
 
