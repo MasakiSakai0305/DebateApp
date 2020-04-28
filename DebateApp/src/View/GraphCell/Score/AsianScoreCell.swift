@@ -14,6 +14,7 @@ class AsianScoreCell: UITableViewCell {
     var width = CGFloat()
     var height = CGFloat()
     var drawTotal = DrawScoreGraph(score:[0.0], date:[""])
+    let AsianLabel = UILabel()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,6 +38,10 @@ class AsianScoreCell: UITableViewCell {
         AsianPlotScore.remove(at: 0)
         AsianPlotDate.remove(at: 0)
         
+        let calc = ResultCalculation()
+        let ave = calc.getAve(scoreList: AsianPlotScore)
+        AsianLabel.text = "Asian 平均: \(ave)点"
+        self.contentView.addSubview(AsianLabel)
         //グラフ描画インスタンス
         drawTotal = DrawScoreGraph(score:AsianPlotScore, date:AsianPlotDate)
     }
@@ -48,7 +53,8 @@ class AsianScoreCell: UITableViewCell {
     }
     
     func callDrawMethod(){
-        drawTotal.drawScoreGraph(cell: self, ViewWidth: width, ViewHeight: height)
+        AsianLabel.frame = CGRect(x:width / 2, y: height * 0.75 , width: width / 2, height: height * 0.2)
+        drawTotal.drawScoreGraph(cell: self, ViewWidth: width, ViewHeight: height * 0.8)
     }
     
 }

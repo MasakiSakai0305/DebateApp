@@ -14,6 +14,7 @@ class BPScoreCell: UITableViewCell {
     var width = CGFloat()
     var height = CGFloat()
     var drawTotal = DrawScoreGraph(score:[0.0], date:[""])
+    let BPLabel = UILabel()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,6 +38,11 @@ class BPScoreCell: UITableViewCell {
         BPPlotScore.remove(at: 0)
         BPPlotDate.remove(at: 0)
         
+        let calc = ResultCalculation()
+        let ave = calc.getAve(scoreList: BPPlotScore)
+        BPLabel.text = "BP 平均: \(ave)点"
+        self.contentView.addSubview(BPLabel)
+        
         //グラフ描画インスタンス
         drawTotal = DrawScoreGraph(score:BPPlotScore, date:BPPlotDate)
     }
@@ -48,7 +54,8 @@ class BPScoreCell: UITableViewCell {
     }
     
     func callDrawMethod(){
-        drawTotal.drawScoreGraph(cell: self, ViewWidth: width, ViewHeight: height)
+        BPLabel.frame = CGRect(x:width / 2, y: height * 0.8 , width: width / 2, height: height * 0.2)
+        drawTotal.drawScoreGraph(cell: self, ViewWidth: width, ViewHeight: height * 0.8)
     }
     
 }

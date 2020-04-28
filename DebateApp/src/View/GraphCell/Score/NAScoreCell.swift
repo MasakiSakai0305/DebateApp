@@ -14,6 +14,7 @@ class NAScoreCell: UITableViewCell {
     var width = CGFloat()
     var height = CGFloat()
     var drawTotal = DrawScoreGraph(score:[0.0], date:[""])
+    let NALabel = UILabel()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,6 +40,11 @@ class NAScoreCell: UITableViewCell {
         NAPlotScore.remove(at: 0)
         NAPlotDate.remove(at: 0)
         
+        let calc = ResultCalculation()
+        let ave = calc.getAve(scoreList: NAPlotScore)
+        NALabel.text = "NA 平均: \(ave)点"
+        self.contentView.addSubview(NALabel)
+        
         //グラフ描画インスタンス
         drawTotal = DrawScoreGraph(score:NAPlotScore, date:NAPlotDate)
     }
@@ -50,6 +56,7 @@ class NAScoreCell: UITableViewCell {
     }
     
     func callDrawMethod(){
-        drawTotal.drawScoreGraph(cell: self, ViewWidth: width, ViewHeight: height)
+        NALabel.frame = CGRect(x:width / 2, y: height * 0.8 , width: width / 2, height: height * 0.2)
+        drawTotal.drawScoreGraph(cell: self, ViewWidth: width, ViewHeight: height * 0.8)
     }
 }

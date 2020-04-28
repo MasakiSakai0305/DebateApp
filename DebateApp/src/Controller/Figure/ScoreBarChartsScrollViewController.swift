@@ -192,9 +192,9 @@ class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource, U
             print("case0")
             let totalCell = tableView.dequeueReusableCell(withIdentifier: "totalScore", for: indexPath) as! TotalScoreCell
             totalCell.frame.size = CGSize(width: view.frame.size.width, height: view.frame.size.height/2)
-            
             totalCell.width = view.frame.size.width
-            totalCell.height = view.frame.size.height * 0.6
+            totalCell.height = view.frame.size.height * 0.7
+            
             totalCell.callDrawMethod()
             return totalCell
         
@@ -204,7 +204,7 @@ class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource, U
             NACell.frame.size = CGSize(width: view.frame.size.width, height: view.frame.size.height/2)
             
             NACell.width = view.frame.size.width
-            NACell.height = view.frame.size.height * 0.6
+            NACell.height = view.frame.size.height * 0.7
             NACell.callDrawMethod()
             return NACell
         case 2:
@@ -212,7 +212,7 @@ class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource, U
             BPCell.frame.size = CGSize(width: view.frame.size.width, height: view.frame.size.height/2)
             
             BPCell.width = view.frame.size.width
-            BPCell.height = view.frame.size.height * 0.6
+            BPCell.height = view.frame.size.height * 0.7
             BPCell.callDrawMethod()
             return BPCell
         case 3:
@@ -220,7 +220,7 @@ class ExFigureViewController: UIViewController, ScrollableGraphViewDataSource, U
             AsianCell.frame.size = CGSize(width: view.frame.size.width, height: view.frame.size.height/2)
             
             AsianCell.width = view.frame.size.width
-            AsianCell.height = view.frame.size.height * 0.6
+            AsianCell.height = view.frame.size.height * 0.7
             AsianCell.callDrawMethod()
             return AsianCell
         default:

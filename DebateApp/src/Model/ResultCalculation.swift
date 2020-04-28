@@ -34,6 +34,7 @@ class ResultCalculation{
     var BPWinRate = Double()
     var AsianWinRate = Double()
 
+    
     func resultCaluculation(){
         print("\n--resultCaluculation, 集計チェック--")
         let realm = try! Realm()
@@ -89,6 +90,15 @@ class ResultCalculation{
         BPWinRate = Double(BPWinCount / totalBPCount) * 100
         AsianWinRate = Double(AsianWinCount / totalAsianCount) * 100
         print("AsianWinRate:", AsianWinRate)
+    }
+    
+    //スコアの平均を取得
+    func getAve(scoreList:[Double]) -> Double{
+        var sum = Double()
+        for score in scoreList{
+            sum += score
+        }
+        return sum / Double(scoreList.count)
     }
 
 }
