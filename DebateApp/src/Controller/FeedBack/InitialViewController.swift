@@ -233,10 +233,12 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     //横スライドでセルを削除
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        print(indexPath)
         print("indexPath.row: \(indexPath.row) 削除")
         // 先にデータを削除しないと、エラーが発生します。
         deleteData(number: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .automatic)
+        tableView.reloadData()
+        //tableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
     //データを削除(１つ)
@@ -244,15 +246,28 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         print("--deleteData--")
         let realm = try! Realm()
 //        let objects = realm.objects(FeedBack.self)
-        let sortedData = sortDate()
-            
-        try! realm.write {
-            realm.delete(sortedData[number])
+        //let sortedData = sortDate()
+        
+        if isFilter == true{
+            let filteredData = filterData(filter: stringFilter)
+            try! realm.write {
+                realm.delete(filteredData[number])
+            }
+            objectCount = filteredData.count
+        } else {
+            let sortedData = sortDate()
+            try! realm.write {
+                realm.delete(sortedData[number])
+            }
+            objectCount = sortedData.count
         }
-        objectCount = sortedData.count
-        print("\(number)削除")
-        print(sortedData)
 
+        
+    
+        print("\(number)削除")
+        print(objectCount)
+        
+        
     }
     
     //保存したデータをテーブルに反映(デリゲートメソッド)
