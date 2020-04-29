@@ -78,7 +78,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     var year = ""
     var month = ""
     var day = ""
-    var dates = "2020/01/01"
+    var dates = "2020年/1月/1日"
     
     //日時を取得する際に使用
     let date = Date()
