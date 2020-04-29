@@ -11,6 +11,9 @@ import SideMenu
 
 class SideMenuViewController: UITableViewController {
 
+    
+    let filterList = ["フィルター解除", "勝ち", "負け", "NA", "BP", "Asian"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,30 +22,46 @@ class SideMenuViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        tableView.backgroundColor = UIColor(white: 3.0, alpha: 0.8)
+        tableView.register(UINib(nibName: "SideMenuStyleCell", bundle: nil), forCellReuseIdentifier: "style")
+        tableView.backgroundColor = UIColor(white: 1.0, alpha: 0.8)
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return filterList.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "style", for: indexPath) as! SideMenuStyleCell
+        cell.stringLabel.text = "\(filterList[indexPath.row])"
 
         // Configure the cell...
 
         return cell
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // セルの選択を解除
+        tableView.deselectRow(at: indexPath, animated: true)
+        // サイドバーを閉じる
+        dismiss(animated: true, completion: nil)
+         
+        NotificationCenter.default.post(
+            name: Notification.Name("SelectMenuNotification"),
+            object: nil,
+            userInfo: ["itemNo": filterList[indexPath.row]] // 返したいデータをセットする
+        )
+    }
+    
+
 
     /*
     // Override to support conditional editing of the table view.

@@ -28,6 +28,10 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
     let date = Date()
     let dateFormatter = DateFormatter()
     
+    //フィルター機能を使うかどうかのフラグ(cellForRowAtで使用する)
+    var isFilter = Bool()
+    //フィルターの種類
+    var stringFilter = String()
 
     
     override func viewDidLoad() {
@@ -68,6 +72,10 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        let soreted = array.sorted()
 //        print(soreted)
         
+        // サイドバーメニューからの通知を受け取る
+        NotificationCenter.default.addObserver(self,selector: #selector(catchSelectMenuNotification(notification:)),
+            name: Notification.Name("SelectMenuNotification"), object: nil)
+        
     }
     
     func sortDate() -> Results<FeedBack>{
@@ -75,6 +83,29 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         let objects = realm.objects(FeedBack.self)
         let sorted = objects.sorted(byKeyPath: "date", ascending: false)
         return sorted
+    }
+    
+    
+    func filterData(filter:String) -> Results<FeedBack>{
+        let realm = try! Realm()
+        let objects = realm.objects(FeedBack.self)
+    
+        if filter == "勝ち" || filter == "負け"{
+            let filtered = objects.filter("result == '\(filter)'").sorted(byKeyPath: "date", ascending: false)
+            return filtered
+        }
+        else if filter == "NA" || filter == "BP" || filter == "Asian"{
+            let filtered = objects.filter("style == '\(filter)'").sorted(byKeyPath: "date", ascending: false)
+            return filtered
+        }
+        //すべてのデータをreturnする
+        else if filter == "フィルター解除"{
+            isFilter = false
+            return sortDate()
+        }
+        print("Error filterData in InitialVC")
+        return objects
+        
     }
     
     
@@ -110,6 +141,21 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         present(menu, animated: true, completion: nil)
     }
     
+    // 選択されたサイドバーのアイテムを取得
+    @objc func catchSelectMenuNotification(notification: Notification) -> Void {
+        // メニューからの返り値を取得
+        let item = notification.userInfo // 返り値が格納されている変数
+        
+        // 実行したい処理を記述する
+        print(item!)
+        print(item!["itemNo"]!)
+        isFilter = true
+        stringFilter = item!["itemNo"]! as! String
+        let filterdData = filterData(filter: stringFilter)
+        objectCount = filterdData.count
+        tableView.reloadData()
+    }
+    
     func makeSettings() -> SideMenuSettings{
         let presentationStyle: SideMenuPresentationStyle = .menuSlideIn
         presentationStyle.onTopShadowOpacity = 1.0
@@ -132,9 +178,14 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         //let realm = try! Realm()
         //let objects = realm.objects(FeedBack.self)
-        
         let sortedData = sortDate()
-        let object = sortedData[indexPath.row]
+        var object = sortedData[indexPath.row]
+        
+        if isFilter == true{
+            let filterdData = filterData(filter: stringFilter)
+            object = filterdData[indexPath.row]
+        }
+            
         
         //let object = objects[indexPath.row]
         
@@ -163,7 +214,7 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         navigationController?.pushViewController(EditFBVC, animated: true)
     }
     
-    //セルの数を決める
+    //セクションの数を決める
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -173,6 +224,7 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         return view.frame.size.height/9
     }
     
+    //セルの数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("numberOfRowsSections: ", objectCount)
         return objectCount

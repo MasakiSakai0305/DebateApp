@@ -26,6 +26,8 @@
 		3A9792612455445C002AFDC5 /* AsianScoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A97925F2455445C002AFDC5 /* AsianScoreCell.xib */; };
 		3A97926724582C18002AFDC5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97926624582C18002AFDC5 /* ViewController.swift */; };
 		3A97926B24584C35002AFDC5 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97926A24584C35002AFDC5 /* SideMenuViewController.swift */; };
+		3A97927224598BF9002AFDC5 /* SideMenuStyleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97927024598BF9002AFDC5 /* SideMenuStyleCell.swift */; };
+		3A97927324598BF9002AFDC5 /* SideMenuStyleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A97927124598BF9002AFDC5 /* SideMenuStyleCell.xib */; };
 		3A97E0822435D7C000D4CCCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0812435D7C000D4CCCB /* AppDelegate.swift */; };
 		3A97E0842435D7C000D4CCCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */; };
 		3A97E0862435D7C000D4CCCB /* ResisterFBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0852435D7C000D4CCCB /* ResisterFBViewController.swift */; };
@@ -69,6 +71,8 @@
 		3A97925F2455445C002AFDC5 /* AsianScoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AsianScoreCell.xib; sourceTree = "<group>"; };
 		3A97926624582C18002AFDC5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3A97926A24584C35002AFDC5 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		3A97927024598BF9002AFDC5 /* SideMenuStyleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuStyleCell.swift; sourceTree = "<group>"; };
+		3A97927124598BF9002AFDC5 /* SideMenuStyleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuStyleCell.xib; sourceTree = "<group>"; };
 		3A97E07E2435D7C000D4CCCB /* DebateApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebateApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A97E0812435D7C000D4CCCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -196,6 +200,8 @@
 				3A7E52BC2446DBCB00174180 /* Figure */,
 				3A97E0812435D7C000D4CCCB /* AppDelegate.swift */,
 				3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */,
+				3A97927024598BF9002AFDC5 /* SideMenuStyleCell.swift */,
+				3A97927124598BF9002AFDC5 /* SideMenuStyleCell.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -335,6 +341,7 @@
 				3AB6A13324495CF10065CEBC /* BarChartwCell.xib in Resources */,
 				3A979255245287D9002AFDC5 /* TotalScoreCell.xib in Resources */,
 				3A742716243B51CB005D6F78 /* FeedBackCell.xib in Resources */,
+				3A97927324598BF9002AFDC5 /* SideMenuStyleCell.xib in Resources */,
 				3A97E0892435D7C000D4CCCB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,6 +408,7 @@
 				3AB6A12E24495CC90065CEBC /* PieChartCell.swift in Sources */,
 				3A7E52BF2446DC0500174180 /* FigureViewController.swift in Sources */,
 				3A7E52C12447F35400174180 /* Result.swift in Sources */,
+				3A97927224598BF9002AFDC5 /* SideMenuStyleCell.swift in Sources */,
 				3A97926B24584C35002AFDC5 /* SideMenuViewController.swift in Sources */,
 				3A97925C24554442002AFDC5 /* BPScoreCell.swift in Sources */,
 				3AB6A137244EEEB50065CEBC /* DrawGraph.swift in Sources */,
