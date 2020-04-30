@@ -36,7 +36,12 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("--viewDidLoad--")
+        
+        self.navigationItem.title = ""
+        self.navigationController?.navigationBar.titleTextAttributes
+            = [NSAttributedString.Key.font: UIFont(name: "Times New Roman", size: 15)!]
+        
+        print("--viewDidLoad initialVC--")
         
         
         let realm = try! Realm()
@@ -153,6 +158,14 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         stringFilter = item!["itemNo"]! as! String
         let filterdData = filterData(filter: stringFilter)
         objectCount = filterdData.count
+        
+        //フィルターの際にnavigationBarのタイトルを変更
+        if isFilter == true{
+            self.navigationItem.title = "Filterd: \(stringFilter)"
+        } else {
+            self.navigationItem.title = ""
+        }
+        
         tableView.reloadData()
     }
     

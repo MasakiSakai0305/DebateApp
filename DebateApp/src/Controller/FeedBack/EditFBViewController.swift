@@ -121,8 +121,6 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         styleString = object.style
         dateTextField.text = object.date
         motionGenreTextField.text = object.motionGenre
-        print("Edit VC object.motionGenre", object.motionGenre)
-        print(object)
        
        //スコア入力機能設定
        let toolBarScore = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
