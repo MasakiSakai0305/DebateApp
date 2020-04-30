@@ -14,27 +14,29 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
 
     var delegate:updateTableDelegate?
 
-    @IBOutlet weak var motionLabel: UILabel!
-
+    //各種UI
     @IBOutlet weak var motionTextField: UITextField!
-    
     @IBOutlet weak var scoreTextField: UITextField!
-    
     @IBOutlet weak var doneButton: UIButton!
-    
     @IBOutlet weak var FBTextView: UITextView!
-    
     @IBOutlet weak var dateTextField: UITextField!
+    @IBOutlet weak var motionGenreTextField: UITextField!
     
+    //各種ラベル
+    @IBOutlet weak var motionLabel: UILabel!
     @IBOutlet weak var WLLabel: UILabel!
     @IBOutlet weak var styleLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var motionGenreLabel: UILabel!
     
     //スコア入力用のPickerView
     var pickerViewScore: UIPickerView = UIPickerView()
     //日付入力用のPickerView
     var pickerViewDate: UIPickerView = UIPickerView()
+    //モーションジャンル入力用のPickerView
+    var pickerViewMotionGenre: UIPickerView = UIPickerView()
+    
     //ナビゲーションアイテムのボタン宣言
     var notSaveBarButtonItem: UIBarButtonItem!
     
@@ -57,6 +59,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     let yearList = ["2020年", "2021年", "2022年", "2023年", "2024年", "2025年", "2026年", "2027年", "2028年", "2029年"]
     let monthList = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
     let dayList = ["1日", "2日", "3日", "4日", "5日", "6日", "7日", "8日", "9日", "10日", "11日", "12日", "13日", "14日", "15日", "16日", "17日", "18日", "19日", "20日", "21日", "22日", "23日", "24日", "25日", "26日", "27日", "28日", "29日", "30日", "31日"]
+    let motionGenreList = ["Economics", "Art", "Feminism", "Religion", "LGBT", "Politics", "CJS", "Education", "Choice", "Freedom of Expression", "Movement", "その他"]
    
     
     //デフォルト
@@ -69,6 +72,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     var month = ""
     var day = ""
     var dates = "2020/01/01"
+    var motionGenre = ""
 
     //日時を取得する際に使用
     let date = Date()
@@ -97,10 +101,13 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
 
         motionTextField.delegate = self
         FBTextView.delegate = self
+        motionGenreTextField.delegate = self
         pickerViewScore.delegate = self
         pickerViewScore.dataSource = self
         pickerViewDate.delegate = self
         pickerViewDate.dataSource = self
+        pickerViewMotionGenre.delegate = self
+        pickerViewMotionGenre.dataSource = self
         navigationController?.delegate = self
         
         
@@ -128,7 +135,14 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
        toolBarDate.setItems([doneItemDate], animated: true)
        dateTextField.inputView = pickerViewDate
        dateTextField.inputAccessoryView = toolBarDate
-//       dateTextField.text = dates
+        
+        //モーションジャンル入力機能設定
+        let toolBarMotionGenre = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
+        let doneItemMotionGenre = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneMotionGenre))
+        toolBarMotionGenre.setItems([doneItemMotionGenre], animated: true)
+        motionGenreTextField.inputView = pickerViewMotionGenre
+        motionGenreTextField.inputAccessoryView = toolBarMotionGenre
+        motionGenreTextField.text = motionGenre
         
        //[保存せず戻る]ボタン追加
        notSaveBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(notSaveBarButtonTapped(_:)))
@@ -145,6 +159,11 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         //"日付"ラベル設定
         dateLabel.frame = CGRect(x:view.frame.size.width/18, y: 370, width: 60, height: 30)
         dateTextField.frame = CGRect(x:view.frame.size.width/5, y: 370, width: view.frame.size.width/3, height: 30)
+        
+    
+        //"ジャンル"設定
+        motionGenreLabel.frame = CGRect(x:view.frame.size.width * 0.55, y: 370, width: 80, height: 30)
+        motionGenreTextField.frame = CGRect(x:view.frame.size.width/2 + 100, y: 370, width: view.frame.size.width/5, height: 30)
        
        //FBテキストビュー設定
        FBTextView.layer.borderColor = UIColor.black.cgColor
@@ -488,6 +507,12 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
       dateTextField.endEditing(true)
   }
   
+    //決定ボタン(モーションジャンル入力終了)
+    @objc func doneMotionGenre(){
+        motionGenreTextField.text  = motionGenre
+        motionGenreTextField.endEditing(true)
+    }
+    
   
   
   /*---Picker view関連---*/
@@ -501,6 +526,10 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
       case pickerViewDate:
           print("pickerViewDate")
           return 3
+      //モーションジャンルpicker
+      case pickerViewMotionGenre:
+          print("pickerViewMotionGenre")
+          return 1
       default:
           print("Error in numberOfComponents ResisterVC")
           return 1
@@ -525,6 +554,9 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
               print("Error pickerViewDate component numberOfRowsInComponent ResisterVC")
               return 0
           }
+      //モーションジャンルpicker
+      case pickerViewMotionGenre:
+        return motionGenreList.count
           
       default:
           print("Error pickerViewSwitch numberOfComponents numberOfRowsInComponent ResisterVC")
@@ -555,6 +587,10 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
           default:
               print("Error pickerViewDate component didSelectRow ResisterVC")
           }
+    //モーションジャンルpicker
+    case pickerViewMotionGenre:
+        motionGenre = motionGenreList[row]
+        print(motionGenreList[row])
           
       default:
           print("Error in numberOfComponents ResisterVC")
@@ -587,6 +623,9 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
               print("Error pickerViewDate component numberOfRowsInComponent ResisterVC")
               return ""
             }
+        //モーションジャンルpicker
+        case pickerViewMotionGenre:
+            return motionGenreList[row]
               
         default:
             print("Error pickerViewSwitch numberOfComponents numberOfRowsInComponent ResisterVC")
