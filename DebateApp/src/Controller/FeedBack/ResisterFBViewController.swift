@@ -8,6 +8,8 @@
 
 import UIKit
 import RealmSwift
+import IQKeyboardManagerSwift
+
 
 protocol updateTableDelegate {
     
@@ -173,10 +175,12 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         
         
         //キーボードが出てきた時に,keyboardWillShowを呼ぶ
-        NotificationCenter.default.addObserver(self, selector: #selector(ResisterFBViewController.keyboardWillShow(_ :)), name: UIResponder.keyboardDidShowNotification, object: nil)
-            
-        //キーボードが閉じる時に,keyboardWillHideを呼ぶ
-        NotificationCenter.default.addObserver(self, selector: #selector(ResisterFBViewController.keyboardWillHide(_ :)), name: UIResponder.keyboardDidHideNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(ResisterFBViewController.keyboardWillShow(_ :)), name: UIResponder.keyboardDidShowNotification, object: nil)
+//
+//        キーボードが閉じる時に,keyboardWillHideを呼ぶ
+//        NotificationCenter.default.addObserver(self, selector: #selector(ResisterFBViewController.keyboardWillHide(_ :)), name: UIResponder.keyboardDidHideNotification, object: nil)
+        
+        
        //yの位置を記憶
         textViewHeight = FBTextView.frame.origin.y
         //textViewが重なる時に上に来るようにする
@@ -450,6 +454,10 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
    func textViewDidBeginEditing(_ textView: UITextView) {
        isTextViewEditing = true
    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        print("フォーカスが外れた後")
+    }
    
    //キーボードに隠れないように, textViewの位置を上げる
    @objc func keyboardWillShow(_ notification: NSNotification){
@@ -466,6 +474,8 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
    
    //キーボードが下がるので, 同時にtextViewの位置も下げる
    @objc func keyboardWillHide(_ notification:NSNotification){
+    print("keyboardWillHide")
+    
        //textViewを編集している時のみ
        if isTextViewEditing == true {
            //キーボードを閉じる時
@@ -473,12 +483,12 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
            FBTextView.frame.origin.y = textViewHeight
 
            guard let rect = (notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
-               
+
            //キーボードを閉じる時間を計測
                let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else { return }
-           
+
            UIView.animate(withDuration: duration) {
-               
+
                //位置を戻すアニメーション
                let transform = CGAffineTransform(translationX: 0, y: 0)
                self.view.transform = transform
@@ -518,7 +528,6 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         print(dates)
         dateTextField.endEditing(true)
     }
-    
     
     
     

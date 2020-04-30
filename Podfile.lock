@@ -2,6 +2,7 @@ PODS:
   - Charts (3.5.0):
     - Charts/Core (= 3.5.0)
   - Charts/Core (3.5.0)
+  - IQKeyboardManagerSwift (6.5.5)
   - Realm (4.4.1):
     - Realm/Headers (= 4.4.1)
   - Realm/Headers (4.4.1)
@@ -12,6 +13,7 @@ PODS:
 
 DEPENDENCIES:
   - Charts
+  - IQKeyboardManagerSwift
   - RealmSwift
   - ScrollableGraphView
   - SideMenu
@@ -19,6 +21,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Charts
+    - IQKeyboardManagerSwift
     - Realm
     - RealmSwift
     - ScrollableGraphView
@@ -26,11 +29,12 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
+  IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   Realm: 4eb04d7487bd43c0581256f40b424eafb711deff
   RealmSwift: 3eb8924ff7100df5928c7602f71d0fec51e7c9c5
   ScrollableGraphView: 4af35d4ea9ecdec665d34a74da51da161ddff8ac
   SideMenu: 4a891be552d30bb6fa87ad404d62e485f8450c34
 
-PODFILE CHECKSUM: 62c0a13d3c8e9cc4fece4e70e973bb171d134d05
+PODFILE CHECKSUM: 21add9bbe45b5d4b94acc456721708ffb378c278
 
 COCOAPODS: 1.8.4

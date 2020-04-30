@@ -194,11 +194,12 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         // DateFormatter を使用して書式とロケールを指定する
         dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHm", options: 0, locale: Locale(identifier: "ja_JP"))
         
-         //キーボードが出てきた時に,keyboardWillShowを呼ぶ
-         NotificationCenter.default.addObserver(self, selector: #selector(ResisterFBViewController.keyboardWillShow(_ :)), name: UIResponder.keyboardDidShowNotification, object: nil)
-             
-         //キーボードが閉じる時に,keyboardWillHideを呼ぶ
-         NotificationCenter.default.addObserver(self, selector: #selector(ResisterFBViewController.keyboardWillHide(_ :)), name: UIResponder.keyboardDidHideNotification, object: nil)
+//         //キーボードが出てきた時に,keyboardWillShowを呼ぶ
+//         NotificationCenter.default.addObserver(self, selector: #selector(ResisterFBViewController.keyboardWillShow(_ :)), name: UIResponder.keyboardDidShowNotification, object: nil)
+//
+//         //キーボードが閉じる時に,keyboardWillHideを呼ぶ
+//         NotificationCenter.default.addObserver(self, selector: #selector(ResisterFBViewController.keyboardWillHide(_ :)), name: UIResponder.keyboardDidHideNotification, object: nil)
+        
         //yの位置を記憶
          textViewHeight = FBTextView.frame.origin.y
          //textViewが重なる時に上に来るようにする
