@@ -25,6 +25,6 @@ class FeedBack:Object{
     //タイムスタンプ
     @objc dynamic var date:String!
     //モーションジャンル
-//    @objc dynamic var motionGenre:String!
+    @objc dynamic var motionGenre:String!
     
 }

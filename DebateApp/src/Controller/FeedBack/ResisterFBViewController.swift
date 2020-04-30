@@ -76,7 +76,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     let monthList = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
     let dayList = ["1日", "2日", "3日", "4日", "5日", "6日", "7日", "8日", "9日", "10日", "11日", "12日", "13日", "14日", "15日", "16日", "17日", "18日", "19日", "20日", "21日", "22日", "23日", "24日", "25日", "26日", "27日", "28日", "29日", "30日", "31日"]
     
-    let motionGenreList = ["Economics", "Art", "Feminism", "Religion", "LGBT", "Politics", "CJS", "Education", "Choice", "Freedom of Expression", "Movement", "その他"]
+    let motionGenreList = ["Animal", "Art", "CJS", "Children", "Choice", "Corporation", "Development", "Economy", "Education", "Environment", "Expression", "Feminism", "Gender", "IR", "LGBTQIA", "Labor Rights", "Medical", "Narrative", "Politics", "Poverty", "Religion", "Social Movement", "Others"]
     
     
     //デフォルトで設定
@@ -111,7 +111,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         motionTextField.delegate = self
         FBTextView.delegate = self
         motionGenreTextField.delegate = self
@@ -146,6 +146,8 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         motionGenreTextField.inputView = pickerViewMotionGenre
         motionGenreTextField.inputAccessoryView = toolBarMotionGenre
         motionGenreTextField.text = motionGenre
+        
+        
         
         
         //[保存せず戻る]ボタン追加
@@ -330,7 +332,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         fb.score = Int(score)!
         fb.style = styleString
         fb.date = dates
-        print(fb.date)
+        fb.motionGenre = motionGenre
 //        fb.date = date
 
         // DBに書き込む
