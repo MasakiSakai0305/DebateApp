@@ -28,6 +28,7 @@
 		3A97926B24584C35002AFDC5 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97926A24584C35002AFDC5 /* SideMenuViewController.swift */; };
 		3A97927224598BF9002AFDC5 /* SideMenuStyleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97927024598BF9002AFDC5 /* SideMenuStyleCell.swift */; };
 		3A97927324598BF9002AFDC5 /* SideMenuStyleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A97927124598BF9002AFDC5 /* SideMenuStyleCell.xib */; };
+		3A979275245BC021002AFDC5 /* MultiTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A979274245BC021002AFDC5 /* MultiTableViewController.swift */; };
 		3A97E0822435D7C000D4CCCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0812435D7C000D4CCCB /* AppDelegate.swift */; };
 		3A97E0842435D7C000D4CCCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */; };
 		3A97E0862435D7C000D4CCCB /* ResisterFBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97E0852435D7C000D4CCCB /* ResisterFBViewController.swift */; };
@@ -73,6 +74,7 @@
 		3A97926A24584C35002AFDC5 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		3A97927024598BF9002AFDC5 /* SideMenuStyleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuStyleCell.swift; sourceTree = "<group>"; };
 		3A97927124598BF9002AFDC5 /* SideMenuStyleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuStyleCell.xib; sourceTree = "<group>"; };
+		3A979274245BC021002AFDC5 /* MultiTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiTableViewController.swift; sourceTree = "<group>"; };
 		3A97E07E2435D7C000D4CCCB /* DebateApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebateApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A97E0812435D7C000D4CCCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */,
 				3A97927024598BF9002AFDC5 /* SideMenuStyleCell.swift */,
 				3A97927124598BF9002AFDC5 /* SideMenuStyleCell.xib */,
+				3A979274245BC021002AFDC5 /* MultiTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				3A2CD2A424370BCB008FC787 /* FeedBack.swift in Sources */,
 				3A9792602455445C002AFDC5 /* AsianScoreCell.swift in Sources */,
 				3A7E52C32447FFDE00174180 /* ResultCalculation.swift in Sources */,
+				3A979275245BC021002AFDC5 /* MultiTableViewController.swift in Sources */,
 				3AB6A13A244EEFFE0065CEBC /* NAPieChartViewCell.swift in Sources */,
 				3A97E0842435D7C000D4CCCB /* SceneDelegate.swift in Sources */,
 			);

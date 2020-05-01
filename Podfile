@@ -12,5 +12,7 @@ pod 'Charts'
 pod 'ScrollableGraphView'
 pod 'SideMenu'
 pod 'IQKeyboardManagerSwift'
+pod 'Material'
+
 
 end

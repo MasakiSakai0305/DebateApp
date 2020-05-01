@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 import SideMenu
-
+import Material
 
 class InitialViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, updateTableDelegate {
     
@@ -41,6 +41,9 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationController?.navigationBar.titleTextAttributes
             = [NSAttributedString.Key.font: UIFont(name: "Times New Roman", size: 15)!]
         
+        //FB追加ボタン設置
+        prepareFABButton()
+        
         print("--viewDidLoad initialVC--")
         
         
@@ -59,6 +62,8 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.dataSource = self
         tableView.register(UINib(nibName: "FeedBackCell", bundle: nil), forCellReuseIdentifier: "cell")
         
+        // 複数選択を有効にする
+        tableView.allowsMultipleSelectionDuringEditing = true
         
         // DateFormatter を使用して書式とロケールを指定する
         dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHm", options: 0, locale: Locale(identifier: "ja_JP"))
@@ -81,6 +86,36 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         NotificationCenter.default.addObserver(self,selector: #selector(catchSelectMenuNotification(notification:)),
             name: Notification.Name("SelectMenuNotification"), object: nil)
         
+    }
+    
+//    override func setEditing(_ editing: Bool, animated: Bool) {
+//        super.setEditing(editing, animated: animated)
+//        tableView.isEditing = editing
+//    }
+
+    func prepareFABButton() {
+        let button = FABButton(image: Icon.cm.add, tintColor: .white)
+        button.pulseColor = .white
+        button.backgroundColor = Color.green.base
+        
+        //view.layout(button).width(ButtonLayout.Fab.diameter).height(ButtonLayout.Fab.diameter)
+        
+        button.frame = CGRect(x: view.frame.size.width * 0.7, y: view.frame.size.height * 0.8, width: view.frame.size.width / 4.5, height: view.frame.size.width / 4.5)
+        button.addTarget(self, action: #selector(addBarButtonTapped2), for: .touchUpInside)
+        view.addSubview(button)
+    }
+    
+    
+    //追加ボタン
+    @objc func addBarButtonTapped2(_ sender: FABButton) {
+        print("【+】ボタンが押された!")
+          
+        let ResisterFBVC = storyboard?.instantiateViewController(withIdentifier: "Resister")  as! ResisterFBViewController
+        ResisterFBVC.delegate = self
+
+                          
+        //画面遷移
+        navigationController?.pushViewController(ResisterFBVC, animated: true)
     }
     
     func sortDate() -> Results<FeedBack>{
