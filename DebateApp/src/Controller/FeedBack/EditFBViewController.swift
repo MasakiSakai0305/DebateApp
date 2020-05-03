@@ -406,9 +406,10 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
       
     
         //元のデータを反映してチェックする
-        if isCheck == true{
+        if isCheck {
             button.setImage(checkedImage, for: .normal)
-            CheckedStyleButtonTag = button.tag
+            CheckedWLButtonTag = button.tag
+            print("CheckedWLButtonTag", CheckedWLButtonTag)
         }
       
       WLButtonArray.append(button)
@@ -458,6 +459,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
       ChangeToUncheckedWL(num: CheckedWLButtonTag)
       let button = sender
       button.setImage(checkedImage, for: .normal)
+    
       CheckedWLButtonTag = button.tag  //check_on.pngになっているボタンのtagを更新
       WLString = WLList[CheckedWLButtonTag]
       print("checkd: ", WLString)
