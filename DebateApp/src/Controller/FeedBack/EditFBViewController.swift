@@ -120,12 +120,13 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         
         var objects = sortDate()
         if isFilter {
-            objects = filterData(filter: "")
+            objects = filterData(filter: "\(filterString)")
         }
         
         if isSearch {
             objects = searchDataBySearchBar(keyword: keywordString)
         }
+        
         
         print("cellNumber", cellNumber)
         //DBを読み込んで値をUIに書き込む
@@ -318,12 +319,15 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         var object = sortedData[cellNumber]
         
         if isFilter {
-            object = filterData(filter: "\(keywordString)")[cellNumber]
+            object = filterData(filter: "\(filterString)")[cellNumber]
+            print("filterData", filterData)
         }
         
         if isSearch {
             object = searchDataBySearchBar(keyword: keywordString)[cellNumber]
         }
+        
+        print("updateData", object)
         
         //データ更新
         try! realm.write({
@@ -374,8 +378,12 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     //検索バーで入力した文字を含むFBのみを抽出
     func searchDataBySearchBar(keyword: String) -> Results<FeedBack>{
         let realm = try! Realm()
-        let objects = realm.objects(FeedBack.self)
+        var objects = realm.objects(FeedBack.self)
         
+        if isFilter {
+            objects = filterData(filter: filterString)
+        }
+
         //デフォルトですべて表示
         if keyword == ""{
             return objects.sorted(byKeyPath: "date", ascending: false)
