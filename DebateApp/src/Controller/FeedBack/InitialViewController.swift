@@ -152,6 +152,8 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         //フィルター状態解除 (フィルター状態の時に画面遷移するとエラーになるため, それを防ぐ)
         isFilter = false
         self.navigationItem.title = ""
+        //検索解除
+        searchController.isActive = false
         
         let ResisterFBVC = storyboard?.instantiateViewController(withIdentifier: "Resister")  as! ResisterFBViewController
         ResisterFBVC.delegate = self
@@ -379,8 +381,10 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         EditFBVC.isSearch = searchController.isActive
         EditFBVC.keywordString = keywordString
         
-        //画面遷移の際に検索をやめる
+        //画面遷移の際に検索, フィルターをやめる
         searchController.isActive = false
+        isFilter = false
+        self.navigationItem.title = ""
         
         //画面遷移
         navigationController?.pushViewController(EditFBVC, animated: true)
