@@ -108,7 +108,11 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
     //追加ボタン
     @objc func addBarButtonTapped2(_ sender: FABButton) {
         print("【+】ボタンが押された!")
-          
+        
+        //フィルター状態解除 (フィルター状態の時に画面遷移するとエラーになるため, それを防ぐ)
+        isFilter = false
+        self.navigationItem.title = ""
+        
         let ResisterFBVC = storyboard?.instantiateViewController(withIdentifier: "Resister")  as! ResisterFBViewController
         ResisterFBVC.delegate = self
 
@@ -280,9 +284,9 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         //編集モードじゃない時は画面遷移
         } else {
         print("didSelectRowAt")
+
         //タップした時にメモの中身を渡す
         let EditFBVC = storyboard?.instantiateViewController(withIdentifier: "Edit")  as! EditFBViewController
-
         EditFBVC.delegate = self
 
         //中身とセルの順番を渡す
