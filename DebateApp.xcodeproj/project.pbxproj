@@ -202,8 +202,6 @@
 				3A7E52BC2446DBCB00174180 /* Figure */,
 				3A97E0812435D7C000D4CCCB /* AppDelegate.swift */,
 				3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */,
-				3A97927024598BF9002AFDC5 /* SideMenuStyleCell.swift */,
-				3A97927124598BF9002AFDC5 /* SideMenuStyleCell.xib */,
 				3A979274245BC021002AFDC5 /* MultiTableViewController.swift */,
 			);
 			path = Controller;
@@ -218,6 +216,8 @@
 				3A97E08C2435D7C200D4CCCB /* LaunchScreen.storyboard */,
 				3A742713243B51CB005D6F78 /* FeedBackCell.swift */,
 				3A742714243B51CB005D6F78 /* FeedBackCell.xib */,
+				3A97927024598BF9002AFDC5 /* SideMenuStyleCell.swift */,
+				3A97927124598BF9002AFDC5 /* SideMenuStyleCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";

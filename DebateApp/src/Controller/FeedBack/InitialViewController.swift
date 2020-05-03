@@ -22,6 +22,7 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
     //DBに登録してるデータ数
     var objectCount = 0
     let realm2 = try! Realm()
+    
     //オブジェクトを格納する配列
     var objectArray = [FeedBack]()
     
@@ -141,6 +142,7 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
             let filtered = objects.filter("style == '\(filter)'").sorted(byKeyPath: "date", ascending: false)
             return filtered
         }
+            
         //すべてのデータをreturnする
         else if filter == "フィルター解除"{
             isFilter = false
@@ -264,7 +266,7 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         print(indexPath.row, "object.MotionTitle: ", object.MotionTitle!)
         cell.MotionLabel.text = object.MotionTitle
-        cell.TimeStampLabel.text = "Created at: " + object.date
+        cell.TimeStampLabel.text = "\(object.motionGenre!),　　\(object.style!),　　\(object.date!)"
         cell.TimeStampLabel.adjustsFontSizeToFitWidth = true
         
         return cell
