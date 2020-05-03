@@ -11,13 +11,22 @@ import RealmSwift
 import SideMenu
 import Material
 
-class InitialViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, updateTableDelegate {
+
+class InitialViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, updateTableDelegate, UISearchResultsUpdating {
+
+    
     
     //ナビゲーションアイテムのプラスボタン宣言
     var addBarButtonItem: UIBarButtonItem!
     var BarButtonItem: UIBarButtonItem!
     
     @IBOutlet weak var tableView: UITableView!
+    
+    var searchController = UISearchController()
+    
+    var motionTitleArray = [String()]
+    var searchResults:[String] = []
+    var keywordString = String()
     
     //DBに登録してるデータ数
     var objectCount = 0
@@ -37,6 +46,14 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.sizeToFit()
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+
+        tableView.tableHeaderView = searchController.searchBar
         
         self.navigationItem.title = ""
         self.navigationController?.navigationBar.titleTextAttributes
@@ -58,6 +75,13 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         for object in sortedData{
             objectArray.append(object)
         }
+        
+        for object in sortedData{
+            motionTitleArray.append(object.MotionTitle)
+        }
+        motionTitleArray.remove(at: 0)
+        print(motionTitleArray)
+        
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -90,6 +114,21 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         // サイドバーメニューからの通知を受け取る
         NotificationCenter.default.addObserver(self,selector: #selector(catchSelectMenuNotification(notification:)),
             name: Notification.Name("SelectMenuNotification"), object: nil)
+        
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        //これがないと複数編集ができなくなる
+        if searchController.isActive == false{
+            return
+        }
+        
+        self.searchResults = motionTitleArray.filter{
+                // 大文字と小文字を区別せずに検索
+                $0.lowercased().contains(searchController.searchBar.text!.lowercased())
+        }
+        keywordString = searchController.searchBar.text!.lowercased()
+        self.tableView.reloadData()
         
     }
     
@@ -143,7 +182,7 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
             return filtered
         }
             
-        //すべてのデータをreturnする
+        //すべてのデータを返す(フィルターじゃない時)
         else if filter == "フィルター解除"{
             isFilter = false
             return sortDate()
@@ -151,6 +190,21 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         print("Error filterData in InitialVC")
         return objects
         
+    }
+    
+    //検索バーで入力した文字を含むFBのみを抽出
+    func searchDataBySearchBar(keyword: String)  -> Results<FeedBack>{
+        let realm = try! Realm()
+        let objects = realm.objects(FeedBack.self)
+        
+        //デフォルトですべて表示
+        if keyword == ""{
+            return objects.sorted(byKeyPath: "date", ascending: false)
+        }
+        
+        print(keyword)
+        let searched = objects.filter("MotionTitle CONTAINS[c] '\(keyword)'").sorted(byKeyPath: "date", ascending: false)
+        return searched
     }
     
     
@@ -210,6 +264,7 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.reloadData()
     }
     
+    
     func makeSettings() -> SideMenuSettings{
         let presentationStyle: SideMenuPresentationStyle = .menuSlideIn
         presentationStyle.onTopShadowOpacity = 1.0
@@ -229,11 +284,14 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         if editing {
             // 編集開始
             print("編集開始")
+            print("searchController.isActive", searchController.isActive)
+            print(tableView.allowsMultipleSelectionDuringEditing)
             self.editButtonItem.title = "完了"
         } else {
             // 編集終了
             print("編集終了")
             self.editButtonItem.title = "編集"
+            print(tableView.allowsMultipleSelectionDuringEditing)
             deleteData(number: 0) //複数選択する際にはnumber引数は使わない
             tableView.reloadData()
         }
@@ -251,10 +309,28 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         //print(objectArray[indexPath.row].MotionTitle!)
         //cell.MotionLabel.text = objectArray[indexPath.row].MotionTitle
         
+        if searchController.isActive {
+            let searchedData = searchDataBySearchBar(keyword: keywordString)
+            print("searchedData", searchedData)
+            let object = searchedData[indexPath.row]
+            
+            print(indexPath.row, "object.MotionTitle: ", object.MotionTitle!)
+            cell.MotionLabel.text = object.MotionTitle
+            cell.TimeStampLabel.text = "\(object.motionGenre!),　　\(object.style!),　　\(object.date!)"
+            cell.TimeStampLabel.adjustsFontSizeToFitWidth = true
+            
+            return cell
+        }
+        
         //let realm = try! Realm()
         //let objects = realm.objects(FeedBack.self)
         let sortedData = sortDate()
         var object = sortedData[indexPath.row]
+        
+//        motionTitleArray.removeAll()
+//        for data in sortedData {
+//            motionTitleArray.append(data.MotionTitle)
+//        }
         
         if isFilter == true{
             let filterdData = filterData(filter: stringFilter)
@@ -275,11 +351,14 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
     //セルがタップされたとき, EditFBViewControllerに遷移
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        //画面遷移の際に検索をやめる
+        //searchController.isActive = false
+        
         //編集モードの時はセルを編集する処理
         if tableView.isEditing {
             if let _ = self.tableView.indexPathsForSelectedRows {
                 // 選択肢にチェックが一つでも入ってたら「削除」を表示する。
-                print("didSelectRowAt")
+                print("didSelectRowAt 削除")
                 self.editButtonItem.title = "削除"
             }
         
@@ -295,6 +374,13 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         print("\(String(indexPath.row)) is selected")
 
         EditFBVC.cellNumber = indexPath.row
+        EditFBVC.isFilter = isFilter
+        EditFBVC.filterString = stringFilter
+        EditFBVC.isSearch = searchController.isActive
+        EditFBVC.keywordString = keywordString
+        
+        //画面遷移の際に検索をやめる
+        searchController.isActive = false
         
         //画面遷移
         navigationController?.pushViewController(EditFBVC, animated: true)
@@ -332,8 +418,14 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //セルの数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("numberOfRowsSections: ", objectCount)
-        return objectCount
+        if searchController.isActive {
+            let searchedData = searchDataBySearchBar(keyword: keywordString)
+            print("numberOfRowsInSection", searchedData.count)
+            return searchedData.count
+        } else {
+           print("numberOfRowsSections: ", objectCount)
+           return objectCount
+        }
     }
 
 

@@ -95,6 +95,12 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     //何番めのデータを参照・更新するか
     var cellNumber:Int!
     
+    //フィルター or 検索をしている場合
+    var isFilter = Bool()
+    var isSearch = Bool()
+    var filterString = String()
+    var keywordString = String()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,8 +117,18 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         navigationController?.delegate = self
         
         
+        
+        var objects = sortDate()
+        if isFilter {
+            objects = filterData(filter: "")
+        }
+        
+        if isSearch {
+            objects = searchDataBySearchBar(keyword: keywordString)
+        }
+        
+        print("cellNumber", cellNumber)
         //DBを読み込んで値をUIに書き込む
-        let objects = sortDate()
         let object = objects[cellNumber]
         motionLabel.text = object.MotionTitle
         scoreTextField.text = String(object.score)
@@ -299,7 +315,15 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         
         let realm = try! Realm()
         let sortedData = sortDate()
-        let object = sortedData[cellNumber]
+        var object = sortedData[cellNumber]
+        
+        if isFilter {
+            object = filterData(filter: "\(keywordString)")[cellNumber]
+        }
+        
+        if isSearch {
+            object = searchDataBySearchBar(keyword: keywordString)[cellNumber]
+        }
         
         //データ更新
         try! realm.write({
@@ -324,6 +348,43 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         return sorted
     }
     
+    func filterData(filter:String) -> Results<FeedBack>{
+        let realm = try! Realm()
+        let objects = realm.objects(FeedBack.self)
+    
+        if filter == "勝ち" || filter == "負け"{
+            let filtered = objects.filter("result == '\(filter)'").sorted(byKeyPath: "date", ascending: false)
+            return filtered
+        }
+        else if filter == "NA" || filter == "BP" || filter == "Asian"{
+            let filtered = objects.filter("style == '\(filter)'").sorted(byKeyPath: "date", ascending: false)
+            return filtered
+        }
+            
+        //すべてのデータを返す(フィルターじゃない時)
+        else if filter == "フィルター解除"{
+//            isFilter = false
+            return sortDate()
+        }
+        print("Error filterData in InitialVC")
+        return objects
+        
+    }
+    
+    //検索バーで入力した文字を含むFBのみを抽出
+    func searchDataBySearchBar(keyword: String) -> Results<FeedBack>{
+        let realm = try! Realm()
+        let objects = realm.objects(FeedBack.self)
+        
+        //デフォルトですべて表示
+        if keyword == ""{
+            return objects.sorted(byKeyPath: "date", ascending: false)
+        }
+        
+        print(keyword)
+        let searched = objects.filter("MotionTitle CONTAINS[c] '\(keyword)'").sorted(byKeyPath: "date", ascending: false)
+        return searched
+    }
     
     //ラジオボタン(勝敗)を配置する
     func set_WLRadioButton(num:Int, isCheck:Bool){
