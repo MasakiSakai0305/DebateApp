@@ -47,7 +47,7 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         print("--viewDidLoad initialVC--")
         
         
-        let realm = try! Realm()
+        //let realm = try! Realm()
 //        let objects = realm.objects(FeedBack.self)
         let sortedData = sortDate()
         objectCount = sortedData.count
@@ -71,7 +71,11 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         //[+]ボタン追加
         addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBarButtonTapped(_:)))
-        self.navigationItem.rightBarButtonItems = [addBarButtonItem]
+        //self.navigationItem.rightBarButtonItems = [addBarButtonItem]
+        self.editButtonItem.title = "編集"
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        //filterボタン
         BarButtonItem = UIBarButtonItem(title: "filter", style: .plain, target: self, action: #selector(BarButtonTapped(_:)))
         self.navigationItem.leftBarButtonItems = [BarButtonItem]
         //self.navigationController?.navigationBar
@@ -88,11 +92,6 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
-//    override func setEditing(_ editing: Bool, animated: Bool) {
-//        super.setEditing(editing, animated: animated)
-//        tableView.isEditing = editing
-//    }
-
     func prepareFABButton() {
         let button = FABButton(image: Icon.cm.add, tintColor: .white)
         button.pulseColor = .white
@@ -161,6 +160,7 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         navigationController?.pushViewController(ResisterFBVC, animated: true)
     }
     
+    //filterボタンが押された時
     @objc func BarButtonTapped(_ sender: UIBarButtonItem) {
         // Define the menu
         let menu = SideMenuNavigationController(rootViewController: SideMenuViewController())
@@ -216,6 +216,27 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         return settings
     }
     
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        print("setEditing")
+        if editing {
+            // 編集開始
+            print("編集開始")
+            self.editButtonItem.title = "完了"
+        } else {
+            // 編集終了
+            print("編集終了")
+            self.editButtonItem.title = "編集"
+            deleteData(number: 0) //複数選択する際にはnumber引数は使わない
+            tableView.reloadData()
+        }
+        
+        // 編集モード時のみ複数選択可能とする
+        tableView.isEditing = editing
+    }
+
+    
     
     //セルの構成
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -247,6 +268,17 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //セルがタップされたとき, EditFBViewControllerに遷移
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //編集モードの時はセルを編集する処理
+        if tableView.isEditing {
+            if let _ = self.tableView.indexPathsForSelectedRows {
+                // 選択肢にチェックが一つでも入ってたら「削除」を表示する。
+                print("didSelectRowAt")
+                self.editButtonItem.title = "削除"
+            }
+        
+        //編集モードじゃない時は画面遷移
+        } else {
         print("didSelectRowAt")
         //タップした時にメモの中身を渡す
         let EditFBVC = storyboard?.instantiateViewController(withIdentifier: "Edit")  as! EditFBViewController
@@ -260,6 +292,26 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         //画面遷移
         navigationController?.pushViewController(EditFBVC, animated: true)
+        }
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        // 編集モードじゃない場合はreturn
+        guard tableView.isEditing else {
+            print("return didDeselectRowAt")
+            return }
+        
+        if let _ = self.tableView.indexPathsForSelectedRows {
+            self.editButtonItem.title = "削除"
+            print("didDeselectRowAt self.tableView.indexPathsForSelectedRows")
+        }
+        //最後の１つのチェックが解除された時
+        else {
+            // 何もチェックされていないときは完了を表示
+            print("didDeselectRowAt else")
+            self.editButtonItem.title = "完了"
+        }
     }
     
     //セクションの数を決める
@@ -289,32 +341,75 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         //tableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
-    //データを削除(１つ)
+    //データを削除(１つ or 複数)
     func deleteData(number:Int){
+        //FBが１つもない時は終了
+        if objectCount == 0 {
+            print("objectCount", objectCount)
+            return
+        }
+        
         print("--deleteData--")
         let realm = try! Realm()
-//        let objects = realm.objects(FeedBack.self)
-        //let sortedData = sortDate()
         
-        if isFilter == true{
-            let filteredData = filterData(filter: stringFilter)
-            try! realm.write {
-                realm.delete(filteredData[number])
+        //複数選択の時
+        if let selectedIndexPaths = self.tableView.indexPathsForSelectedRows{
+            let sortedIndexPaths =  selectedIndexPaths.sorted { $0.row > $1.row }
+            print("複数")            
+            //フィルター状態の時
+            if isFilter == true{
+                let filteredData = filterData(filter: stringFilter)
+                
+                try! realm.write {
+                    for indexPathList in sortedIndexPaths{
+                        realm.delete(filteredData[indexPathList.row])
+                        print(indexPathList.row)
+                    }
+                }
+                objectCount = filteredData.count
+                print(sortedIndexPaths, "削除(ソート)")
+                
+            //フィルターじゃない時
+            } else {
+                let sortedData = sortDate()
+                try! realm.write {
+                    for indexPathList in sortedIndexPaths{
+                        realm.delete(sortedData[indexPathList.row])
+                        print(indexPathList.row)
+                    }
+                }
+                objectCount = sortedData.count
+                print(sortedIndexPaths, "削除")
             }
-            objectCount = filteredData.count
+            
+            
+        //単数削除の時(スライドで削除)
         } else {
-            let sortedData = sortDate()
-            try! realm.write {
-                realm.delete(sortedData[number])
+            print("単数")
+            //let realm = try! Realm()
+    //        let objects = realm.objects(FeedBack.self)
+            //let sortedData = sortDate()
+            
+            //フィルター状態の時
+            if isFilter == true{
+                let filteredData = filterData(filter: stringFilter)
+                try! realm.write {
+                    realm.delete(filteredData[number])
+                }
+                objectCount = filteredData.count
+            
+            //フィルターじゃない時
+            } else {
+                let sortedData = sortDate()
+                try! realm.write {
+                    realm.delete(sortedData[number])
+                }
+                objectCount = sortedData.count
             }
-            objectCount = sortedData.count
-        }
 
-        
-    
-        print("\(number)削除")
-        print(objectCount)
-        
+            print("\(number)削除")
+            print("objectCount", objectCount)
+        }
         
     }
     

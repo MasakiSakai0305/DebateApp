@@ -38,6 +38,8 @@ class MultiTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
  var deleteArray: [String] = ["にんじん", "たまねぎ", "じゃがいも", "ルー", "肉", "米", "はちみつ", "りんご", "スプーン", "皿"]
     
+ var numbers = [Int()]
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -186,6 +188,11 @@ class MultiTableViewController: UIViewController, UITableViewDelegate, UITableVi
             return
         }
         
+        print("selectedIndexPaths")
+        print(selectedIndexPaths)
+        for indexPathList in selectedIndexPaths{
+            print(indexPathList.row)
+        }
         // 配列の要素削除で、indexの矛盾を防ぐため、降順にソートする
         let sortedIndexPaths =  selectedIndexPaths.sorted { $0.row > $1.row }
         for indexPathList in sortedIndexPaths {
