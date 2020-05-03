@@ -197,7 +197,11 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
     //検索バーで入力した文字を含むFBのみを抽出
     func searchDataBySearchBar(keyword: String)  -> Results<FeedBack>{
         let realm = try! Realm()
-        let objects = realm.objects(FeedBack.self)
+        var objects = realm.objects(FeedBack.self)
+        
+        if isFilter {
+            objects = filterData(filter: stringFilter)
+        }
         
         //デフォルトですべて表示
         if keyword == ""{
