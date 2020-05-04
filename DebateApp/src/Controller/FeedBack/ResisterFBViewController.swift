@@ -38,6 +38,10 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     @IBOutlet weak var FBTextView: UITextView!
     //モーションジャンルを入力するTextField
     @IBOutlet weak var motionGenreTextField: UITextField!
+    //サイドを入力するTextField
+    @IBOutlet weak var sideTextField: UITextField!
+    //ロールを入力するTextField
+    @IBOutlet weak var roleTextField: UITextField!
     
     //ラベル各種
     @IBOutlet weak var styleLabel: UILabel!
@@ -45,6 +49,8 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var motionGenreLabel: UILabel!
+    @IBOutlet weak var sideLabel: UILabel!
+    @IBOutlet weak var roleLabel: UILabel!
     
     //スコア入力用のPickerView
     var pickerViewScore: UIPickerView = UIPickerView()
@@ -69,14 +75,8 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     let checkedImage = UIImage(named: "checkOn")! as UIImage
     let uncheckedImage = UIImage(named: "checkOff")! as UIImage
     
-    let WLList = ["勝ち", "負け"]
-    let styleList = ["NA", "BP", "Asian"]
-    var scoreList = ["65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82","83", "84", "85"]
-    let yearList = ["2020年", "2021年", "2022年", "2023年", "2024年", "2025年", "2026年", "2027年", "2028年", "2029年"]
-    let monthList = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
-    let dayList = ["1日", "2日", "3日", "4日", "5日", "6日", "7日", "8日", "9日", "10日", "11日", "12日", "13日", "14日", "15日", "16日", "17日", "18日", "19日", "20日", "21日", "22日", "23日", "24日", "25日", "26日", "27日", "28日", "29日", "30日", "31日"]
-    
-    let motionGenreList = ["Animal", "Art", "CJS", "Children", "Choice", "Corporation", "Development", "Economy", "Education", "Environment", "Expression", "Feminism", "Gender", "IR", "LGBTQIA", "Labor Rights", "Medical", "Narrative", "Politics", "Poverty", "Religion", "Social Movement", "Others"]
+
+    let feedbackItem = FeedBackItemList()
     
     
     //デフォルトで設定
@@ -182,17 +182,25 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         motionGenreLabel.frame = CGRect(x:view.frame.size.width * 0.55, y: view.frame.size.height/1.8, width: view.frame.size.width/5, height: view.frame.size.height/21)
         motionGenreTextField.frame = CGRect(x:view.frame.size.width * 0.77, y: view.frame.size.height/1.8, width: view.frame.size.width/6, height: view.frame.size.height/21)
         
+        //"ロール"UI位置設定
+        roleLabel.frame = CGRect(x: view.frame.size.width * 0.55, y: view.frame.size.height * 0.63, width: view.frame.size.width/5, height: view.frame.size.height/21)
+        roleTextField.frame = CGRect(x: view.frame.size.width * 0.72, y: view.frame.size.height * 0.63, width: view.frame.size.width/5, height: view.frame.size.height/21)
+        
+        //"サイド"UI位置設定
+        sideLabel.frame = CGRect(x: view.frame.size.width/25, y: view.frame.size.height * 0.63, width: view.frame.size.width/5, height: view.frame.size.height/21)
+        sideTextField.frame = CGRect(x: view.frame.size.width * 0.23, y: view.frame.size.height * 0.63, width: view.frame.size.width/5, height: view.frame.size.height/21)
+        
         doneButton.tag = 100
         motionLabel.numberOfLines = 3
         
         //ラジオボタン設置(勝敗)
-        for i in 0..<WLList.count {
+        for i in 0..<feedbackItem.WLList.count {
             set_WLRadioButton(num: i)
         }
      
         
         //ラジオボタン設置(スタイル)
-        for i in 0..<styleList.count {
+        for i in 0..<feedbackItem.styleList.count {
             set_styleRadioButton(num: i)
         }
         
@@ -389,7 +397,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         
         
         let label = UILabel()
-        label.text = WLList[num]
+        label.text = feedbackItem.WLList[num]
         label.frame = CGRect(x: center - 130,y: y,width: 70,height: 30)
        
         
@@ -401,11 +409,12 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     func set_styleRadioButton(num:Int){
         let button = UIButton()
         let center = Int(UIScreen.main.bounds.size.width / 2)  //中央の位置
-        let y = 240+45*num  //ボタン同士が重ならないようyを調整
+        let y = Int(view.frame.size.height/2.8) + Int(view.frame.size.width/9) * num  //ボタン同士が重ならないようyを調整
         button.setImage(uncheckedImage, for: .normal)
         button.addTarget(self, action: #selector(styleButttonClicked(_:)), for: .touchUpInside)
-        button.frame = CGRect(x: center + 20,y: y,
-                              width: 30,height: 30)
+        button.frame = CGRect(x: view.frame.size.width * 0.55,y: CGFloat(y), width: view.frame.size.width/12 ,height: view.frame.size.width/12)
+        
+//        CGRect(x: , y: , width: view.frame.size.width/5, height: view.frame.size.height/21)
         button.tag = num + 10
         
         
@@ -418,8 +427,9 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         styleButtonArray.append(button)
         
         let label = UILabel()
-        label.text = styleList[num]
-        label.frame = CGRect(x: center + 60,y: y, width: 70,height: 30)
+        label.text = feedbackItem.styleList[num]
+        label.frame = CGRect(x: view.frame.size.width * 0.65,y: CGFloat(y) + 5, width: view.frame.size.width/6, height: view.frame.size.width/21)
+        
         self.view.addSubview(button)
         self.view.addSubview(label)
     }
@@ -432,7 +442,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         let button = sender
         button.setImage(checkedImage, for: .normal)
         CheckedWLButtonTag = button.tag  //check_on.pngになっているボタンのtagを更新
-        WLString = WLList[CheckedWLButtonTag]
+        WLString = feedbackItem.WLList[CheckedWLButtonTag]
         print("checkd: ", WLString)
   
     }
@@ -444,7 +454,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         let button = sender
         button.setImage(checkedImage, for: .normal)
         CheckedStyleButtonTag = button.tag  //check_on.pngになっているボタンのtagを更新
-        styleString = styleList[CheckedStyleButtonTag - 10]
+        styleString = feedbackItem.styleList[CheckedStyleButtonTag - 10]
         print("checkd: ", styleString)
 
     }
@@ -594,23 +604,23 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         switch pickerView {
         //スコアpicker
         case pickerViewScore:
-            return scoreList.count
+            return feedbackItem.scoreList.count
         //日付picker
         case pickerViewDate:
             switch component {
             case 0:
-                return yearList.count
+                return feedbackItem.yearList.count
             case 1:
-                return monthList.count
+                return feedbackItem.monthList.count
             case 2:
-                return dayList.count
+                return feedbackItem.dayList.count
             default:
                 print("Error pickerViewDate component numberOfRowsInComponent ResisterVC")
                 return 0
             }
         //モーションジャンルpicker
         case pickerViewMotionGenre:
-            return motionGenreList.count
+            return feedbackItem.motionGenreList.count
         default:
             print("Error pickerViewSwitch numberOfComponents numberOfRowsInComponent ResisterVC")
             return 1
@@ -624,27 +634,27 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         
         //スコアpicker
         case pickerViewScore:
-            score = scoreList[row]
-            print(scoreList[row])
+            score = feedbackItem.scoreList[row]
+            print(feedbackItem.scoreList[row])
         //日付picker
         case pickerViewDate:
             switch component {
             case 0:
-                year = yearList[row]
-                print(yearList[row])
+                year = feedbackItem.yearList[row]
+                print(feedbackItem.yearList[row])
             case 1:
-                month = monthList[row]
-                print(monthList[row])
+                month = feedbackItem.monthList[row]
+                print(feedbackItem.monthList[row])
             case 2:
-                day = dayList[row]
-                print(dayList[row])
+                day = feedbackItem.dayList[row]
+                print(feedbackItem.dayList[row])
             default:
                 print("Error pickerViewDate component didSelectRow ResisterVC")
             }
         //モーションジャンルpicker
         case pickerViewMotionGenre:
-            motionGenre = motionGenreList[row]
-            print(motionGenreList[row])
+            motionGenre = feedbackItem.motionGenreList[row]
+            print(feedbackItem.motionGenreList[row])
             
         default:
             print("Error in numberOfComponents ResisterVC")
@@ -658,27 +668,27 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         switch pickerView {
         //スコアpicker
         case pickerViewScore:
-            score = scoreList[row]
-            return scoreList[row]
+            score = feedbackItem.scoreList[row]
+            return feedbackItem.scoreList[row]
         //日付picker
         case pickerViewDate:
             switch component {
             case 0:
-                year = yearList[row]
-                return yearList[row]
+                year = feedbackItem.yearList[row]
+                return feedbackItem.yearList[row]
             case 1:
-                month = monthList[row]
-                return monthList[row]
+                month = feedbackItem.monthList[row]
+                return feedbackItem.monthList[row]
             case 2:
-                day = dayList[row]
-                return dayList[row]
+                day = feedbackItem.dayList[row]
+                return feedbackItem.dayList[row]
             default:
                 print("Error pickerViewDate component numberOfRowsInComponent ResisterVC")
                 return ""
             }
         //モーションジャンルpicker
         case pickerViewMotionGenre:
-            return motionGenreList[row]
+            return feedbackItem.motionGenreList[row]
             
         default:
             print("Error pickerViewSwitch numberOfComponents numberOfRowsInComponent ResisterVC")
