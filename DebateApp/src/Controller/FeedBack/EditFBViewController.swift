@@ -132,6 +132,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         //DBを読み込んで値をUIに書き込む
         let object = objects[cellNumber]
         motionLabel.text = object.MotionTitle
+        motionTextField.text = object.MotionTitle
         scoreTextField.text = String(object.score)
         FBTextView.text = object.FeedBackString
         WLString = object.result
