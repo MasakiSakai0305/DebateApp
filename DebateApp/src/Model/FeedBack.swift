@@ -26,6 +26,10 @@ class FeedBack:Object{
     @objc dynamic var date:String!
     //モーションジャンル
     @objc dynamic var motionGenre:String!
+    //サイド
+    @objc dynamic var side:String!
+    //ロール
+    @objc dynamic var role:String!
     
 }
 

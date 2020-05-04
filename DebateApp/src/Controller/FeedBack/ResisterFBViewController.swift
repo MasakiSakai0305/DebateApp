@@ -58,6 +58,10 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     var pickerViewDate: UIPickerView = UIPickerView()
     //モーションジャンル入力用のPickerView
     var pickerViewMotionGenre: UIPickerView = UIPickerView()
+    //サイド入力用のPickerView
+    var pickerViewSide: UIPickerView = UIPickerView()
+    //ロール入力用のPickerView
+    var pickerViewRole: UIPickerView = UIPickerView()
     
     //ナビゲーションアイテムのボタン宣言
     var notSaveBarButtonItem: UIBarButtonItem!
@@ -89,6 +93,8 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     var day = ""
     var dates = "2020年/1月/1日"
     var motionGenre = "Animal"
+    var side = "Gov"
+    var role = "PM"
     
     //日時を取得する際に使用
     let date = Date()
@@ -121,6 +127,11 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         pickerViewDate.dataSource = self
         pickerViewMotionGenre.delegate = self
         pickerViewMotionGenre.dataSource = self
+        pickerViewSide.delegate = self
+        pickerViewSide.dataSource = self
+        pickerViewRole.delegate = self
+        pickerViewRole.dataSource = self
+        
         navigationController?.delegate = self
         
         //スコア入力機能設定
@@ -147,8 +158,21 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         motionGenreTextField.inputAccessoryView = toolBarMotionGenre
         motionGenreTextField.text = motionGenre
         
+        //サイド入力機能
+        let toolBarSide = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
+        let doneItemSide = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneSide))
+        toolBarSide.setItems([doneItemSide], animated: true)
+        sideTextField.inputView = pickerViewSide
+        sideTextField.inputAccessoryView = toolBarSide
+        sideTextField.text = side
         
-        
+        //ロール入力機能
+        let toolBarRole = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
+        let doneItemRole = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneRole))
+        toolBarRole.setItems([doneItemRole], animated: true)
+        roleTextField.inputView = pickerViewRole
+        roleTextField.inputAccessoryView = toolBarRole
+        roleTextField.text = role
         
         //[保存せず戻る]ボタン追加
         notSaveBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(notSaveBarButtonTapped(_:)))
@@ -345,7 +369,8 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         fb.style = styleString
         fb.date = dates
         fb.motionGenre = motionGenre
-//        fb.date = date
+        fb.role = roleTextField.text!
+        fb.side = sideTextField.text!
 
         // DBに書き込む
         try! realm.write {
@@ -575,6 +600,17 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         motionGenreTextField.endEditing(true)
     }
     
+    //決定ボタン(サイド入力終了)
+    @objc func doneSide(){
+        sideTextField.text  = side
+        sideTextField.endEditing(true)
+    }
+    
+    //決定ボタン(ロール入力終了)
+    @objc func doneRole(){
+        roleTextField.text  = role
+        roleTextField.endEditing(true)
+    }
     
     
     /*---Picker view関連---*/
@@ -592,6 +628,14 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         //モーションジャンルpicker
         case pickerViewMotionGenre:
             print("pickerViewMotionGenre")
+            return 1
+        //サイドpicker
+        case pickerViewSide:
+            print("pickerViewSide")
+            return 1
+        //ロールpicker
+        case pickerViewRole:
+            print("pickerViewRole")
             return 1
         default:
             print("Error in numberOfComponents ResisterVC")
@@ -621,6 +665,12 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         //モーションジャンルpicker
         case pickerViewMotionGenre:
             return feedbackItem.motionGenreList.count
+        //サイドpicker
+        case pickerViewSide:
+            return feedbackItem.sideList.count
+        //ロールpicker
+        case pickerViewRole:
+            return feedbackItem.roleList.count
         default:
             print("Error pickerViewSwitch numberOfComponents numberOfRowsInComponent ResisterVC")
             return 1
@@ -655,6 +705,12 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         case pickerViewMotionGenre:
             motionGenre = feedbackItem.motionGenreList[row]
             print(feedbackItem.motionGenreList[row])
+        //サイドpicker
+        case pickerViewSide:
+            side = feedbackItem.sideList[row]
+        //ロールpicker
+        case pickerViewRole:
+            role = feedbackItem.roleList[row]
             
         default:
             print("Error in numberOfComponents ResisterVC")
@@ -689,6 +745,12 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         //モーションジャンルpicker
         case pickerViewMotionGenre:
             return feedbackItem.motionGenreList[row]
+        //サイドpicker
+        case pickerViewSide:
+            return feedbackItem.sideList[row]
+        //ロールpicker
+        case pickerViewRole:
+            return feedbackItem.roleList[row]
             
         default:
             print("Error pickerViewSwitch numberOfComponents numberOfRowsInComponent ResisterVC")

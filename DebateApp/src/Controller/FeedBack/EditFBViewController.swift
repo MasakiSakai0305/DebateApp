@@ -40,6 +40,10 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     var pickerViewDate: UIPickerView = UIPickerView()
     //モーションジャンル入力用のPickerView
     var pickerViewMotionGenre: UIPickerView = UIPickerView()
+    //サイド入力用のPickerView
+    var pickerViewSide: UIPickerView = UIPickerView()
+    //ロール入力用のPickerView
+    var pickerViewRole: UIPickerView = UIPickerView()
     
     //ナビゲーションアイテムのボタン宣言
     var notSaveBarButtonItem: UIBarButtonItem!
@@ -71,6 +75,9 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     var day = ""
     var dates = "2020/01/01"
     var motionGenre = ""
+    var side = "Gov"
+    var role = "PM"
+    
 
     //日時を取得する際に使用
     let date = Date()
@@ -112,6 +119,10 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         pickerViewDate.dataSource = self
         pickerViewMotionGenre.delegate = self
         pickerViewMotionGenre.dataSource = self
+        pickerViewSide.delegate = self
+        pickerViewSide.dataSource = self
+        pickerViewRole.delegate = self
+        pickerViewRole.dataSource = self
         navigationController?.delegate = self
         
         
@@ -137,6 +148,8 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         styleString = object.style
         dateTextField.text = object.date
         motionGenreTextField.text = object.motionGenre
+        sideTextField.text = object.side
+        roleTextField.text = object.role
        
        //スコア入力機能設定
        let toolBarScore = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
@@ -158,6 +171,22 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         toolBarMotionGenre.setItems([doneItemMotionGenre], animated: true)
         motionGenreTextField.inputView = pickerViewMotionGenre
         motionGenreTextField.inputAccessoryView = toolBarMotionGenre
+        
+        //サイド入力機能
+        let toolBarSide = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
+        let doneItemSide = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneSide))
+        toolBarSide.setItems([doneItemSide], animated: true)
+        sideTextField.inputView = pickerViewSide
+        sideTextField.inputAccessoryView = toolBarSide
+        
+        
+        //ロール入力機能
+        let toolBarRole = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
+        let doneItemRole = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneRole))
+        toolBarRole.setItems([doneItemRole], animated: true)
+        roleTextField.inputView = pickerViewRole
+        roleTextField.inputAccessoryView = toolBarRole
+    
         
        //[保存せず戻る]ボタン追加
        notSaveBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(notSaveBarButtonTapped(_:)))
@@ -346,6 +375,8 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
             object.style = styleString
             object.date = dateTextField.text
             object.motionGenre = motionGenreTextField.text!
+            object.side = sideTextField.text!
+            object.role = roleTextField.text!
         })
 
         let obs = realm.objects(FeedBack.self)
@@ -591,6 +622,18 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         motionGenreTextField.endEditing(true)
     }
     
+    //決定ボタン(サイド入力終了)
+    @objc func doneSide(){
+        sideTextField.text  = side
+        sideTextField.endEditing(true)
+    }
+    
+    //決定ボタン(ロール入力終了)
+    @objc func doneRole(){
+        roleTextField.text  = role
+        roleTextField.endEditing(true)
+    }
+
   
   
   /*---Picker view関連---*/
@@ -608,6 +651,14 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
       case pickerViewMotionGenre:
           print("pickerViewMotionGenre")
           return 1
+      //サイドpicker
+      case pickerViewSide:
+        print("pickerViewSide")
+        return 1
+      //ロールpicker
+       case pickerViewRole:
+        print("pickerViewRole")
+        return 1
       default:
           print("Error in numberOfComponents ResisterVC")
           return 1
@@ -635,7 +686,13 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
       //モーションジャンルpicker
       case pickerViewMotionGenre:
         return feedbackItem.motionGenreList.count
-          
+      //サイドpicker
+      case pickerViewSide:
+          return feedbackItem.sideList.count
+      //ロールpicker
+      case pickerViewRole:
+          return feedbackItem.roleList.count
+        
       default:
           print("Error pickerViewSwitch numberOfComponents numberOfRowsInComponent ResisterVC")
           return 1
@@ -669,6 +726,12 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     case pickerViewMotionGenre:
         motionGenre = feedbackItem.motionGenreList[row]
         print(feedbackItem.motionGenreList[row])
+    //サイドpicker
+    case pickerViewSide:
+        side = feedbackItem.sideList[row]
+    //ロールpicker
+    case pickerViewRole:
+        role = feedbackItem.roleList[row]
           
       default:
           print("Error in numberOfComponents ResisterVC")
@@ -704,7 +767,12 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         //モーションジャンルpicker
         case pickerViewMotionGenre:
             return feedbackItem.motionGenreList[row]
-              
+        //サイドpicker
+        case pickerViewSide:
+            return feedbackItem.sideList[row]
+        //ロールpicker
+        case pickerViewRole:
+            return feedbackItem.roleList[row]
         default:
             print("Error pickerViewSwitch numberOfComponents numberOfRowsInComponent ResisterVC")
             return ""
