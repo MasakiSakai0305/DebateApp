@@ -159,24 +159,28 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         motionLabel.text = motionTitleString
         
         //"勝敗", "スタイル"ラベル設定
-        WLLabel.frame = CGRect(x:view.frame.size.width/17, y: view.frame.size.height/3.4, width: 80, height: view.frame.size.height/15)
-        styleLabel.frame = CGRect(x: center + 10, y: 200, width: 80, height: 30)
+        WLLabel.frame = CGRect(x:view.frame.size.width/17, y: view.frame.size.height/3.3, width: view.frame.size.width/5, height: view.frame.size.height/15)
+        styleLabel.frame = CGRect(x: view.frame.size.width * 0.55, y: view.frame.size.height/3.2, width: view.frame.size.width/5, height: view.frame.size.height/21)
         
         //"スコア"UI位置設定
-        scoreLabel.frame = CGRect(x: view.frame.size.width/25, y: 340, width: 60, height: 30)
-        scoreTextField.frame = CGRect(x: center - 100, y: 340, width: 40, height: 30)
+        scoreLabel.frame = CGRect(x: view.frame.size.width/25, y: view.frame.size.height/2, width: view.frame.size.width/6, height: view.frame.size.height/21)
+        scoreTextField.frame = CGRect(x:view.frame.size.width/5.2, y: view.frame.size.height/2, width: view.frame.size.width/9, height: view.frame.size.height/21)
         
         //"日付"UI位置設定
-        dateLabel.frame = CGRect(x:view.frame.size.width/25, y: 370, width: 60, height: 30)
-        dateTextField.frame = CGRect(x:view.frame.size.width/5.5, y: 370, width: view.frame.size.width/3, height: 30)
+        dateLabel.frame = CGRect(x:view.frame.size.width/25, y: view.frame.size.height/1.8, width: view.frame.size.width/6, height: view.frame.size.height/21)
+        dateTextField.frame = CGRect(x:view.frame.size.width/5.5, y: view.frame.size.height/1.8, width: view.frame.size.width/3, height: view.frame.size.height/21)
         
         //FBテキストビューUI設定
         FBTextView.layer.borderColor = UIColor.black.cgColor
         FBTextView.layer.borderWidth = 1.0
+        FBTextView.frame = CGRect(x: view.frame.size.width/17, y: view.frame.size.height * 0.7, width: view.frame.size.width * 0.9, height: view.frame.size.height * 0.2)
+        print("view.frame.size.height", view.frame.size.height)
+        print("self", self.view.frame.size.height)
+        print("width", view.frame.size.width)
         
         //"ジャンル"UI位置設定
-        motionGenreLabel.frame = CGRect(x:view.frame.size.width * 0.55, y: 370, width: 80, height: 30)
-        motionGenreTextField.frame = CGRect(x:view.frame.size.width/2 + 100, y: 370, width: view.frame.size.width/5, height: 30)
+        motionGenreLabel.frame = CGRect(x:view.frame.size.width * 0.55, y: view.frame.size.height/1.8, width: view.frame.size.width/5, height: view.frame.size.height/21)
+        motionGenreTextField.frame = CGRect(x:view.frame.size.width * 0.77, y: view.frame.size.height/1.8, width: view.frame.size.width/6, height: view.frame.size.height/21)
         
         doneButton.tag = 100
         motionLabel.numberOfLines = 3
