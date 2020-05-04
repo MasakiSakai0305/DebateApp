@@ -298,7 +298,7 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
             print("編集終了")
             self.editButtonItem.title = "編集"
             print(tableView.allowsMultipleSelectionDuringEditing)
-            deleteData(number: 0) //複数選択する際にはnumber引数は使わない
+            deleteMultiData()
             tableView.reloadData()
         }
         
@@ -442,26 +442,54 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         print(indexPath)
         print("indexPath.row: \(indexPath.row) 削除")
         // 先にデータを削除しないと、エラーが発生します。
-        deleteData(number: indexPath.row)
+        deleteSingleData(number: indexPath.row)
         tableView.reloadData()
         //tableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
-    //データを削除(１つ or 複数)
-    func deleteData(number:Int){
+    //データを削除(１つ)
+    func deleteSingleData(number:Int){
+        print("--deleteSingleData--")
+        let realm = try! Realm()
+        
+        //フィルター状態の時
+        if isFilter == true{
+            let filteredData = filterData(filter: stringFilter)
+            try! realm.write {
+                realm.delete(filteredData[number])
+            }
+            objectCount = filteredData.count
+        
+        //フィルターじゃない時
+        } else {
+            let sortedData = sortDate()
+            try! realm.write {
+                realm.delete(sortedData[number])
+            }
+            objectCount = sortedData.count
+        }
+
+        print("\(number)削除")
+        print("objectCount", objectCount)
+    }
+    
+
+    
+    //複数のデータを削除
+    func deleteMultiData(){
         //FBが１つもない時は終了
         if objectCount == 0 {
             print("objectCount", objectCount)
             return
         }
-        
-        print("--deleteData--")
+     
         let realm = try! Realm()
         
         //複数選択の時
         if let selectedIndexPaths = self.tableView.indexPathsForSelectedRows{
             let sortedIndexPaths =  selectedIndexPaths.sorted { $0.row > $1.row }
-            print("複数")            
+            print("複数")
+            
             //フィルター状態の時
             if isFilter == true{
                 let filteredData = filterData(filter: stringFilter)
@@ -487,37 +515,11 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
                 objectCount = sortedData.count
                 print(sortedIndexPaths, "削除")
             }
-            
-            
-        //単数削除の時(スライドで削除)
-        } else {
-            print("単数")
-            //let realm = try! Realm()
-    //        let objects = realm.objects(FeedBack.self)
-            //let sortedData = sortDate()
-            
-            //フィルター状態の時
-            if isFilter == true{
-                let filteredData = filterData(filter: stringFilter)
-                try! realm.write {
-                    realm.delete(filteredData[number])
-                }
-                objectCount = filteredData.count
-            
-            //フィルターじゃない時
-            } else {
-                let sortedData = sortDate()
-                try! realm.write {
-                    realm.delete(sortedData[number])
-                }
-                objectCount = sortedData.count
-            }
-
-            print("\(number)削除")
-            print("objectCount", objectCount)
         }
-        
     }
+
+
+        
     
     //保存したデータをテーブルに反映(デリゲートメソッド)
     func updateTable() {
