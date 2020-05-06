@@ -471,7 +471,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         let y = Int(view.frame.size.height/2.8) + Int(view.frame.size.width/9) * num  //ボタン同士が重ならないようyを調整
         button.setImage(uncheckedImage, for: .normal)
         button.addTarget(self, action: #selector(styleButttonClicked(_:)), for: .touchUpInside)
-        button.frame = CGRect(x: view.frame.size.width * 0.65,y: CGFloat(y), width: view.frame.size.width/12 ,height: view.frame.size.width/12)
+        button.frame = CGRect(x: view.frame.size.width * 0.55,y: CGFloat(y), width: view.frame.size.width/12 ,height: view.frame.size.width/12)
         button.tag = num + 10
       
         
@@ -485,7 +485,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
       
         let label = UILabel()
         label.text = feedbackItem.styleList[num]
-        label.frame = CGRect(x: view.frame.size.width * 0.8,y: CGFloat(y) + 5, width: view.frame.size.width/6, height: view.frame.size.width/21)
+        label.frame = CGRect(x: view.frame.size.width * 0.65,y: CGFloat(y) + 5, width: view.frame.size.width/6, height: view.frame.size.width/21)
         self.view.addSubview(button)
         self.view.addSubview(label)
     }

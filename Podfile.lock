@@ -17,6 +17,7 @@ PODS:
     - Realm (= 4.4.1)
   - ScrollableGraphView (4.0.6)
   - SideMenu (6.4.8)
+  - TagListView (1.4.0)
 
 DEPENDENCIES:
   - Charts
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - RealmSwift
   - ScrollableGraphView
   - SideMenu
+  - TagListView
 
 SPEC REPOS:
   trunk:
@@ -36,6 +38,7 @@ SPEC REPOS:
     - RealmSwift
     - ScrollableGraphView
     - SideMenu
+    - TagListView
 
 SPEC CHECKSUMS:
   Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
@@ -46,7 +49,8 @@ SPEC CHECKSUMS:
   RealmSwift: 3eb8924ff7100df5928c7602f71d0fec51e7c9c5
   ScrollableGraphView: 4af35d4ea9ecdec665d34a74da51da161ddff8ac
   SideMenu: 4a891be552d30bb6fa87ad404d62e485f8450c34
+  TagListView: 987b0bdbb16cd9d9e7c0e2ec32aff37ecba8b173
 
-PODFILE CHECKSUM: 5b80b32c8d071b7787de7be95f47663dfd5bbe13
+PODFILE CHECKSUM: 1eaae5cb280522d759001eb9922b70c139207dd2
 
 COCOAPODS: 1.8.4

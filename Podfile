@@ -13,6 +13,6 @@ pod 'ScrollableGraphView'
 pod 'SideMenu'
 pod 'IQKeyboardManagerSwift'
 pod 'Material'
-
+pod 'TagListView'
 
 end
