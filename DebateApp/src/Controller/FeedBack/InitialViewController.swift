@@ -42,6 +42,10 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
     var isFilter = Bool()
     //フィルターの種類
     var stringFilter = String()
+    
+    let tagStringArray = ["インパクトがない", "イラストが足りない", "モデルが分からない"]
+    
+
 
     
     override func viewDidLoad() {
@@ -114,6 +118,36 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         // サイドバーメニューからの通知を受け取る
         NotificationCenter.default.addObserver(self,selector: #selector(catchSelectMenuNotification(notification:)),
             name: Notification.Name("SelectMenuNotification"), object: nil)
+        
+        createDefaultTagList()
+        
+    }
+    
+    func createDefaultTagList(){
+        let realm = try! Realm()
+        let objects = realm.objects(TagList.self)
+        if objects.count > 0{
+            print(objects)
+            print("return createDefaultTagList")
+            return
+        }
+        
+        var tagDictionaryArray = [Dictionary<String, String>]()
+        
+        for tag in tagStringArray{
+             tagDictionaryArray.append(["tag": tag])
+            
+        }
+        
+        let tagListDictionary:[String:Any] = ["tags": tagDictionaryArray]
+        let tagList = TagList(value: tagListDictionary)
+        
+        try! realm.write {
+            realm.add(tagList)
+        }
+          
+        print(realm.objects(TagList.self))
+        
         
     }
     

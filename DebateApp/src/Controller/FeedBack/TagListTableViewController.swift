@@ -18,6 +18,8 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
 
     @IBOutlet weak var bar: UINavigationBar!
     
+    @IBOutlet weak var backButton: UIBarButtonItem!
+    
     var Array = ["a", "b", "c"]
     var delegate:updateTagDelegate?
     
@@ -28,7 +30,9 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
         tableView.delegate = self
         tableView.dataSource = self
         
-        bar.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height/20)
+        bar.frame = CGRect(x: 0, y: view.frame.size.height/30, width: view.frame.size.width, height: view.frame.size.height/15)
+        bar.isTranslucent = false
+        tableView.frame = CGRect(x: 0, y: view.frame.size.height/30 + bar.frame.size.height, width: view.frame.size.width, height: view.frame.size.height)
         
     }
     
@@ -54,5 +58,11 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
         //navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
+    
+    
+    @IBAction func Back(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 
 }
