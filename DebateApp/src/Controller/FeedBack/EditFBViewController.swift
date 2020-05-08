@@ -8,8 +8,10 @@
 
 import UIKit
 import RealmSwift
+import TagListView
 
-class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate {
+class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate, TagListViewDelegate, updateTagDelegate {
+
 
 
     var delegate:updateTableDelegate?
@@ -23,6 +25,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     @IBOutlet weak var motionGenreTextField: UITextField!
     @IBOutlet weak var roleTextField: UITextField!
     @IBOutlet weak var sideTextField: UITextField!
+    @IBOutlet weak var addTagButton: UIButton!
     
     //各種ラベル
     @IBOutlet weak var motionLabel: UILabel!
@@ -33,6 +36,8 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     @IBOutlet weak var motionGenreLabel: UILabel!
     @IBOutlet weak var sideLabel: UILabel!
     @IBOutlet weak var roleLabel: UILabel!
+    //タグ入力用
+    let tagListView = TagListView()
     
     //スコア入力用のPickerView
     var pickerViewScore: UIPickerView = UIPickerView()
@@ -78,6 +83,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     var side = "Gov"
     var role = "PM"
     
+    var tagArray = [String]()
 
     //日時を取得する際に使用
     let date = Date()
@@ -150,6 +156,12 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         motionGenreTextField.text = object.motionGenre
         sideTextField.text = object.side
         roleTextField.text = object.role
+        
+        print("object.tagList", object.tagList)
+        for tag in object.tagList {
+            print(tag.value(forKey: "tag")!)
+            tagArray.append(tag.value(forKey: "tag") as! String)
+        }
        
        //スコア入力機能設定
        let toolBarScore = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
@@ -209,10 +221,11 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         motionGenreLabel.frame = CGRect(x:view.frame.size.width * 0.55, y: view.frame.size.height/1.8, width: view.frame.size.width/5, height: view.frame.size.height/21)
         motionGenreTextField.frame = CGRect(x:view.frame.size.width * 0.77, y: view.frame.size.height/1.8, width: view.frame.size.width/6, height: view.frame.size.height/21)
        
-        //FBテキストビュー設定
+        //FBテキストビューUI設定
         FBTextView.layer.borderColor = UIColor.black.cgColor
         FBTextView.layer.borderWidth = 1.0
-        FBTextView.frame = CGRect(x: view.frame.size.width/17, y: view.frame.size.height * 0.7, width: view.frame.size.width * 0.9, height: view.frame.size.height * 0.2)
+        FBTextView.frame = CGRect(x: view.frame.size.width/17, y: view.frame.size.height * 0.9, width: view.frame.size.width * 0.9, height: view.frame.size.height * 0.05)
+
         
         //"ロール"UI位置設定
         roleLabel.frame = CGRect(x: view.frame.size.width * 0.55, y: view.frame.size.height * 0.63, width: view.frame.size.width/5, height: view.frame.size.height/21)
@@ -221,6 +234,34 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         //"サイド"UI位置設定
         sideLabel.frame = CGRect(x: view.frame.size.width/25, y: view.frame.size.height * 0.63, width: view.frame.size.width/5, height: view.frame.size.height/21)
         sideTextField.frame = CGRect(x: view.frame.size.width * 0.23, y: view.frame.size.height * 0.63, width: view.frame.size.width/5, height: view.frame.size.height/21)
+        
+        //タグを追加する関連のUI設定
+        addTagButton.frame = CGRect(x: view.frame.size.width/25, y: view.frame.size.height * 0.7, width: view.frame.size.width * 0.9, height: view.frame.size.height/25)
+        //addTagButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        
+        tagListView.frame = CGRect(x: view.frame.size.width/25, y: view.frame.size.height * 0.75, width: view.frame.size.width * 0.9, height: 0)
+        // タグの削除ボタンを有効に
+        tagListView.enableRemoveButton = true
+        // 今回は削除ボタン押された時の処理を行う
+        tagListView.delegate = self
+        // タグの見た目を設定
+        tagListView.alignment = .left
+        tagListView.cornerRadius = 3
+        tagListView.textColor = UIColor.black
+        //tagListView.borderColor = UIColor.lightGray
+        tagListView.borderWidth = 1
+        tagListView.paddingX = 10
+        tagListView.paddingY = 5
+        tagListView.textFont = UIFont.systemFont(ofSize: 16)
+        tagListView.tagBackgroundColor = UIColor.white
+        // タグ削除ボタンの見た目を設定
+        tagListView.removeButtonIconSize = 10
+        tagListView.removeIconLineColor = UIColor.black
+        
+        //DBに格納されているタグ情報を追加
+        tagListView.addTags(tagArray)
+        view.addSubview(tagListView)
+
        
         doneButton.tag = 100
         motionLabel.numberOfLines = 3
@@ -278,6 +319,55 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
          self.view.bringSubviewToFront(FBTextView)
 
     }
+    
+    
+    @IBAction func GoTagList(_ sender: Any) {
+        //画面遷移
+        performSegue(withIdentifier: "Tag", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("prepare for segue")
+        let TagListVC = segue.destination as! TagListTableViewController
+        TagListVC.delegate = self
+        
+        
+    }
+    
+    //タグを追加 (delegateメソッド)
+    func AddTagAndUpdateLayout(TagString:String) {
+        print("AddTagAndUpdateLayout")
+        tagListView.addTag(TagString)
+        updateLayout()
+    }
+
+    // タグ削除ボタンが押された
+    func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
+        // リストからタグ削除
+        sender.removeTagView(tagView)
+        updateLayout()
+    }
+
+    func updateLayout() {
+        if tagListView.tagViews.count > 0 {
+            //addTagButton.removeFromSuperview()
+            print(tagListView.tagViews[0].borderWidth)
+        } else {
+            //view.addSubview(addTagButton)
+        }
+        
+        
+        // タグ全体の高さを取得
+        tagListView.frame.size = tagListView.intrinsicContentSize
+        
+        print("tagListView.frame.size", tagListView.frame.size)
+        if tagListView.frame.size.height >= 60{
+            //tagListView.frame.size.height = 60
+            print("if")
+        }
+
+    }
+
 
     
     //前の画面に戻るとき,textviewの中身をメモに格納
@@ -366,6 +456,12 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         
         print("updateData", object)
         
+        var tagDictionaryArray = [Dictionary<String, String>]()
+       
+        for tagView in tagListView.tagViews{
+            tagDictionaryArray.append(["tag": tagView.titleLabel!.text!])
+        }
+        
         //データ更新
         try! realm.write({
             object.MotionTitle = motionLabel.text
@@ -377,8 +473,12 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
             object.motionGenre = motionGenreTextField.text!
             object.side = sideTextField.text!
             object.role = roleTextField.text!
+            object.setValue(tagDictionaryArray, forKey: "tagList")
+
         })
 
+        print("tagDictionaryArray", tagDictionaryArray)
+        
         let obs = realm.objects(FeedBack.self)
         print(obs)
     }

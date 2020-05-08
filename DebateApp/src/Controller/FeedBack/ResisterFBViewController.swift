@@ -45,7 +45,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     @IBOutlet weak var sideTextField: UITextField!
     //ロールを入力するTextField
     @IBOutlet weak var roleTextField: UITextField!
-    //タグを追加するボタン(最初のみ表示)
+    //タグを追加するボタン
     @IBOutlet weak var addTagButton: UIButton!
     
     //ラベル各種
@@ -124,6 +124,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
         motionTextField.delegate = self
         FBTextView.delegate = self
@@ -294,7 +295,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         //navigationController?.pushViewController(TagListVC, animated: true)
         
         //画面遷移
-        performSegue(withIdentifier: "ExTag", sender: nil)
+        performSegue(withIdentifier: "Tag", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -445,12 +446,16 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         fb.role = roleTextField.text!
         fb.side = sideTextField.text!
         
-        var tagArray = [Dictionary<String, String>]()
+        
+        var tagDictionaryArray = [Dictionary<String, String>]()
         //print((tagListView.tagViews[0].titleLabel?.text!)! as String)
         for tagView in tagListView.tagViews{
 //            print(tagView.titleLabel!.text!)
-            tagArray.append(["tag": tagView.titleLabel!.text!])
+            tagDictionaryArray.append(["tag": tagView.titleLabel!.text!])
         }
+        
+        
+        
         
         let fbDictionary: [String:Any] =
             ["MotionTitle":motionTitleString,
@@ -462,7 +467,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
              "motionGenre": motionGenre,
              "role":  roleTextField.text!,
              "side": sideTextField.text!,
-             "tagList": tagArray
+             "tagList": tagDictionaryArray
             ]
         
         let fb2 = FeedBack(value: fbDictionary)

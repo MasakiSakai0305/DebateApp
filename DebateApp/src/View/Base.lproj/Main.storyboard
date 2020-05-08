@@ -409,7 +409,7 @@
                         <outlet property="sideLabel" destination="M1O-Zp-Rf6" id="lbq-qu-gUp"/>
                         <outlet property="sideTextField" destination="G8N-TQ-80Q" id="2uG-Ln-Ef5"/>
                         <outlet property="styleLabel" destination="EWq-iJ-47y" id="Iu6-YT-IqG"/>
-                        <segue destination="ual-Is-OmI" kind="presentation" identifier="ExTag" id="Pbx-Fo-vTD"/>
+                        <segue destination="ual-Is-OmI" kind="presentation" identifier="Tag" id="Pbx-Fo-vTD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -478,7 +478,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="フィードバック(ラウンドの反省点など)" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="raG-YH-AUd">
-                                <rect key="frame" x="14" y="454" width="343" height="148"/>
+                                <rect key="frame" x="14" y="550" width="343" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -537,6 +537,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wdP-Oa-57X">
+                                <rect key="frame" x="15" y="472" width="340" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.84175064030000002" blue="0.86362296299999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="タップしてタグを追加">
+                                    <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="GoTagList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BAt-LM-bqg"/>
+                                    <action selector="GoTagList:" destination="scl-Mc-klw" eventType="touchUpInside" id="Bx3-y3-bRu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Dph-Au-5QX"/>
@@ -545,6 +557,7 @@
                     <connections>
                         <outlet property="FBTextView" destination="raG-YH-AUd" id="uMo-au-8n1"/>
                         <outlet property="WLLabel" destination="mEi-Mz-34Q" id="gLy-rC-Gri"/>
+                        <outlet property="addTagButton" destination="wdP-Oa-57X" id="gSH-tv-yyj"/>
                         <outlet property="dateLabel" destination="1eT-Rm-jRA" id="Clv-lo-j2u"/>
                         <outlet property="dateTextField" destination="FdI-3q-hzq" id="yPT-Sl-DvG"/>
                         <outlet property="doneButton" destination="GwS-hZ-Ljy" id="mhg-VJ-CI2"/>
@@ -559,6 +572,7 @@
                         <outlet property="sideLabel" destination="HD4-YX-hOw" id="dTT-9v-LV3"/>
                         <outlet property="sideTextField" destination="3fB-E1-Ldt" id="qul-03-Q63"/>
                         <outlet property="styleLabel" destination="Tzb-OP-5Bc" id="707-Ou-tMa"/>
+                        <segue destination="ual-Is-OmI" kind="presentation" identifier="Tag" id="qfF-QM-b5M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q1X-kX-Efj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -606,7 +620,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UfL-Wq-kOa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5831.1999999999998" y="-137.18140929535232"/>
+            <point key="canvasLocation" x="6095" y="-26"/>
         </scene>
         <!--Ex View Controller-->
         <scene sceneID="v0z-4o-fnD">
@@ -779,7 +793,6 @@
         <!--Navigation Controller-->
         <scene sceneID="i4u-Gl-v1l">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xdX-p0-aXe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="E8P-qi-otc" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="M6G-iX-4fs">
@@ -791,6 +804,7 @@
                         <segue destination="MHf-Nc-8hm" kind="relationship" relationship="rootViewController" id="XTo-5c-z9a"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xdX-p0-aXe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-604" y="786.65667166416802"/>
         </scene>
@@ -813,6 +827,9 @@
             <point key="canvasLocation" x="-2244" y="76.911544227886068"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Pbx-Fo-vTD"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="chart.bar" catalog="system" width="128" height="90"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
