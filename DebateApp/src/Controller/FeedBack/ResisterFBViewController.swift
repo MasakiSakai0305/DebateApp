@@ -467,7 +467,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
              "motionGenre": motionGenre,
              "role":  roleTextField.text!,
              "side": sideTextField.text!,
-             "tagList": tagDictionaryArray
+             "tags": tagDictionaryArray
             ]
         
         let fb2 = FeedBack(value: fbDictionary)

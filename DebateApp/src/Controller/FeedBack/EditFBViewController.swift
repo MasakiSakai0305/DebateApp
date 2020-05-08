@@ -157,8 +157,9 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         sideTextField.text = object.side
         roleTextField.text = object.role
         
-        print("object.tagList", object.tagList)
-        for tag in object.tagList {
+        //タグ情報を配列に格納
+        print("object.tagList", object.tags)
+        for tag in object.tags {
             print(tag.value(forKey: "tag")!)
             tagArray.append(tag.value(forKey: "tag") as! String)
         }
@@ -473,7 +474,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
             object.motionGenre = motionGenreTextField.text!
             object.side = sideTextField.text!
             object.role = roleTextField.text!
-            object.setValue(tagDictionaryArray, forKey: "tagList")
+            object.setValue(tagDictionaryArray, forKey: "tags")
 
         })
 

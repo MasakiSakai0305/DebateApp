@@ -9,6 +9,7 @@
 import UIKit
 import SideMenu
 import IQKeyboardManagerSwift
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -38,6 +39,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
         
+        
+        //MARK: - migrationのコード
+        //Realmのカラムを変更した時に, versionをあげる
+        let config = Realm.Configuration(schemaVersion: 0, migrationBlock: { (migration, version) in
+            if version < 0 {
+            }
+        })
+
+        Realm.Configuration.defaultConfiguration = config
         
         return true
     }

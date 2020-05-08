@@ -31,7 +31,9 @@ class FeedBack:Object{
     //ロール
     @objc dynamic var role:String!
     //タグリスト
-    let tagList = List<Tag>()
+    let tags = List<Tag>()
+    
+    @objc dynamic var a:String!
     
 }
 
@@ -39,6 +41,8 @@ class Tag:Object{
     //タグ
     @objc dynamic var tag:String!
 }
+
+class TagList:Object{}
 
 
 class FeedBackItemList{
