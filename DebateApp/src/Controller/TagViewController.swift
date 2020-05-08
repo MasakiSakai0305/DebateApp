@@ -9,7 +9,7 @@
 import UIKit
 import TagListView
 
-class TagViewController: UIViewController, TagListViewDelegate, UITextFieldDelegate, updateTagDelegate {
+class TagViewController: UIViewController, UITextFieldDelegate, TagListViewDelegate, updateTagDelegate {
     
     
 
@@ -27,6 +27,8 @@ class TagViewController: UIViewController, TagListViewDelegate, UITextFieldDeleg
         print("view.frame.size", view.frame.size)
         tagListView.delegate = self
 //        tagListView.taghei
+        var TagArray = [String]()
+        print(TagArray)
     }
     
     
@@ -43,19 +45,19 @@ class TagViewController: UIViewController, TagListViewDelegate, UITextFieldDeleg
         // 今回は削除ボタン押された時の処理を行う
         tagListView.delegate = self
 
-    // タグの見た目を設定
+        // タグの見た目を設定
         tagListView.alignment = .left
         tagListView.cornerRadius = 3
         tagListView.textColor = UIColor.black
         //tagListView.borderColor = UIColor.lightGray
         tagListView.borderWidth = 1
         tagListView.paddingX = 10
-    tagListView.paddingY = 5
+        tagListView.paddingY = 5
         tagListView.textFont = UIFont.systemFont(ofSize: 16)
         tagListView.tagBackgroundColor = UIColor.white
 
         // タグ削除ボタンの見た目を設定
-    tagListView.removeButtonIconSize = 10
+        tagListView.removeButtonIconSize = 10
         tagListView.removeIconLineColor = UIColor.black
 
         // テキストフィールドは適当にセット
@@ -95,6 +97,13 @@ class TagViewController: UIViewController, TagListViewDelegate, UITextFieldDeleg
     }
 
     func updateLayout() {
+        if tagListView.tagViews.count > 0{
+            print((tagListView.tagViews[0].titleLabel!.text!))
+            for tagView in tagListView.tagViews{
+                print(tagView.frame)
+            }
+           }
+        //print(tagListView.)
         // タグ全体の高さを取得
         tagListView.frame.size = tagListView.intrinsicContentSize
         

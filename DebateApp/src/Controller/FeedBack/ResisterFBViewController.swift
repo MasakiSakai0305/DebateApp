@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import IQKeyboardManagerSwift
+import TagListView
 
 
 protocol updateTableDelegate {
@@ -20,7 +21,9 @@ protocol updateTableDelegate {
 
 
 
-class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate{
+class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate, TagListViewDelegate, updateTagDelegate {
+
+    
     
     var delegate:updateTableDelegate?
     
@@ -42,6 +45,8 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     @IBOutlet weak var sideTextField: UITextField!
     //ロールを入力するTextField
     @IBOutlet weak var roleTextField: UITextField!
+    //タグを追加するボタン(最初のみ表示)
+    @IBOutlet weak var addTagButton: UIButton!
     
     //ラベル各種
     @IBOutlet weak var styleLabel: UILabel!
@@ -62,6 +67,8 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     var pickerViewSide: UIPickerView = UIPickerView()
     //ロール入力用のPickerView
     var pickerViewRole: UIPickerView = UIPickerView()
+    //タグ入力用
+    let tagListView = TagListView()
     
     //ナビゲーションアイテムのボタン宣言
     var notSaveBarButtonItem: UIBarButtonItem!
@@ -197,7 +204,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         //FBテキストビューUI設定
         FBTextView.layer.borderColor = UIColor.black.cgColor
         FBTextView.layer.borderWidth = 1.0
-        FBTextView.frame = CGRect(x: view.frame.size.width/17, y: view.frame.size.height * 0.7, width: view.frame.size.width * 0.9, height: view.frame.size.height * 0.2)
+        FBTextView.frame = CGRect(x: view.frame.size.width/17, y: view.frame.size.height * 0.9, width: view.frame.size.width * 0.9, height: view.frame.size.height * 0.05)
         print("view.frame.size.height", view.frame.size.height)
         print("self", self.view.frame.size.height)
         print("width", view.frame.size.width)
@@ -213,6 +220,33 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         //"サイド"UI位置設定
         sideLabel.frame = CGRect(x: view.frame.size.width/25, y: view.frame.size.height * 0.63, width: view.frame.size.width/5, height: view.frame.size.height/21)
         sideTextField.frame = CGRect(x: view.frame.size.width * 0.23, y: view.frame.size.height * 0.63, width: view.frame.size.width/5, height: view.frame.size.height/21)
+        
+        //タグを追加する関連のUI設定
+        addTagButton.frame = CGRect(x: view.frame.size.width/25, y: view.frame.size.height * 0.7, width: view.frame.size.width * 0.9, height: view.frame.size.height/25)
+        //addTagButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        
+        tagListView.frame = CGRect(x: view.frame.size.width/25, y: view.frame.size.height * 0.75, width: view.frame.size.width * 0.9, height: 0)
+        // タグの削除ボタンを有効に
+        tagListView.enableRemoveButton = true
+        // 今回は削除ボタン押された時の処理を行う
+        tagListView.delegate = self
+        // タグの見た目を設定
+        tagListView.alignment = .left
+        tagListView.cornerRadius = 3
+        tagListView.textColor = UIColor.black
+        //tagListView.borderColor = UIColor.lightGray
+        tagListView.borderWidth = 1
+        tagListView.paddingX = 10
+        tagListView.paddingY = 5
+        tagListView.textFont = UIFont.systemFont(ofSize: 16)
+        tagListView.tagBackgroundColor = UIColor.white
+        // タグ削除ボタンの見た目を設定
+        tagListView.removeButtonIconSize = 10
+        tagListView.removeIconLineColor = UIColor.black
+        view.addSubview(tagListView)
+        
+        //addTagButton.removeFromSuperview()
+        
         
         doneButton.tag = 100
         motionLabel.numberOfLines = 3
@@ -245,19 +279,6 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         self.view.bringSubviewToFront(FBTextView)
        
         
-        //        let fb = FeedBack()
-//        let realm = try! Realm()
-//
-////        // DBに書き込む
-////        try! realm.write {
-////            realm.add(fb)
-////        }
-////
-////        let obs = realm.objects(FeedBack.self)
-////        for ob in obs{
-////            print(ob.MotionTitle)
-////        }
-////
 //        try! realm.write {
 //            realm.deleteAll()
 //        }
@@ -265,6 +286,58 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     
     }
     
+
+    @IBAction func GoTagList(_ sender: Any) {
+//        let TagListVC = storyboard?.instantiateViewController(withIdentifier: "Tag")  as! TagListTableViewController
+               //TagListVC.delegate = self
+        //画面遷移
+        //navigationController?.pushViewController(TagListVC, animated: true)
+        
+        //画面遷移
+        performSegue(withIdentifier: "ExTag", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("prepare for segue")
+        let TagListVC = segue.destination as! TagListTableViewController
+        TagListVC.delegate = self
+        
+        
+    }
+    
+    //タグを追加 (delegateメソッド)
+    func AddTagAndUpdateLayout(TagString:String) {
+        print("AddTagAndUpdateLayout")
+        tagListView.addTag(TagString)
+        updateLayout()
+    }
+
+    // タグ削除ボタンが押された
+    func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
+        // リストからタグ削除
+        sender.removeTagView(tagView)
+        updateLayout()
+    }
+
+    func updateLayout() {
+        if tagListView.tagViews.count > 0 {
+            //addTagButton.removeFromSuperview()
+            print(tagListView.tagViews[0].borderWidth)
+        } else {
+            //view.addSubview(addTagButton)
+        }
+        
+        
+        // タグ全体の高さを取得
+        tagListView.frame.size = tagListView.intrinsicContentSize
+        
+        print("tagListView.frame.size", tagListView.frame.size)
+        if tagListView.frame.size.height >= 60{
+            //tagListView.frame.size.height = 60
+            print("if")
+        }
+
+    }
     //前の画面に戻るとき,textviewの中身をメモに格納
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         print("\n--navigationController from ResisterFB--")
@@ -371,13 +444,36 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         fb.motionGenre = motionGenre
         fb.role = roleTextField.text!
         fb.side = sideTextField.text!
-
+        
+        var tagArray = [Dictionary<String, String>]()
+        //print((tagListView.tagViews[0].titleLabel?.text!)! as String)
+        for tagView in tagListView.tagViews{
+//            print(tagView.titleLabel!.text!)
+            tagArray.append(["tag": tagView.titleLabel!.text!])
+        }
+        
+        let fbDictionary: [String:Any] =
+            ["MotionTitle":motionTitleString,
+             "FeedBackString": FBTextView.text!,
+             "result": WLString,
+             "score": Int(score)!,
+             "style": styleString,
+             "date": dates,
+             "motionGenre": motionGenre,
+             "role":  roleTextField.text!,
+             "side": sideTextField.text!,
+             "tagList": tagArray
+            ]
+        
+        let fb2 = FeedBack(value: fbDictionary)
+        
         // DBに書き込む
         try! realm.write {
-            realm.add(fb)
+            realm.add(fb2)
         }
 
         let obs = realm.objects(FeedBack.self)
+    
         print(obs)
         
     }

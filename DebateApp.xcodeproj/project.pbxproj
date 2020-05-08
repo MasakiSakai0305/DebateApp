@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		3A2CD2A424370BCB008FC787 /* FeedBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2CD2A324370BCB008FC787 /* FeedBack.swift */; };
 		3A375FC22462979400A57F29 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A375FC12462979400A57F29 /* TagViewController.swift */; };
-		3A375FC4246297B000A57F29 /* TagListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A375FC3246297B000A57F29 /* TagListTableViewController.swift */; };
+		3A375FC4246297B000A57F29 /* ExTagListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A375FC3246297B000A57F29 /* ExTagListTableViewController.swift */; };
+		3A3D5ABF2464EAC3005891D6 /* TagListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5ABE2464EAC2005891D6 /* TagListTableViewController.swift */; };
 		3A742712243B2C19005D6F78 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A742711243B2C19005D6F78 /* InitialViewController.swift */; };
 		3A742715243B51CB005D6F78 /* FeedBackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A742713243B51CB005D6F78 /* FeedBackCell.swift */; };
 		3A742716243B51CB005D6F78 /* FeedBackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A742714243B51CB005D6F78 /* FeedBackCell.xib */; };
@@ -57,7 +58,8 @@
 /* Begin PBXFileReference section */
 		3A2CD2A324370BCB008FC787 /* FeedBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBack.swift; sourceTree = "<group>"; };
 		3A375FC12462979400A57F29 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
-		3A375FC3246297B000A57F29 /* TagListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListTableViewController.swift; sourceTree = "<group>"; };
+		3A375FC3246297B000A57F29 /* ExTagListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExTagListTableViewController.swift; sourceTree = "<group>"; };
+		3A3D5ABE2464EAC2005891D6 /* TagListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListTableViewController.swift; sourceTree = "<group>"; };
 		3A742711243B2C19005D6F78 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		3A742713243B51CB005D6F78 /* FeedBackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackCell.swift; sourceTree = "<group>"; };
 		3A742714243B51CB005D6F78 /* FeedBackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedBackCell.xib; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				3A7E52BA24418D6900174180 /* EditFBViewController.swift */,
 				3A742711243B2C19005D6F78 /* InitialViewController.swift */,
 				3AC1557024383D6B0076D8D8 /* ExViewController.swift */,
+				3A3D5ABE2464EAC2005891D6 /* TagListTableViewController.swift */,
 			);
 			path = FeedBack;
 			sourceTree = "<group>";
@@ -208,7 +211,7 @@
 				3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */,
 				3A979274245BC021002AFDC5 /* MultiTableViewController.swift */,
 				3A375FC12462979400A57F29 /* TagViewController.swift */,
-				3A375FC3246297B000A57F29 /* TagListTableViewController.swift */,
+				3A375FC3246297B000A57F29 /* ExTagListTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -419,8 +422,9 @@
 				3A7E52C12447F35400174180 /* Result.swift in Sources */,
 				3A375FC22462979400A57F29 /* TagViewController.swift in Sources */,
 				3A97927224598BF9002AFDC5 /* SideMenuStyleCell.swift in Sources */,
-				3A375FC4246297B000A57F29 /* TagListTableViewController.swift in Sources */,
+				3A375FC4246297B000A57F29 /* ExTagListTableViewController.swift in Sources */,
 				3A97926B24584C35002AFDC5 /* SideMenuViewController.swift in Sources */,
+				3A3D5ABF2464EAC3005891D6 /* TagListTableViewController.swift in Sources */,
 				3A97925C24554442002AFDC5 /* BPScoreCell.swift in Sources */,
 				3AB6A137244EEEB50065CEBC /* DrawGraph.swift in Sources */,
 				3AB6A142244EF03A0065CEBC /* AsianPieChartViewCell2.swift in Sources */,

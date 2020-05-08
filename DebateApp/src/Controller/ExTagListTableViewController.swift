@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol updateTagDelegate {
-    func AddTagAndUpdateLayout(TagString:String)
-}
+//protocol updateTagDelegate {
+//    func AddTagAndUpdateLayout(TagString:String)
+//}
 
-class TagListTableViewController: UITableViewController, UINavigationControllerDelegate {
+class ExTagListTableViewController: UITableViewController, UINavigationControllerDelegate {
     
     var Array = ["a", "b", "c"]
     var delegate:updateTagDelegate?
@@ -24,7 +24,7 @@ class TagListTableViewController: UITableViewController, UINavigationControllerD
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         navigationController?.delegate = self
         
@@ -57,6 +57,7 @@ class TagListTableViewController: UITableViewController, UINavigationControllerD
         delegate?.AddTagAndUpdateLayout(TagString: Array[indexPath.row])
         
         navigationController?.popViewController(animated: true)
+        //dismiss(animated: true, completion: nil)
         
     }
     
