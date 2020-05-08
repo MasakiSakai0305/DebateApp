@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 protocol updateTagDelegate {
     func AddTagAndUpdateLayout(TagString:String)
@@ -20,7 +21,7 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
     
     @IBOutlet weak var backButton: UIBarButtonItem!
     
-    var Array = ["a", "b", "c"]
+    var TagArray = [String]()
     var delegate:updateTagDelegate?
     
     
@@ -34,16 +35,25 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
         bar.isTranslucent = false
         tableView.frame = CGRect(x: 0, y: view.frame.size.height/30 + bar.frame.size.height, width: view.frame.size.width, height: view.frame.size.height)
         
+        let realm = try! Realm()
+        let objects = realm.objects(TagList.self)
+        
+        for tag in objects[0].tags{
+            TagArray.append(tag["tag"] as! String)
+        }
+        
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Array.count
+        return TagArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        cell.textLabel?.text = Array[indexPath.row]
+        cell.textLabel?.text = TagArray[indexPath.row]
+        
         return cell
     }
     
@@ -53,7 +63,7 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
 
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.AddTagAndUpdateLayout(TagString: Array[indexPath.row])
+        delegate?.AddTagAndUpdateLayout(TagString: TagArray[indexPath.row])
         
         //navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)

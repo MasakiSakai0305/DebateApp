@@ -129,6 +129,7 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         if objects.count > 0{
             print(objects)
             print("return createDefaultTagList")
+            print(objects[0].tags[0]["tag"]!)
             return
         }
         
