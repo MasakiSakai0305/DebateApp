@@ -113,6 +113,8 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
         editTagVC.delegate = self
         editTagVC.cellNum = sender as! Int
         editTagVC.isAddNewTag = isAddNewTag
+        
+        print(isAddNewTag)
     }
     
     
@@ -146,11 +148,14 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
             objects[0].tags.append(newTag)
         })
         
-        //追加し終えたらfalseにする(addBarButtonTappedで追加する時にまたtrueになる)
-        isAddNewTag = false
         print("追加後", objects)
-        
         tableView.reloadData()
+    
+    }
+    
+    //タグ編集画面から戻る時にフラグをリセット
+    func resetAddTagFlag(){
+        isAddNewTag = false
     }
     
     //追加ボタン
@@ -181,3 +186,4 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
     
 
 }
+
