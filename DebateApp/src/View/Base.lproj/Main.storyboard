@@ -624,11 +624,38 @@
                         <outlet property="backButton" destination="cIw-KX-7fh" id="tMx-Y4-Hfp"/>
                         <outlet property="bar" destination="O58-hv-ZP6" id="33y-xL-Maa"/>
                         <outlet property="tableView" destination="oSB-YR-1Mv" id="Z43-fH-w6q"/>
+                        <segue destination="hm1-RT-rNE" kind="presentation" identifier="tag" id="2RC-tb-cj4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UfL-Wq-kOa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6095" y="-26"/>
+        </scene>
+        <!--Edit Tag View Controller-->
+        <scene sceneID="NW8-Le-gB3">
+            <objects>
+                <viewController id="hm1-RT-rNE" customClass="EditTagViewController" customModule="DebateApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7iW-Fk-6NJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="タグを入力" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hlo-R7-aP1">
+                                <rect key="frame" x="16" y="80" width="331" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="WqY-gK-kOP"/>
+                    </view>
+                    <connections>
+                        <outlet property="tagTextField" destination="Hlo-R7-aP1" id="8yS-gT-KFC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zcz-is-rbQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7074" y="-114"/>
         </scene>
         <!--Ex View Controller-->
         <scene sceneID="v0z-4o-fnD">

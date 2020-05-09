@@ -11,6 +11,9 @@
 		3A375FC22462979400A57F29 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A375FC12462979400A57F29 /* TagViewController.swift */; };
 		3A375FC4246297B000A57F29 /* ExTagListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A375FC3246297B000A57F29 /* ExTagListTableViewController.swift */; };
 		3A3D5ABF2464EAC3005891D6 /* TagListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5ABE2464EAC2005891D6 /* TagListTableViewController.swift */; };
+		3A3D5AC224665876005891D6 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5AC024665876005891D6 /* TagCell.swift */; };
+		3A3D5AC324665876005891D6 /* TagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A3D5AC124665876005891D6 /* TagCell.xib */; };
+		3A3D5AC524665AAC005891D6 /* EditTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5AC424665AAC005891D6 /* EditTagViewController.swift */; };
 		3A742712243B2C19005D6F78 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A742711243B2C19005D6F78 /* InitialViewController.swift */; };
 		3A742715243B51CB005D6F78 /* FeedBackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A742713243B51CB005D6F78 /* FeedBackCell.swift */; };
 		3A742716243B51CB005D6F78 /* FeedBackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A742714243B51CB005D6F78 /* FeedBackCell.xib */; };
@@ -60,6 +63,9 @@
 		3A375FC12462979400A57F29 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
 		3A375FC3246297B000A57F29 /* ExTagListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExTagListTableViewController.swift; sourceTree = "<group>"; };
 		3A3D5ABE2464EAC2005891D6 /* TagListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListTableViewController.swift; sourceTree = "<group>"; };
+		3A3D5AC024665876005891D6 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
+		3A3D5AC124665876005891D6 /* TagCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCell.xib; sourceTree = "<group>"; };
+		3A3D5AC424665AAC005891D6 /* EditTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTagViewController.swift; sourceTree = "<group>"; };
 		3A742711243B2C19005D6F78 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		3A742713243B51CB005D6F78 /* FeedBackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackCell.swift; sourceTree = "<group>"; };
 		3A742714243B51CB005D6F78 /* FeedBackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedBackCell.xib; sourceTree = "<group>"; };
@@ -138,6 +144,7 @@
 				3A742711243B2C19005D6F78 /* InitialViewController.swift */,
 				3AC1557024383D6B0076D8D8 /* ExViewController.swift */,
 				3A3D5ABE2464EAC2005891D6 /* TagListTableViewController.swift */,
+				3A3D5AC424665AAC005891D6 /* EditTagViewController.swift */,
 			);
 			path = FeedBack;
 			sourceTree = "<group>";
@@ -227,6 +234,8 @@
 				3A742714243B51CB005D6F78 /* FeedBackCell.xib */,
 				3A97927024598BF9002AFDC5 /* SideMenuStyleCell.swift */,
 				3A97927124598BF9002AFDC5 /* SideMenuStyleCell.xib */,
+				3A3D5AC024665876005891D6 /* TagCell.swift */,
+				3A3D5AC124665876005891D6 /* TagCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -348,6 +357,7 @@
 				3AB6A13F244EF0270065CEBC /* BPPieChartViewCell.xib in Resources */,
 				3A97E08E2435D7C200D4CCCB /* LaunchScreen.storyboard in Resources */,
 				3A97E08B2435D7C200D4CCCB /* Assets.xcassets in Resources */,
+				3A3D5AC324665876005891D6 /* TagCell.xib in Resources */,
 				3A872ED6243B5F9B00CC5EF3 /* README.md in Resources */,
 				3A97925924553FDD002AFDC5 /* NAScoreCell.xib in Resources */,
 				3AB6A13324495CF10065CEBC /* BarChartwCell.xib in Resources */,
@@ -407,6 +417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A3D5AC224665876005891D6 /* TagCell.swift in Sources */,
 				3A742715243B51CB005D6F78 /* FeedBackCell.swift in Sources */,
 				3A97E0862435D7C000D4CCCB /* ResisterFBViewController.swift in Sources */,
 				3A7E52BB24418D6900174180 /* EditFBViewController.swift in Sources */,
@@ -429,6 +440,7 @@
 				3AB6A137244EEEB50065CEBC /* DrawGraph.swift in Sources */,
 				3AB6A142244EF03A0065CEBC /* AsianPieChartViewCell2.swift in Sources */,
 				3AB6A13524495E5D0065CEBC /* WinRatePieChartsScrollViewController.swift in Sources */,
+				3A3D5AC524665AAC005891D6 /* EditTagViewController.swift in Sources */,
 				3A742712243B2C19005D6F78 /* InitialViewController.swift in Sources */,
 				3A979254245287D9002AFDC5 /* TotalScoreCell.swift in Sources */,
 				3A2CD2A424370BCB008FC787 /* FeedBack.swift in Sources */,
