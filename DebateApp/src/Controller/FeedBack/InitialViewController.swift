@@ -152,6 +152,7 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
+    //検索機能
     func updateSearchResults(for searchController: UISearchController) {
         //これがないと複数編集ができなくなる
         if searchController.isActive == false{

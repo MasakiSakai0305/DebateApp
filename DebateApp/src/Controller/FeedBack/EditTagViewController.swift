@@ -24,6 +24,8 @@ class EditTagViewController: UIViewController, UITextFieldDelegate {
     
     var cellNum = Int()
     
+    var isAddNewTag = Bool()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,12 +37,22 @@ class EditTagViewController: UIViewController, UITextFieldDelegate {
         
         let realm = try! Realm()
         let objects = realm.objects(TagList.self)
-        tagTextField.text = objects[0].tags[cellNum]["tag"]! as? String
+        
+        if isAddNewTag == false {
+            tagTextField.text = objects[0].tags[cellNum]["tag"]! as? String
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        delegate?.EditTag(tagString:tagTextField.text!)
+        //追加処理
+        if isAddNewTag == true{
+            delegate?.AddTag(tagString: tagTextField.text!)
+            
+        //編集処理
+        } else {
+            delegate?.EditTag(tagString:tagTextField.text!)
+        }
         
         dismiss(animated: true, completion: nil)
         return true

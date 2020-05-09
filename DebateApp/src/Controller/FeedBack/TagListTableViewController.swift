@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import Material
 
 protocol updateTagDelegate {
     func AddTagAndUpdateLayout(TagString:String)
@@ -28,12 +29,17 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
     var TagArray = [String]()
     var delegate:updateTagDelegate?
     
-    
+    var isAddNewTag = false
+
+
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        //タグ追加ボタン設置
+        prepareFABButton()
         
         
         tableView.register(UINib(nibName: "TagCell", bundle: nil), forCellReuseIdentifier: "tag")
@@ -106,6 +112,7 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
         let editTagVC = segue.destination as! EditTagViewController
         editTagVC.delegate = self
         editTagVC.cellNum = sender as! Int
+        editTagVC.isAddNewTag = isAddNewTag
     }
     
     
@@ -129,10 +136,47 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
 
     }
     
+    //タグを追加
     func AddTag(tagString: String) {
-        print(1)
+        let realm = try! Realm()
+        let objects = realm.objects(TagList.self)
+        let newTag = Tag(value: ["tag": tagString])
+        
+        try! realm.write({
+            objects[0].tags.append(newTag)
+        })
+        
+        //追加し終えたらfalseにする(addBarButtonTappedで追加する時にまたtrueになる)
+        isAddNewTag = false
+        print("追加後", objects)
+        
+        tableView.reloadData()
     }
     
+    //追加ボタン
+    func prepareFABButton() {
+        let button = FABButton(image: Icon.cm.add, tintColor: .white)
+        button.pulseColor = .white
+        button.backgroundColor = Color.orange.base
+        
+        //view.layout(button).width(ButtonLayout.Fab.diameter).height(ButtonLayout.Fab.diameter)
+        
+        button.frame = CGRect(x: view.frame.size.width * 0.7, y: view.frame.size.height * 0.8, width: view.frame.size.width / 4.5, height: view.frame.size.width / 4.5)
+        button.addTarget(self, action: #selector(addBarButtonTapped), for: .touchUpInside)
+        view.addSubview(button)
+        
+        
+    }
+    
+    //追加ボタンを押した時の処理
+    @objc func addBarButtonTapped(_ sender: FABButton) {
+        print("【+】ボタンが押された!")
+        
+        isAddNewTag = true
+        performSegue(withIdentifier: "tag", sender: 0)
+        
+
+    }
 
     
 
