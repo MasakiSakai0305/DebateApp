@@ -127,7 +127,6 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     
-    
     func goEditVC(cellNum:Int){
         //present(EditTagViewController(), animated: true, completion: nil)
         performSegue(withIdentifier: "tag", sender: cellNum)
@@ -144,7 +143,7 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     
-    //タグを編集
+    //タグを編集 (delegateメソッド)
     func EditTag(tagString:String){
         
         let realm = try! Realm()
@@ -164,15 +163,19 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
 
     }
     
-    //タグを追加
+    //タグを追加 (delegateメソッド)
     func AddTag(tagString: String) {
         let realm = try! Realm()
         let objects = realm.objects(TagList.self)
         let newTag = Tag(value: ["tag": tagString])
         
+        //DB追加
         try! realm.write({
             objects[0].tags.append(newTag)
         })
+        
+        //配列追加
+        TagArray.append(tagString)
         
         print("追加後", objects)
         tableView.reloadData()
