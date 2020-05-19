@@ -96,8 +96,34 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     
+    //横スライドでセルを削除
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        print(indexPath)
+        print("indexPath.row: \(indexPath.row) 削除")
+        // 先にデータを削除しないと、エラーが発生します。
+        deleteTag(cellNum: indexPath.row)
+        tableView.reloadData()
+        //tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
+    
+    
+    //戻るボタン
     @IBAction func Back(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    //タグを削除
+    func deleteTag(cellNum:Int){
+        //配列の要素を削除
+        TagArray.remove(at: cellNum)
+        
+        //DBから削除
+        let realm = try! Realm()
+        let objects = realm.objects(TagList.self)
+        try! realm.write {
+            realm.delete(objects[0].tags[cellNum])
+        }
+        
     }
     
     
@@ -170,7 +196,6 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
         button.addTarget(self, action: #selector(addBarButtonTapped), for: .touchUpInside)
         view.addSubview(button)
         
-        
     }
     
     //追加ボタンを押した時の処理
@@ -179,8 +204,6 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
         
         isAddNewTag = true
         performSegue(withIdentifier: "tag", sender: 0)
-        
-
     }
 
     

@@ -123,6 +123,7 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
+    //元々タグが入っていない場合、タグを作成する
     func createDefaultTagList(){
         let realm = try! Realm()
         let objects = realm.objects(TagList.self)
@@ -137,7 +138,6 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         for tag in tagStringArray{
              tagDictionaryArray.append(["tag": tag])
-            
         }
         
         let tagListDictionary:[String:Any] = ["tags": tagDictionaryArray]
