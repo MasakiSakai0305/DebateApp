@@ -61,6 +61,6 @@ class FeedBackItemList{
     let motionGenreList = ["Animal", "Art", "CJS", "Children", "Choice", "Corporation", "Development", "Economy", "Education", "Environment", "Expression", "Feminism", "Gender", "IR", "LGBTQIA", "Labor Rights", "Medical", "Narrative", "Politics", "Poverty", "Religion", "Social Movement", "Others"]
 
     let sideList = ["Gov", "Opp", "OG", "OO", "CG", "CO"]
-    let roleList = ["PM", "DPM", "MG", "GW", "GR", "LO", "DLO", "MO", "OW", "OR"]
+    let roleList = ["PM", "DPM", "MG", "GW", "PMR", "LO", "DLO", "MO", "OW", "LOR"]
     
 }

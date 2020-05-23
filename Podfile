@@ -15,4 +15,7 @@ pod 'IQKeyboardManagerSwift'
 pod 'Material'
 pod 'TagListView'
 
+pod 'IBAnimatable'
+pod 'Parchment'
+pod 'SegementSlide'
 end

@@ -102,3 +102,9 @@ class ResultCalculation{
     }
 
 }
+
+
+class TagCalculation{
+    
+    
+}
