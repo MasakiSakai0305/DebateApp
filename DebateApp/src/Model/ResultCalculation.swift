@@ -106,5 +106,45 @@ class ResultCalculation{
 
 class TagCalculation{
     
+    var tagDict = Dictionary<String, Int>()
+    var styleTagDict = Dictionary<String, Any>()
+    var roleTagDict = Dictionary<String, Any>()
+    var genreTagDict = Dictionary<String, Any>()
     
+    var tagString = [String]()
+    
+    func makeTagDictData(){
+        let realm = try! Realm()
+        let obs = realm.objects(TagList.self)
+        print(obs)
+        print(obs[0].tags)
+        print("for tag")
+        for tag in obs[0].tags{
+            tagDict[tag["tag"] as! String] = 0
+        }
+        print(tagDict)
+    }
+    
+    func makeStyleTagData(){
+        print(tagDict)
+        for style in FeedBackItemList().styleList{
+            styleTagDict[style] = tagDict
+        }
+        print(styleTagDict)
+    }
+    
+    func makeRoleTagData(){
+        for role in FeedBackItemList().roleList{
+            roleTagDict[role] = tagDict
+        }
+        print(roleTagDict)
+    }
+    
+    func makeGenreTagData(){
+        for genre in FeedBackItemList().motionGenreList{
+            genreTagDict[genre] = tagDict
+        }
+        print(genreTagDict)
+    }
 }
+

@@ -67,6 +67,11 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         prepareFABButton()
         
         print("--viewDidLoad initialVC--")
+        let tagCalc = TagCalculation()
+        tagCalc.makeTagDictData()
+        tagCalc.makeStyleTagData()
+        tagCalc.makeRoleTagData()
+        tagCalc.makeGenreTagData()
         
         
         //let realm = try! Realm()
