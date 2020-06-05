@@ -11,7 +11,9 @@ import RealmSwift
 import Material
 
 protocol updateTagDelegate {
-    func AddTagAndUpdateLayout(TagString:String)
+    func AddTagAndUpdateLayout(TagString:String, deleteTagList:[String])
+    func sendDeleteTagList(deleteTagList:[String])
+    func deleteTagFromTagView(deleteTagList:[String])
 }
 
 class TagListTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate ,TagCellDelegate, EditTagDelegate {
@@ -30,6 +32,9 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
     var delegate:updateTagDelegate?
     
     var isAddNewTag = false
+    
+    //削除するタグを一時的に格納
+    var deletedList = [String]()
 
 
     @IBOutlet weak var tableView: UITableView!
@@ -57,6 +62,8 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
             TagArray.append(tag["tag"] as! String)
         }
         
+        //deletedList.append("インパクトがない")
+        //deleteTagFromDB()
         
     }
     
@@ -89,9 +96,9 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
 
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.AddTagAndUpdateLayout(TagString: TagArray[indexPath.row])
+        delegate?.AddTagAndUpdateLayout(TagString: TagArray[indexPath.row], deleteTagList: deletedList)
+        delegate?.sendDeleteTagList(deleteTagList: deletedList)
         
-        //navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
     
@@ -109,11 +116,16 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
     
     //戻るボタン
     @IBAction func Back(_ sender: Any) {
+        //deleteTagFromDB()
+        //delegate?.sendDeleteTagList(deleteTagList: deletedList)
+        delegate?.deleteTagFromTagView(deleteTagList: deletedList)
         dismiss(animated: true, completion: nil)
     }
     
     //タグを削除
     func deleteTag(cellNum:Int){
+        deletedList.append(TagArray[cellNum])
+        
         //配列の要素を削除
         TagArray.remove(at: cellNum)
         
@@ -124,6 +136,31 @@ class TagListTableViewController: UIViewController, UITableViewDataSource, UITab
             realm.delete(objects[0].tags[cellNum])
         }
         
+        deleteTagFromDB()
+        
+    }
+    
+    //DB上のデータのタグも削除する
+    func deleteTagFromDB(){
+        print("deleteTagFromDB")
+        print(deletedList)
+        let realm = try! Realm()
+        let obs = realm.objects(FeedBack.self)
+        
+        try! realm.write{
+            for ob in obs{
+                //print(ob)
+                for (index, tag) in ob.tags.enumerated() {
+                    if deletedList.contains(tag.tag!) {
+                        print("Match!", tag.tag!, index)
+                        ob.tags.remove(at: index)
+                    }
+                }
+            }
+        }
+        
+        print("削除完了")
+        print(obs)
     }
     
     

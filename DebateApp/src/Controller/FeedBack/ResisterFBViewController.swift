@@ -22,6 +22,15 @@ protocol updateTableDelegate {
 
 
 class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate, TagListViewDelegate, updateTagDelegate {
+    func sendDeleteTagList(deleteTagList: [String]) {
+        print(1)
+    }
+    
+    func deleteTagFromTagView(deleteTagList:[String]) {
+        print(1)
+    }
+
+    
 
     
     
@@ -307,7 +316,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     }
     
     //タグを追加 (delegateメソッド)
-    func AddTagAndUpdateLayout(TagString:String) {
+    func AddTagAndUpdateLayout(TagString:String, deleteTagList:[String]) {
         print("AddTagAndUpdateLayout")
         tagListView.addTag(TagString)
         updateLayout()

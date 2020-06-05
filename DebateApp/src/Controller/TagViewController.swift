@@ -10,6 +10,15 @@ import UIKit
 import TagListView
 
 class TagViewController: UIViewController, UITextFieldDelegate, TagListViewDelegate, updateTagDelegate {
+    func sendDeleteTagList(deleteTagList: [String]) {
+        print(1)
+    }
+    
+    func deleteTagFromTagView(deleteTagList:[String]) {
+        print(1)
+    }
+    
+
     
     
 
@@ -83,7 +92,7 @@ class TagViewController: UIViewController, UITextFieldDelegate, TagListViewDeleg
     }
     
     //タグを追加
-    func AddTagAndUpdateLayout(TagString:String) {
+    func AddTagAndUpdateLayout(TagString:String, deleteTagList:[String]) {
         print("AddTagAndUpdateLayout")
         tagListView.addTag(TagString)
         updateLayout()

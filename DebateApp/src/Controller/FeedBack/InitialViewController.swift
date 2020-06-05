@@ -68,11 +68,12 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         print("--viewDidLoad initialVC--")
         let tagCalc = TagCalculation()
-        tagCalc.makeTagDictData()
-        tagCalc.makeStyleTagData()
-        tagCalc.makeRoleTagData()
-        tagCalc.makeGenreTagData()
-        tagCalc.addTag()
+//        tagCalc.makeTagDictData()
+//        tagCalc.makeStyleTagData()
+//        tagCalc.makeRoleTagData()
+//        tagCalc.makeGenreTagData()
+//        tagCalc.addTag()
+        
         
         
         //let realm = try! Realm()
@@ -133,6 +134,9 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
     func createDefaultTagList(){
         let realm = try! Realm()
         let objects = realm.objects(TagList.self)
+        print("createDefaultTagList")
+        print(objects)
+        
         if objects.count > 0{
             print(objects)
             print("return createDefaultTagList")

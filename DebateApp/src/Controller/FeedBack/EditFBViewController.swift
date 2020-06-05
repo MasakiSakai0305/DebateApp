@@ -112,6 +112,8 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     var filterString = String()
     var keywordString = String()
     
+    var deletedTagList = [String]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -266,9 +268,8 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         print("tagListView", tagListView, tagArray)
         view.addSubview(tagListView)
         updateLayout()
-
-
-      
+        
+        
         doneButton.tag = 100
         motionLabel.numberOfLines = 3
         
@@ -287,7 +288,6 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
                 print("Error in set_WLRadioButton")
        
        }
-    
        
         //ラジオボタン設置(スタイル)
         //InitialVCから受け取った値を参照してスタイルをチェック
@@ -326,6 +326,34 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
 
     }
     
+    //tagListViewのタグを削除する
+    func deleteTagfromListViewTags(deleteTagList:[String]) {
+        print("deleteTagfromListViewTags in editvc")
+        for deleteTag in deleteTagList{
+            print(deleteTag)
+            tagListView.removeTag(deleteTag)
+        }
+        updateLayout()
+        
+    }
+    
+    //(delegateメソッド)
+    func sendDeleteTagList(deleteTagList:[String]){
+        print("sendDeleteTagList", deleteTagList)
+        deletedTagList = deleteTagList
+    }
+    
+    //タグを削除する,画面が戻る段階で呼ばれる(delegateメソッド)
+    func deleteTagFromTagView(deleteTagList:[String]){
+        print("deleteTagFromTagView delegateメソッド")
+        print(deleteTagList)
+        for deleteTag in deleteTagList{
+            print("deleteTag: ", deleteTag)
+            tagListView.removeTag(deleteTag)
+        }
+        updateLayout()
+    }
+    
     
     @IBAction func GoTagList(_ sender: Any) {
         //画面遷移
@@ -341,8 +369,12 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     }
     
     //タグを追加 (delegateメソッド)
-    func AddTagAndUpdateLayout(TagString:String) {
+    func AddTagAndUpdateLayout(TagString:String, deleteTagList:[String]) {
         print("AddTagAndUpdateLayout")
+        
+        //削除・タグ追加を同時に行なっている時のために呼び出す
+        deleteTagfromListViewTags(deleteTagList: deleteTagList)
+        
         tagListView.addTag(TagString)
         updateLayout()
     }
@@ -354,6 +386,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         sender.removeTagView(tagView)
         updateLayout()
     }
+    
 
     func updateLayout() {
         if tagListView.tagViews.count > 0 {
@@ -495,6 +528,8 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         let realm = try! Realm()
         let objects = realm.objects(FeedBack.self)
         let sorted = objects.sorted(byKeyPath: "date", ascending: false)
+        print("sortDate in editVC")
+        print(sorted)
         return sorted
     }
     
