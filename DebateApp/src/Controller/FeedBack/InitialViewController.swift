@@ -72,6 +72,7 @@ class InitialViewController: UIViewController, UITableViewDelegate, UITableViewD
         tagCalc.makeStyleTagData()
         tagCalc.makeRoleTagData()
         tagCalc.makeGenreTagData()
+        tagCalc.addTag()
         
         
         //let realm = try! Realm()

@@ -157,12 +157,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         sideTextField.text = object.side
         roleTextField.text = object.role
         
-        //タグ情報を配列に格納
-        print("object.tagList", object.tags)
-        for tag in object.tags {
-            print(tag.value(forKey: "tag")!)
-            tagArray.append(tag.value(forKey: "tag") as! String)
-        }
+
        
        //スコア入力機能設定
        let toolBarScore = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
@@ -259,11 +254,21 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         tagListView.removeButtonIconSize = 10
         tagListView.removeIconLineColor = UIColor.black
         
+        //タグ情報を配列に格納
+        print("object.tagList", object.tags)
+        for tag in object.tags {
+            print(tag.value(forKey: "tag")!)
+            tagArray.append(tag.value(forKey: "tag") as! String)
+        }
+        
         //DBに格納されているタグ情報を追加
         tagListView.addTags(tagArray)
+        print("tagListView", tagListView, tagArray)
         view.addSubview(tagListView)
+        updateLayout()
 
-       
+
+      
         doneButton.tag = 100
         motionLabel.numberOfLines = 3
         
@@ -344,6 +349,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
 
     // タグ削除ボタンが押された
     func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
+        print("tagRemoveButtonPressed")
         // リストからタグ削除
         sender.removeTagView(tagView)
         updateLayout()

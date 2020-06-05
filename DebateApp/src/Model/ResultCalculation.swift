@@ -107,9 +107,10 @@ class ResultCalculation{
 class TagCalculation{
     
     var tagDict = Dictionary<String, Int>()
-    var styleTagDict = Dictionary<String, Any>()
-    var roleTagDict = Dictionary<String, Any>()
-    var genreTagDict = Dictionary<String, Any>()
+    var styleTagDict = Dictionary<String, Dictionary<String, Int> >()
+    var roleTagDict = Dictionary<String, Dictionary<String, Int> >()
+    var genreTagDict = Dictionary<String, Dictionary<String, Int> >()
+//    var styleTagDict2 = ["NA": ["インパクトがない": 0, "イラストが足りない": 0, "モデルが分からない": 0, "irasutobusoku": 0, "aaa": 0], "BP": ["インパクトがない": 0, "イラストが足りない": 0, "モデルが分からない": 0, "irasutobusoku": 0, "aaa": 0], "Asian": ["インパクトがない": 0, "イラストが足りない": 0, "モデルが分からない": 0, "irasutobusoku": 0, "aaa": 0]]
     
     var tagString = [String]()
     
@@ -122,7 +123,7 @@ class TagCalculation{
         for tag in obs[0].tags{
             tagDict[tag["tag"] as! String] = 0
         }
-        print(tagDict)
+//        print(tagDict)
     }
     
     func makeStyleTagData(){
@@ -137,14 +138,39 @@ class TagCalculation{
         for role in FeedBackItemList().roleList{
             roleTagDict[role] = tagDict
         }
-        print(roleTagDict)
+//        print(roleTagDict)
     }
     
     func makeGenreTagData(){
         for genre in FeedBackItemList().motionGenreList{
             genreTagDict[genre] = tagDict
         }
+//        print(genreTagDict)
+    }
+    
+    func addTag(){
+        let realm = try! Realm()
+        let obs = realm.objects(FeedBack.self)
+    
+        //DBのデータを１つずつ参照
+        for object in obs{
+            print("--object--\n", object)
+            //そのデータが保持しているタグを1つずつ参照して加算する
+            for tag in object.tags{
+                print(tag["tag"]!)
+                print(styleTagDict[object.style]![tag["tag"] as! String]!)
+                //「スタイル」のカテゴリでタグを加算する
+                styleTagDict[object.style]![tag["tag"] as! String]! += 1
+                //「ロール」のカテゴリでタグを加算する
+                roleTagDict[object.role]![tag["tag"] as! String]! += 1
+                //「モーションジャンル」のカテゴリでタグを加算する
+                genreTagDict[object.motionGenre]![tag["tag"] as! String]! += 1
+            }
+        }
+        print(styleTagDict)
+        print(roleTagDict)
         print(genreTagDict)
     }
 }
+
 
