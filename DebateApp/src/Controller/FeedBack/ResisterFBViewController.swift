@@ -22,16 +22,7 @@ protocol updateTableDelegate {
 
 
 class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate, TagListViewDelegate, updateTagDelegate {
-    func sendDeleteTagList(deleteTagList: [String]) {
-        print(1)
-    }
     
-    func deleteTagFromTagView(deleteTagList:[String]) {
-        print(1)
-    }
-
-    
-
     
     
     var delegate:updateTableDelegate?
@@ -129,6 +120,9 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     
     var WLButtonArray = [UIButton]()
     var styleButtonArray = [UIButton]()
+    
+    //タグ自体が削除された時にその情報を渡す一時変数
+    var deletedTagList = [String]()
 
 
     override func viewDidLoad() {
@@ -296,6 +290,35 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     
     }
     
+    //tagListViewのタグを削除する
+    func deleteTagfromListViewTags(deleteTagList:[String]) {
+        print("deleteTagfromListViewTags in editvc")
+        for deleteTag in deleteTagList{
+            print(deleteTag)
+            tagListView.removeTag(deleteTag)
+        }
+        updateLayout()
+        
+    }
+    
+    //配列に格納された, 削除したタグの名前を受け取る(delegateメソッド)
+    func sendDeleteTagList(deleteTagList:[String]){
+        print("sendDeleteTagList", deleteTagList)
+        deletedTagList = deleteTagList
+    }
+    
+    //タグを削除する,画面が戻る段階で呼ばれる(delegateメソッド)
+    func deleteTagFromTagView(deleteTagList:[String]){
+        print("deleteTagFromTagView delegateメソッド")
+        print(deleteTagList)
+        for deleteTag in deleteTagList{
+            print("deleteTag: ", deleteTag)
+            tagListView.removeTag(deleteTag)
+        }
+        updateLayout()
+    }
+    
+    
 
     @IBAction func GoTagList(_ sender: Any) {
 //        let TagListVC = storyboard?.instantiateViewController(withIdentifier: "Tag")  as! TagListTableViewController
@@ -318,6 +341,10 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     //タグを追加 (delegateメソッド)
     func AddTagAndUpdateLayout(TagString:String, deleteTagList:[String]) {
         print("AddTagAndUpdateLayout")
+        
+        //削除・タグ追加を同時に行なっている時のために呼び出す
+        deleteTagfromListViewTags(deleteTagList: deleteTagList)
+        
         tagListView.addTag(TagString)
         updateLayout()
     }

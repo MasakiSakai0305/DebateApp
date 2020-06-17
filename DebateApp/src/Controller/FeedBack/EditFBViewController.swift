@@ -337,7 +337,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         
     }
     
-    //(delegateメソッド)
+    //配列に格納された, 削除したタグの名前を受け取る(delegateメソッド)
     func sendDeleteTagList(deleteTagList:[String]){
         print("sendDeleteTagList", deleteTagList)
         deletedTagList = deleteTagList
@@ -346,6 +346,7 @@ class EditFBViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     //タグを削除する,画面が戻る段階で呼ばれる(delegateメソッド)
     func deleteTagFromTagView(deleteTagList:[String]){
         print("deleteTagFromTagView delegateメソッド")
+    
         print(deleteTagList)
         for deleteTag in deleteTagList{
             print("deleteTag: ", deleteTag)

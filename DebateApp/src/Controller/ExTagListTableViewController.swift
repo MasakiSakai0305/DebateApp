@@ -54,7 +54,7 @@ class ExTagListTableViewController: UITableViewController, UINavigationControlle
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.AddTagAndUpdateLayout(TagString: Array[indexPath.row])
+        delegate?.AddTagAndUpdateLayout(TagString: Array[indexPath.row], deleteTagList:["String"])
         
         navigationController?.popViewController(animated: true)
         //dismiss(animated: true, completion: nil)
