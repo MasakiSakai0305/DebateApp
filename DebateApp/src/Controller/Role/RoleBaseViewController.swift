@@ -43,11 +43,27 @@ class RoleBaseViewController: SegementSlideDefaultViewController {
         switch index {
             
         case 0:
-            return StyleViewController()
+            return PMSlideController()
         case 1:
-            return RoleViewController()
+            return DPMSlideController()
+        case 2:
+            return MGSlideController()
+        case 3:
+            return GWSlideController()
+        case 4:
+            return PMRSlideController()
+        case 5:
+            return LOSlideController()
+        case 6:
+            return DLOSlideController()
+        case 7:
+            return MOSlideController()
+        case 8:
+            return OWSlideController()
+        case 9:
+            return LORSlideController()
         default:
-            return StyleViewController()
+            return PMSlideController()
         }
     }
 

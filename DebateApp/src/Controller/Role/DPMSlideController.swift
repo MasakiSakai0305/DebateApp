@@ -1,15 +1,15 @@
 //
-//  RoleViewController.swift
+//  DPMSlideController.swift
 //  DebateApp
 //
-//  Created by 境将輝 on 2020/05/22.
+//  Created by 境将輝 on 2020/06/18.
 //  Copyright © 2020 Masaki Sakai. All rights reserved.
 //
 
 import UIKit
 import SegementSlide
 
-class RoleViewController: UIViewController, SegementSlideContentScrollViewDelegate {
+class DPMSlideController: UIViewController,SegementSlideContentScrollViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()

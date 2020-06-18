@@ -1,5 +1,5 @@
 //
-//  StyleViewController.swift
+//  RoleViewController.swift
 //  DebateApp
 //
 //  Created by 境将輝 on 2020/05/22.
@@ -9,7 +9,7 @@
 import UIKit
 import SegementSlide
 
-class StyleViewController: UIViewController , SegementSlideContentScrollViewDelegate{
+class BPSlideController: UIViewController, SegementSlideContentScrollViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()

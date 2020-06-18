@@ -14,12 +14,23 @@
 		3A3D5AC224665876005891D6 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5AC024665876005891D6 /* TagCell.swift */; };
 		3A3D5AC324665876005891D6 /* TagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A3D5AC124665876005891D6 /* TagCell.xib */; };
 		3A3D5AC524665AAC005891D6 /* EditTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5AC424665AAC005891D6 /* EditTagViewController.swift */; };
-		3A3D5ACB2477EE16005891D6 /* StyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5ACA2477EE16005891D6 /* StyleViewController.swift */; };
-		3A3D5ACD2477EE23005891D6 /* RoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5ACC2477EE23005891D6 /* RoleViewController.swift */; };
+		3A3D5ACB2477EE16005891D6 /* NASlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5ACA2477EE16005891D6 /* NASlideController.swift */; };
+		3A3D5ACD2477EE23005891D6 /* BPSlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5ACC2477EE23005891D6 /* BPSlideController.swift */; };
 		3A3D5AD12477F083005891D6 /* StyleBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5AD02477F083005891D6 /* StyleBaseViewController.swift */; };
 		3A3D5AD32478C4C9005891D6 /* RoleBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5AD22478C4C9005891D6 /* RoleBaseViewController.swift */; };
 		3A3D5AD52478C4DB005891D6 /* GenreBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5AD42478C4DB005891D6 /* GenreBaseViewController.swift */; };
 		3A3D5AD72478C6EE005891D6 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5AD62478C6EE005891D6 /* MenuTableViewController.swift */; };
+		3A3D5ADD249BAC64005891D6 /* AsianSlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5ADC249BAC64005891D6 /* AsianSlideController.swift */; };
+		3A3D5ADF249BAE0D005891D6 /* PMSlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5ADE249BAE0D005891D6 /* PMSlideController.swift */; };
+		3A3D5AE1249BAE1F005891D6 /* DPMSlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5AE0249BAE1F005891D6 /* DPMSlideController.swift */; };
+		3A3D5AE3249BAE3B005891D6 /* MGSlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5AE2249BAE3B005891D6 /* MGSlideController.swift */; };
+		3A3D5AE5249BAE4E005891D6 /* GWSlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5AE4249BAE4E005891D6 /* GWSlideController.swift */; };
+		3A3D5AE7249BAE65005891D6 /* PMRSlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5AE6249BAE65005891D6 /* PMRSlideController.swift */; };
+		3A3D5AE9249BAE94005891D6 /* LOSlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5AE8249BAE94005891D6 /* LOSlideController.swift */; };
+		3A3D5AEB249BAEA3005891D6 /* DLOSlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5AEA249BAEA3005891D6 /* DLOSlideController.swift */; };
+		3A3D5AED249BAEB0005891D6 /* MOSlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5AEC249BAEB0005891D6 /* MOSlideController.swift */; };
+		3A3D5AEF249BAEBC005891D6 /* OWSlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5AEE249BAEBC005891D6 /* OWSlideController.swift */; };
+		3A3D5AF1249BAEC8005891D6 /* LORSlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5AF0249BAEC8005891D6 /* LORSlideController.swift */; };
 		3A742712243B2C19005D6F78 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A742711243B2C19005D6F78 /* InitialViewController.swift */; };
 		3A742715243B51CB005D6F78 /* FeedBackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A742713243B51CB005D6F78 /* FeedBackCell.swift */; };
 		3A742716243B51CB005D6F78 /* FeedBackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A742714243B51CB005D6F78 /* FeedBackCell.xib */; };
@@ -72,12 +83,23 @@
 		3A3D5AC024665876005891D6 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		3A3D5AC124665876005891D6 /* TagCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCell.xib; sourceTree = "<group>"; };
 		3A3D5AC424665AAC005891D6 /* EditTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTagViewController.swift; sourceTree = "<group>"; };
-		3A3D5ACA2477EE16005891D6 /* StyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleViewController.swift; sourceTree = "<group>"; };
-		3A3D5ACC2477EE23005891D6 /* RoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleViewController.swift; sourceTree = "<group>"; };
+		3A3D5ACA2477EE16005891D6 /* NASlideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASlideController.swift; sourceTree = "<group>"; };
+		3A3D5ACC2477EE23005891D6 /* BPSlideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPSlideController.swift; sourceTree = "<group>"; };
 		3A3D5AD02477F083005891D6 /* StyleBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleBaseViewController.swift; sourceTree = "<group>"; };
 		3A3D5AD22478C4C9005891D6 /* RoleBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleBaseViewController.swift; sourceTree = "<group>"; };
 		3A3D5AD42478C4DB005891D6 /* GenreBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreBaseViewController.swift; sourceTree = "<group>"; };
 		3A3D5AD62478C6EE005891D6 /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		3A3D5ADC249BAC64005891D6 /* AsianSlideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsianSlideController.swift; sourceTree = "<group>"; };
+		3A3D5ADE249BAE0D005891D6 /* PMSlideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMSlideController.swift; sourceTree = "<group>"; };
+		3A3D5AE0249BAE1F005891D6 /* DPMSlideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPMSlideController.swift; sourceTree = "<group>"; };
+		3A3D5AE2249BAE3B005891D6 /* MGSlideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGSlideController.swift; sourceTree = "<group>"; };
+		3A3D5AE4249BAE4E005891D6 /* GWSlideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GWSlideController.swift; sourceTree = "<group>"; };
+		3A3D5AE6249BAE65005891D6 /* PMRSlideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMRSlideController.swift; sourceTree = "<group>"; };
+		3A3D5AE8249BAE94005891D6 /* LOSlideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOSlideController.swift; sourceTree = "<group>"; };
+		3A3D5AEA249BAEA3005891D6 /* DLOSlideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLOSlideController.swift; sourceTree = "<group>"; };
+		3A3D5AEC249BAEB0005891D6 /* MOSlideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOSlideController.swift; sourceTree = "<group>"; };
+		3A3D5AEE249BAEBC005891D6 /* OWSlideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OWSlideController.swift; sourceTree = "<group>"; };
+		3A3D5AF0249BAEC8005891D6 /* LORSlideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LORSlideController.swift; sourceTree = "<group>"; };
 		3A742711243B2C19005D6F78 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		3A742713243B51CB005D6F78 /* FeedBackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackCell.swift; sourceTree = "<group>"; };
 		3A742714243B51CB005D6F78 /* FeedBackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedBackCell.xib; sourceTree = "<group>"; };
@@ -138,6 +160,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A3D5AD9249BAB93005891D6 /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				3A3D5AD02477F083005891D6 /* StyleBaseViewController.swift */,
+				3A3D5ACA2477EE16005891D6 /* NASlideController.swift */,
+				3A3D5ACC2477EE23005891D6 /* BPSlideController.swift */,
+				3A3D5ADC249BAC64005891D6 /* AsianSlideController.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
+		3A3D5ADA249BABA3005891D6 /* Role */ = {
+			isa = PBXGroup;
+			children = (
+				3A3D5AD22478C4C9005891D6 /* RoleBaseViewController.swift */,
+				3A3D5ADE249BAE0D005891D6 /* PMSlideController.swift */,
+				3A3D5AE0249BAE1F005891D6 /* DPMSlideController.swift */,
+				3A3D5AE2249BAE3B005891D6 /* MGSlideController.swift */,
+				3A3D5AE4249BAE4E005891D6 /* GWSlideController.swift */,
+				3A3D5AE6249BAE65005891D6 /* PMRSlideController.swift */,
+				3A3D5AE8249BAE94005891D6 /* LOSlideController.swift */,
+				3A3D5AEA249BAEA3005891D6 /* DLOSlideController.swift */,
+				3A3D5AEC249BAEB0005891D6 /* MOSlideController.swift */,
+				3A3D5AEE249BAEBC005891D6 /* OWSlideController.swift */,
+				3A3D5AF0249BAEC8005891D6 /* LORSlideController.swift */,
+			);
+			path = Role;
+			sourceTree = "<group>";
+		};
+		3A3D5ADB249BABAF005891D6 /* MotionGenre */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MotionGenre;
+			sourceTree = "<group>";
+		};
 		3A7E52BC2446DBCB00174180 /* Figure */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,15 +284,14 @@
 				3A97926A24584C35002AFDC5 /* SideMenuViewController.swift */,
 				3A7E52BD2446DBD200174180 /* FeedBack */,
 				3A7E52BC2446DBCB00174180 /* Figure */,
+				3A3D5AD9249BAB93005891D6 /* Style */,
+				3A3D5ADA249BABA3005891D6 /* Role */,
+				3A3D5ADB249BABAF005891D6 /* MotionGenre */,
 				3A97E0812435D7C000D4CCCB /* AppDelegate.swift */,
 				3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */,
 				3A979274245BC021002AFDC5 /* MultiTableViewController.swift */,
 				3A375FC12462979400A57F29 /* TagViewController.swift */,
 				3A375FC3246297B000A57F29 /* ExTagListTableViewController.swift */,
-				3A3D5ACA2477EE16005891D6 /* StyleViewController.swift */,
-				3A3D5ACC2477EE23005891D6 /* RoleViewController.swift */,
-				3A3D5AD02477F083005891D6 /* StyleBaseViewController.swift */,
-				3A3D5AD22478C4C9005891D6 /* RoleBaseViewController.swift */,
 				3A3D5AD42478C4DB005891D6 /* GenreBaseViewController.swift */,
 				3A3D5AD62478C6EE005891D6 /* MenuTableViewController.swift */,
 			);
@@ -438,7 +495,10 @@
 				3A3D5AC224665876005891D6 /* TagCell.swift in Sources */,
 				3A742715243B51CB005D6F78 /* FeedBackCell.swift in Sources */,
 				3A97E0862435D7C000D4CCCB /* ResisterFBViewController.swift in Sources */,
+				3A3D5AF1249BAEC8005891D6 /* LORSlideController.swift in Sources */,
 				3A7E52BB24418D6900174180 /* EditFBViewController.swift in Sources */,
+				3A3D5AED249BAEB0005891D6 /* MOSlideController.swift in Sources */,
+				3A3D5AE7249BAE65005891D6 /* PMRSlideController.swift in Sources */,
 				3A3D5AD12477F083005891D6 /* StyleBaseViewController.swift in Sources */,
 				3AC1557124383D6B0076D8D8 /* ExViewController.swift in Sources */,
 				3AB6A13E244EF0270065CEBC /* BPPieChartViewCell.swift in Sources */,
@@ -446,31 +506,39 @@
 				3A97926724582C18002AFDC5 /* ViewController.swift in Sources */,
 				3A3D5AD32478C4C9005891D6 /* RoleBaseViewController.swift in Sources */,
 				3A97E0822435D7C000D4CCCB /* AppDelegate.swift in Sources */,
+				3A3D5AEF249BAEBC005891D6 /* OWSlideController.swift in Sources */,
 				3A97925824553FDD002AFDC5 /* NAScoreCell.swift in Sources */,
 				3AB6A122244944BA0065CEBC /* ScoreBarChartsScrollViewController.swift in Sources */,
 				3AB6A12E24495CC90065CEBC /* PieChartCell.swift in Sources */,
 				3A7E52BF2446DC0500174180 /* FigureViewController.swift in Sources */,
-				3A3D5ACB2477EE16005891D6 /* StyleViewController.swift in Sources */,
+				3A3D5ACB2477EE16005891D6 /* NASlideController.swift in Sources */,
 				3A7E52C12447F35400174180 /* Result.swift in Sources */,
 				3A375FC22462979400A57F29 /* TagViewController.swift in Sources */,
 				3A3D5AD52478C4DB005891D6 /* GenreBaseViewController.swift in Sources */,
+				3A3D5AE9249BAE94005891D6 /* LOSlideController.swift in Sources */,
 				3A97927224598BF9002AFDC5 /* SideMenuStyleCell.swift in Sources */,
 				3A375FC4246297B000A57F29 /* ExTagListTableViewController.swift in Sources */,
 				3A97926B24584C35002AFDC5 /* SideMenuViewController.swift in Sources */,
 				3A3D5AD72478C6EE005891D6 /* MenuTableViewController.swift in Sources */,
 				3A3D5ABF2464EAC3005891D6 /* TagListTableViewController.swift in Sources */,
 				3A97925C24554442002AFDC5 /* BPScoreCell.swift in Sources */,
+				3A3D5AE3249BAE3B005891D6 /* MGSlideController.swift in Sources */,
 				3AB6A137244EEEB50065CEBC /* DrawGraph.swift in Sources */,
 				3AB6A142244EF03A0065CEBC /* AsianPieChartViewCell2.swift in Sources */,
 				3AB6A13524495E5D0065CEBC /* WinRatePieChartsScrollViewController.swift in Sources */,
+				3A3D5ADF249BAE0D005891D6 /* PMSlideController.swift in Sources */,
 				3A3D5AC524665AAC005891D6 /* EditTagViewController.swift in Sources */,
+				3A3D5AEB249BAEA3005891D6 /* DLOSlideController.swift in Sources */,
 				3A742712243B2C19005D6F78 /* InitialViewController.swift in Sources */,
+				3A3D5AE5249BAE4E005891D6 /* GWSlideController.swift in Sources */,
 				3A979254245287D9002AFDC5 /* TotalScoreCell.swift in Sources */,
+				3A3D5AE1249BAE1F005891D6 /* DPMSlideController.swift in Sources */,
 				3A2CD2A424370BCB008FC787 /* FeedBack.swift in Sources */,
 				3A9792602455445C002AFDC5 /* AsianScoreCell.swift in Sources */,
-				3A3D5ACD2477EE23005891D6 /* RoleViewController.swift in Sources */,
+				3A3D5ACD2477EE23005891D6 /* BPSlideController.swift in Sources */,
 				3A7E52C32447FFDE00174180 /* ResultCalculation.swift in Sources */,
 				3A979275245BC021002AFDC5 /* MultiTableViewController.swift in Sources */,
+				3A3D5ADD249BAC64005891D6 /* AsianSlideController.swift in Sources */,
 				3AB6A13A244EEFFE0065CEBC /* NAPieChartViewCell.swift in Sources */,
 				3A97E0842435D7C000D4CCCB /* SceneDelegate.swift in Sources */,
 			);

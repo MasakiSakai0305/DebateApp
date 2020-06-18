@@ -43,11 +43,11 @@ class GenreBaseViewController: SegementSlideDefaultViewController {
         switch index {
             
         case 0:
-            return StyleViewController()
+            return NASlideController()
         case 1:
-            return RoleViewController()
+            return NASlideController()
         default:
-            return StyleViewController()
+            return NASlideController()
         }
     }
 

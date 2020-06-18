@@ -43,11 +43,13 @@ class StyleBaseViewController: SegementSlideDefaultViewController {
         switch index {
             
         case 0:
-            return StyleViewController()
+            return NASlideController()
         case 1:
-            return RoleViewController()
+            return BPSlideController()
+        case 2:
+            return AsianSlideController()
         default:
-            return StyleViewController()
+            return NASlideController()
         }
     }
 }
