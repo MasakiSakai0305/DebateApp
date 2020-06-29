@@ -13,12 +13,24 @@ import TagListView
 
 
 protocol updateTableDelegate {
-    
     func updateTable()
-    
 }
 
-
+/*
+ ResisterFBVC
+ 内容：FBを新規作成作成する
+ 
+ 記述内容
+ ・モーション
+ ・スタイル
+ ・スコア
+ ・ロール
+ ・タグ
+ ・サイド
+ ・日付
+ ・モーションジャンル
+ ・勝敗
+*/
 
 
 class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate, TagListViewDelegate, updateTagDelegate {
@@ -112,8 +124,6 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     
     //スクリーンのサイズ
     let screenSize = UIScreen.main.bounds.size
-    //textViewのyを記憶するための変数
-    var textViewHeight = CGFloat()
     //textViewを編集しているかどうかを確認
     var isTextViewEditing = Bool()
     
@@ -127,8 +137,6 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        
         motionTextField.delegate = self
         FBTextView.delegate = self
         motionGenreTextField.delegate = self
@@ -142,10 +150,9 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         pickerViewSide.dataSource = self
         pickerViewRole.delegate = self
         pickerViewRole.dataSource = self
-        
         navigationController?.delegate = self
         
-        //スコア入力機能設定
+        //スコア入力UI設定
         let toolBarScore = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
         let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneScore))
         toolBarScore.setItems([doneItem], animated: true)
@@ -153,7 +160,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         scoreTextField.inputAccessoryView = toolBarScore
         scoreTextField.text = score
         
-        //日付入力機能
+        //日付入力UI設定
         let toolBarDate = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
         let doneItemDate = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDate))
         toolBarDate.setItems([doneItemDate], animated: true)
@@ -161,7 +168,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         dateTextField.inputAccessoryView = toolBarDate
         dateTextField.text = dates
         
-        //モーションジャンル入力機能設定
+        //モーションジャンル入力UI設定
         let toolBarMotionGenre = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
         let doneItemMotionGenre = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneMotionGenre))
         toolBarMotionGenre.setItems([doneItemMotionGenre], animated: true)
@@ -169,7 +176,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         motionGenreTextField.inputAccessoryView = toolBarMotionGenre
         motionGenreTextField.text = motionGenre
         
-        //サイド入力機能
+        //サイド入力UI設定
         let toolBarSide = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
         let doneItemSide = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneSide))
         toolBarSide.setItems([doneItemSide], animated: true)
@@ -177,7 +184,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         sideTextField.inputAccessoryView = toolBarSide
         sideTextField.text = side
         
-        //ロール入力機能
+        //ロール入力UI設定
         let toolBarRole = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
         let doneItemRole = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneRole))
         toolBarRole.setItems([doneItemRole], animated: true)
@@ -192,12 +199,14 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         //モーションラベル
         motionLabel.frame = CGRect(x:view.frame.size.width/20, y: view.frame.size.height/20, width: view.frame.size.width, height: view.frame.size.height/5)
         motionLabel.text = motionTitleString
+        //モーションラベルの行数を設定
+        motionLabel.numberOfLines = 3
         
-        //"勝敗", "スタイル"ラベル設定
+        //勝敗, スタイルラベル位置設定
         WLLabel.frame = CGRect(x:view.frame.size.width/17, y: view.frame.size.height/3.3, width: view.frame.size.width/5, height: view.frame.size.height/15)
         styleLabel.frame = CGRect(x: view.frame.size.width * 0.55, y: view.frame.size.height/3.2, width: view.frame.size.width/5, height: view.frame.size.height/21)
         
-        //"スコア"UI位置設定
+        //スコアUI位置設定
         scoreLabel.frame = CGRect(x: view.frame.size.width/25, y: view.frame.size.height/2, width: view.frame.size.width/6, height: view.frame.size.height/21)
         scoreTextField.frame = CGRect(x:view.frame.size.width/5.2, y: view.frame.size.height/2, width: view.frame.size.width/9, height: view.frame.size.height/21)
         
@@ -229,6 +238,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         addTagButton.frame = CGRect(x: view.frame.size.width/25, y: view.frame.size.height * 0.7, width: view.frame.size.width * 0.9, height: view.frame.size.height/25)
         //addTagButton.titleLabel?.adjustsFontSizeToFitWidth = true
         
+        //タグUI
         tagListView.frame = CGRect(x: view.frame.size.width/25, y: view.frame.size.height * 0.75, width: view.frame.size.width * 0.9, height: 0)
         // タグの削除ボタンを有効に
         tagListView.enableRemoveButton = true
@@ -251,9 +261,9 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         
         //addTagButton.removeFromSuperview()
         
-        
+        //「決定ボタン」のタグを設定
         doneButton.tag = 100
-        motionLabel.numberOfLines = 3
+        
         
         //ラジオボタン設置(勝敗)
         for i in 0..<feedbackItem.WLList.count {
@@ -276,17 +286,9 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
 //        キーボードが閉じる時に,keyboardWillHideを呼ぶ
 //        NotificationCenter.default.addObserver(self, selector: #selector(ResisterFBViewController.keyboardWillHide(_ :)), name: UIResponder.keyboardDidHideNotification, object: nil)
         
-        
-       //yの位置を記憶
-        textViewHeight = FBTextView.frame.origin.y
         //textViewが重なる時に上に来るようにする
         self.view.bringSubviewToFront(FBTextView)
        
-        
-//        try! realm.write {
-//            realm.deleteAll()
-//        }
-
     
     }
     
@@ -319,13 +321,8 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     }
     
     
-
+    //タグ選択画面に遷移
     @IBAction func GoTagList(_ sender: Any) {
-//        let TagListVC = storyboard?.instantiateViewController(withIdentifier: "Tag")  as! TagListTableViewController
-               //TagListVC.delegate = self
-        //画面遷移
-        //navigationController?.pushViewController(TagListVC, animated: true)
-        
         //画面遷移
         performSegue(withIdentifier: "Tag", sender: nil)
     }
@@ -375,9 +372,10 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         }
 
     }
-    //前の画面に戻るとき,textviewの中身をメモに格納
+    
+    //ResisterVCからInitialVCに戻るとき,FBの内容を保存するかどうか判定
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        print("\n--navigationController from ResisterFB--")
+        //print("\n--navigationController from ResisterFB--")
         //print(viewController)
         
         //前の画面に戻るとき
@@ -392,31 +390,29 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
                 print("Not save")
                 delegate?.updateTable()
             }
-        
         }
     }
     
+    //FB内容を保存せず終了する
     @objc func notSaveBarButtonTapped(_ sender: UIBarButtonItem){
         print("[保存せず終了ボタン]が押された")
-        
         alert(title: "", message: "フィードバックを保存せず終了しますか？")
     }
     
     //アラート(保存せず終了するボタン)
     func alert(title:String, message:String) {
          alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
          let okAction = UIAlertAction(title: "OK", style: .default, handler:{
              (action: UIAlertAction!) in
              //OKが押された時の処理
              print("OK was pushed\n")
-             //セーブしない
+             //セーブしない(フラグを立てる)
              self.isSave = false
-            
              //画面遷移(InitialVCに戻る)
              self.navigationController?.popViewController(animated: true)
-     
-             
          })
+        
          let ngAction = UIAlertAction(title: "NG", style: .destructive, handler: {
              (action: UIAlertAction!) in
              //NGが押された時の処理
@@ -426,35 +422,13 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
          
          alertController.addAction(okAction)
          alertController.addAction(ngAction)
-         
-           present(alertController, animated: true)
+         present(alertController, animated: true)
     }
 
     
     
     //DBの中身削除(試し)
     @IBAction func save(_ sender: Any) {
-        
-//        let fb = FeedBack()
-//        let realm = try! Realm()
-//
-//        fb.MotionTitle = motionTitleString
-//        fb.FeedBackString = FBTextView.text!
-//        fb.result = WLString
-//        fb.score = Int(score)!
-//        fb.style = styleString
-//
-//        // DBに書き込む
-//        try! realm.write {
-//            realm.add(fb)
-//        }
-//
-//        let obs = realm.objects(FeedBack.self)
-//        for ob in obs{
-//            print(ob.MotionTitle!)
-//            print(ob)
-//        }
-        
         let realm = try! Realm()
         try! realm.write {
             realm.deleteAll()
@@ -469,28 +443,13 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     //DBにFBを書きこむ
     func saveData() {
         print("SaveData methods(in ResisterFBViewController) was called")
-        let fb = FeedBack()
-        let realm = try! Realm()
-
-        fb.MotionTitle = motionTitleString
-        fb.FeedBackString = FBTextView.text!
-        fb.result = WLString
-        fb.score = Int(score)!
-        fb.style = styleString
-        fb.date = dates
-        fb.motionGenre = motionGenre
-        fb.role = roleTextField.text!
-        fb.side = sideTextField.text!
-        
-        
+                
         var tagDictionaryArray = [Dictionary<String, String>]()
         //print((tagListView.tagViews[0].titleLabel?.text!)! as String)
         for tagView in tagListView.tagViews{
 //            print(tagView.titleLabel!.text!)
             tagDictionaryArray.append(["tag": tagView.titleLabel!.text!])
         }
-        
-        
         
         
         let fbDictionary: [String:Any] =
@@ -506,23 +465,24 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
              "tags": tagDictionaryArray
             ]
         
-        let fb2 = FeedBack(value: fbDictionary)
+        let realm = try! Realm()
+        let fb = FeedBack(value: fbDictionary)
         
         // DBに書き込む
         try! realm.write {
-            realm.add(fb2)
+            realm.add(fb)
         }
 
+        //デバッグ用
         let obs = realm.objects(FeedBack.self)
-    
         print(obs)
         
     }
     
     
-    //TextFieldの文字をLabelに反映(決定ボタン)
+    //決定ボタンが押されたとき, motionTextFieldの文字をLabelに反映
     @IBAction func motionDecide(_ sender: Any) {
-        print("button was pushed")
+        print("Done button was pushed")
         
         if motionTextField.text == ""{
             print("no content")
@@ -531,9 +491,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
             motionLabel.text = motionTextField.text!
         }
         
-        
         motionTitleString = motionLabel.text!
-        
         //キーボード閉じる
         motionTextField.resignFirstResponder()
     }
@@ -562,7 +520,6 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         label.text = feedbackItem.WLList[num]
         label.frame = CGRect(x: center - 130,y: y,width: 70,height: 30)
        
-        
         self.view.addSubview(button)
         self.view.addSubview(label)
     }
@@ -653,49 +610,19 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
        isTextViewEditing = true
    }
     
+    //returnしたらキーボード閉じる
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //テキストフィールドを閉じる
+        motionTextField.resignFirstResponder()
+        return true
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         print("フォーカスが外れた後")
     }
    
-   //キーボードに隠れないように, textViewの位置を上げる
-   @objc func keyboardWillShow(_ notification: NSNotification){
-       //textViewを編集している時のみ
-       if isTextViewEditing == true {
-           //キーボードの高さを取得
-           let keyboardHeight = ((notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as Any) as AnyObject).cgRectValue.height
-           
-           //キーボードが上がってくる時
-           //メッセージフィールドが現れる位置(y軸) = スクリーンの高さ - キーボードの高さ - メッセージの高さ
-           FBTextView.frame.origin.y = screenSize.height - keyboardHeight - FBTextView.frame.height
-       }
-   }
-   
-   //キーボードが下がるので, 同時にtextViewの位置も下げる
-   @objc func keyboardWillHide(_ notification:NSNotification){
-    print("keyboardWillHide")
-    
-       //textViewを編集している時のみ
-       if isTextViewEditing == true {
-           //キーボードを閉じる時
-           //メッセージフィールドが現れる位置(y軸) = スクリーンの高さ -　メッセージの高さ
-           FBTextView.frame.origin.y = textViewHeight
 
-           guard let rect = (notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
-
-           //キーボードを閉じる時間を計測
-               let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else { return }
-
-           UIView.animate(withDuration: duration) {
-
-               //位置を戻すアニメーション
-               let transform = CGAffineTransform(translationX: 0, y: 0)
-               self.view.transform = transform
-           }
-       }
-   }
-
-
-    //入力画面ないしkeyboardの外を押したら、キーボードを閉じる処理
+    //入力画面もしくは, keyboardの外を押したらキーボードを閉じる処理
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if (self.FBTextView.isFirstResponder) {
             self.FBTextView.resignFirstResponder()
@@ -710,12 +637,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
 //        }
     }
     
-    //returnしたらキーボード閉じる
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //テキストフィールドを閉じる
-        motionTextField.resignFirstResponder()
-        return true
-    }
+
     
     //決定ボタン(スコア入力終了)
     @objc func doneScore() {
@@ -723,7 +645,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         scoreTextField.endEditing(true)
     }
     
-    //決定ボタン(日付入力終了)
+    //日付入力終了(doneItemDateのselector)
     @objc func doneDate(){
         dateTextField.text = year + "/" + month + "/" + day
         dates =  dateTextField.text!
@@ -731,19 +653,19 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         dateTextField.endEditing(true)
     }
     
-    //決定ボタン(モーションジャンル入力終了)
+    //モーションジャンル入力終了(doneItemMotionGenreのselector)
     @objc func doneMotionGenre(){
         motionGenreTextField.text  = motionGenre
         motionGenreTextField.endEditing(true)
     }
     
-    //決定ボタン(サイド入力終了)
+    //サイド入力終了(doneItemSideのselector)
     @objc func doneSide(){
         sideTextField.text  = side
         sideTextField.endEditing(true)
     }
     
-    //決定ボタン(ロール入力終了)
+    //ロール入力終了(doneItemRoleのselector)
     @objc func doneRole(){
         roleTextField.text  = role
         roleTextField.endEditing(true)
@@ -756,23 +678,23 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
         switch pickerView {
         //スコアpicker
         case pickerViewScore:
-            print("pickerView")
+            //print("pickerView")
             return 1
         //日付picker
         case pickerViewDate:
-            print("pickerViewDate")
+            //print("pickerViewDate")
             return 3
         //モーションジャンルpicker
         case pickerViewMotionGenre:
-            print("pickerViewMotionGenre")
+            //print("pickerViewMotionGenre")
             return 1
         //サイドpicker
         case pickerViewSide:
-            print("pickerViewSide")
+            //print("pickerViewSide")
             return 1
         //ロールpicker
         case pickerViewRole:
-            print("pickerViewRole")
+            //print("pickerViewRole")
             return 1
         default:
             print("Error in numberOfComponents ResisterVC")
@@ -817,13 +739,14 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     // UIPickerViewのRowが選択された時の挙動
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
+        //pickerViewで選択された値を変数に格納
         switch pickerView {
         
-        //スコアpicker
+        //スコア
         case pickerViewScore:
             score = feedbackItem.scoreList[row]
             print(feedbackItem.scoreList[row])
-        //日付picker
+        //日付
         case pickerViewDate:
             switch component {
             case 0:
@@ -838,14 +761,14 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
             default:
                 print("Error pickerViewDate component didSelectRow ResisterVC")
             }
-        //モーションジャンルpicker
+        //モーションジャンル
         case pickerViewMotionGenre:
             motionGenre = feedbackItem.motionGenreList[row]
             print(feedbackItem.motionGenreList[row])
-        //サイドpicker
+        //サイド
         case pickerViewSide:
             side = feedbackItem.sideList[row]
-        //ロールpicker
+        //ロール
         case pickerViewRole:
             role = feedbackItem.roleList[row]
             
@@ -855,7 +778,7 @@ class ResisterFBViewController: UIViewController, UITextFieldDelegate, UITextVie
     
     }
     
-    // UIPickerViewの最初の表示
+    // UIPickerViewの最初の表示を設定
     func pickerView(_ pickerView: UIPickerView,titleForRow row: Int, forComponent component: Int) -> String? {
         
         switch pickerView {
