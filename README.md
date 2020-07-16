@@ -14,6 +14,7 @@
 - タグ
 
 ### FB新規作成画面イメージ
+<img width="288" alt="ScreenShotResisterFBVC" src="https://user-images.githubusercontent.com/48078934/87674537-15606880-c7b1-11ea-8d88-e91ddce95b2e.png">
 
 
 ### タグ選択画面イメージ
