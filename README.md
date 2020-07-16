@@ -43,7 +43,7 @@
 
 ### イメージ
 
-![search](https://raw.githubusercontent.com/wiki/MasakiSakai0305/DebateApp/images/searchFB.gif)
+<img width="288" alt="search" src="https://raw.githubusercontent.com/wiki/MasakiSakai0305/DebateApp/images/searchFB.gif">
 
 
 ### フィルター
@@ -51,8 +51,7 @@
 
 ### イメージ
 
-![filter](https://raw.githubusercontent.com/wiki/MasakiSakai0305/DebateApp/images/filter.gif)
-
+<img width="288" alt="filter" src="https://raw.githubusercontent.com/wiki/MasakiSakai0305/DebateApp/images/filter.gif">
 
 
 ## 4. 結果を可視化
