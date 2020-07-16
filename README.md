@@ -19,8 +19,7 @@
 
 ### タグ選択画面イメージ
 
-![ScreenShotInitialView](https://user-images.githubusercontent.com/48078934/87678280-b5b88c00-c7b5-11ea-9492-69494fcf8ae8.png)
-
+<img width="288" alt="ScreenShotInitialView" src="https://user-images.githubusercontent.com/48078934/87678280-b5b88c00-c7b5-11ea-9492-69494fcf8ae8.png">
 
 ## 2. 保存したFeedBackを編集する
 
@@ -36,8 +35,7 @@
 
 ### イメージ
 
-
-![delete](https://raw.githubusercontent.com/wiki/MasakiSakai0305/DebateApp/images/deleteFB.gif)
+<img width="288" alt="delete" src="https://raw.githubusercontent.com/wiki/MasakiSakai0305/DebateApp/images/deleteFB.gif">
 
 
 ### 検索
