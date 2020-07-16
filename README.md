@@ -18,7 +18,10 @@
 
 
 ### タグ選択画面イメージ
- 
+
+![ScreenShotInitialView](https://user-images.githubusercontent.com/48078934/87678280-b5b88c00-c7b5-11ea-9492-69494fcf8ae8.png)
+
+
 ## 2. 保存したFeedBackを編集する
 
 1で作成したFBを編集する.
@@ -34,15 +37,24 @@
 ### イメージ
 
 
+![delete](https://raw.githubusercontent.com/wiki/MasakiSakai0305/DebateApp/images/deleteFB.gif)
+
+
 ### 検索
 検索バーにモーションを入力し該当するモーションを持つFBを検出する
 
 ### イメージ
 
-### ソート
+![search](https://raw.githubusercontent.com/wiki/MasakiSakai0305/DebateApp/images/searchFB.gif)
+
+
+### フィルター
 条件にあったFBのみを抽出
 
 ### イメージ
+
+![filter](https://raw.githubusercontent.com/wiki/MasakiSakai0305/DebateApp/images/filter.gif)
+
 
 
 ## 4. 結果を可視化
