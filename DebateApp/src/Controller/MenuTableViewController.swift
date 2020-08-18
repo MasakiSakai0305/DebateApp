@@ -43,8 +43,11 @@ class MenuTableViewController: UIViewController, UITableViewDataSource, UITableV
         
         switch menuArray[indexPath.row] {
         case "Style":
+            print("push style")
              let StyleVC = storyboard?.instantiateViewController(withIdentifier: "Style")  as! StyleBaseViewController
+            print("push style2")
             navigationController?.pushViewController(StyleVC, animated: true)
+            print("push style3")
         case "Role":
             let RoleVC = storyboard?.instantiateViewController(withIdentifier: "Role")  as! RoleBaseViewController
             navigationController?.pushViewController(RoleVC, animated: true)

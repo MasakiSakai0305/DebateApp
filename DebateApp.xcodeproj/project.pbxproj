@@ -289,11 +289,11 @@
 				3A3D5ADB249BABAF005891D6 /* MotionGenre */,
 				3A97E0812435D7C000D4CCCB /* AppDelegate.swift */,
 				3A97E0832435D7C000D4CCCB /* SceneDelegate.swift */,
+				3A3D5AD62478C6EE005891D6 /* MenuTableViewController.swift */,
 				3A979274245BC021002AFDC5 /* MultiTableViewController.swift */,
 				3A375FC12462979400A57F29 /* TagViewController.swift */,
 				3A375FC3246297B000A57F29 /* ExTagListTableViewController.swift */,
 				3A3D5AD42478C4DB005891D6 /* GenreBaseViewController.swift */,
-				3A3D5AD62478C6EE005891D6 /* MenuTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
