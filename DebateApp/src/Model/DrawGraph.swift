@@ -18,6 +18,7 @@ class DrawGraph{
     func setPieGraph(filter:String, chartView:PieChartView, cell:UITableViewCell) {
            chartView.usePercentValuesEnabled = true
            let calc = ResultCalculation()
+        print("resultCaluculation func called in DrawGraph.setPieGraph")
            calc.resultCaluculation()
            //let date : [Double] = [1,2,3,4,5]
            var entries: [PieChartDataEntry] = Array()
@@ -117,6 +118,7 @@ class DrawScoreGraph: ScrollableGraphViewDataSource{
         referenceLines.referenceLineColor = UIColor.white.withAlphaComponent(0.2)
         referenceLines.referenceLineLabelColor = UIColor.white
         referenceLines.dataPointLabelColor = UIColor.white.withAlphaComponent(0.5)
+        referenceLines.dataPointLabelBottomMargin = 30
 
         graphView.addPlot(plot: linePlot)
         graphView.addPlot(plot: dotPlot)
