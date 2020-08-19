@@ -11,11 +11,12 @@ import RealmSwift
 
 class ResultCalculation{
     
-    //集計
+    //勝利・敗北数(トータル)
     var totalCount = 0.0
     var winCount = 0.0
     var loseCount = 0.0
     
+    //スタイル
     var totalNACount = 0.0
     var NAWinCount = 0.0
     var NALoseCount = 0.0
@@ -28,15 +29,71 @@ class ResultCalculation{
     var AsianWinCount = 0.0
     var AsianLoseCount = 0.0
     
-    //勝率
+    //ロール
+    var PMTotalCount = 0.0
+    var PMWinCount = 0.0
+    var PMLoseCount = 0.0
+    
+    var DPMTotalCount = 0.0
+    var DPMWinCount = 0.0
+    var DPMLoseCount = 0.0
+    
+    var MGTotalCount = 0.0
+    var MGWinCount = 0.0
+    var MGLoseCount = 0.0
+    
+    var GWTotalCount = 0.0
+    var GWWinCount = 0.0
+    var GWLoseCount = 0.0
+    
+    var PMRTotalCount = 0.0
+    var PMRWinCount = 0.0
+    var PMRLoseCount = 0.0
+    
+    var LOTotalCount = 0.0
+    var LOWinCount = 0.0
+    var LOLoseCount = 0.0
+    
+    var DLOTotalCount = 0.0
+    var DLOWinCount = 0.0
+    var DLOLoseCount = 0.0
+    
+    var MOTotalCount = 0.0
+    var MOWinCount = 0.0
+    var MOLoseCount = 0.0
+    
+    var OWTotalCount = 0.0
+    var OWWinCount = 0.0
+    var OWLoseCount = 0.0
+    
+    var LORTotalCount = 0.0
+    var LORWinCount = 0.0
+    var LORLoseCount = 0.0
+    
+    
+    //勝率(トータル)
     var totalWinRate = Double()
+    
+    //スタイル
     var NAWinRate = Double()
     var BPWinRate = Double()
     var AsianWinRate = Double()
+    
+    //ロール
+    var PMWinRate = Double()
+    var DPMWinRate = Double()
+    var MGWinRate = Double()
+    var GWWinRate = Double()
+    var PMRWinRate = Double()
+    var LOWinRate = Double()
+    var DLOWinRate = Double()
+    var MOWinRate = Double()
+    var OWWinRate = Double()
+    var LORWinRate = Double()
 
     
-    func resultCaluculation(){
-        print("\n--resultCaluculation, 集計チェック--")
+    func resultCaluculationByStyle(){
+        print("\n--resultCaluculation, 集計チェック(スタイル別)--")
         let realm = try! Realm()
         let obs = realm.objects(FeedBack.self)
         print("obs.count:", obs.count)
@@ -54,7 +111,7 @@ class ResultCalculation{
                 case "Asian":
                     AsianWinCount += 1
                 default:
-                    print("obs[i].result==勝ちに関するエラー")
+                    print("obs[i].result==勝ちに関するエラー(スタイル)")
                 }
                 
             }
@@ -69,7 +126,7 @@ class ResultCalculation{
                 case "Asian":
                     AsianLoseCount += 1
                 default:
-                    print("obs[i].result==負けに関するエラー")
+                    print("obs[i].result==負けに関するエラー(スタイル)")
                 }
             }
         }
@@ -90,6 +147,100 @@ class ResultCalculation{
         BPWinRate = Double(BPWinCount / totalBPCount) * 100
         AsianWinRate = Double(AsianWinCount / totalAsianCount) * 100
         print("AsianWinRate:", AsianWinRate)
+    }
+    
+    
+    func resultCaluculationByRole(){
+        print("\n--resultCaluculation, 集計チェック(ロール別)--")
+        let realm = try! Realm()
+        let obs = realm.objects(FeedBack.self)
+        print("obs.count:", obs.count)
+        
+        totalCount = Double(obs.count)
+        
+        for i in 0..<obs.count{
+            if obs[i].result == "勝ち" {
+                winCount += 1
+                switch obs[i].role {
+                case "PM":
+                    PMWinCount += 1
+                case "DPM":
+                    DPMWinCount += 1
+                case "MG":
+                    MGWinCount += 1
+                case "GW":
+                    GWWinCount += 1
+                case "PMR":
+                    PMRWinCount += 1
+                case "LO":
+                    LOWinCount += 1
+                case "DLO":
+                    DLOWinCount += 1
+                case "MO":
+                    MOWinCount += 1
+                case "OW":
+                    OWWinCount += 1
+                case "LOR":
+                    LORWinCount += 1
+                default:
+                    print("obs[i].result==勝ちに関するエラー(ロール)")
+                }
+                
+            }
+            else if obs[i].result == "負け"{
+                loseCount += 1
+                
+                switch obs[i].role {
+                case "PM":
+                    PMLoseCount += 1
+                case "DPM":
+                    DPMLoseCount += 1
+                case "MG":
+                    MGLoseCount += 1
+                case "GW":
+                    GWLoseCount += 1
+                case "PMR":
+                    PMRLoseCount += 1
+                case "LO":
+                    LOLoseCount += 1
+                case "DLO":
+                    DLOLoseCount += 1
+                case "MO":
+                    MOLoseCount += 1
+                case "OW":
+                    OWLoseCount += 1
+                case "LOR":
+                    LORLoseCount += 1
+                default:
+                    print("obs[i].result==勝ちに関するエラー(ロール)")
+                }
+            }
+        }
+        
+        //集計
+        PMTotalCount = PMWinCount + PMLoseCount
+        DPMTotalCount = DPMWinCount + DPMLoseCount
+        MGTotalCount = MGWinCount + MGLoseCount
+        GWTotalCount = GWWinCount + GWLoseCount
+        PMRTotalCount = PMRWinCount + PMRLoseCount
+        LOTotalCount = LOWinCount + LOLoseCount
+        DLOTotalCount = DLOWinCount + DLOLoseCount
+        MOTotalCount = MOWinCount + MOLoseCount
+        OWTotalCount = OWWinCount + OWLoseCount
+        LORTotalCount = LORWinCount + LORLoseCount
+        
+        //勝率を計算
+        totalWinRate = winCount / totalCount * 100
+        PMWinRate = Double(PMWinCount / PMTotalCount) * 100
+        DPMWinRate = Double(DPMWinCount / DPMTotalCount) * 100
+        MGWinRate = Double(MGWinCount / MGTotalCount) * 100
+        GWWinRate = Double(GWWinCount / GWTotalCount) * 100
+        PMRWinRate = Double(PMRWinCount / PMRTotalCount) * 100
+        LOWinRate = Double(LOWinCount / LOTotalCount) * 100
+        DLOWinRate = Double(DLOWinCount / DLOTotalCount) * 100
+        MOWinRate = Double(MOWinCount / MOTotalCount) * 100
+        OWWinRate = Double(OWWinCount / OWTotalCount) * 100
+        LORWinRate = Double(LORWinCount / LORTotalCount) * 100
     }
     
     //スコアの平均を取得

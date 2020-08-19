@@ -31,7 +31,7 @@ class WinRatePieChartsScrollViewController: UIViewController, UITableViewDelegat
         tableView.register(UINib(nibName: "BPPieChartViewCell", bundle: nil), forCellReuseIdentifier: "BP")
         tableView.register(UINib(nibName: "AsianPieChartViewCell2", bundle: nil), forCellReuseIdentifier: "Asian")
         
-        calc.resultCaluculation()
+        calc.resultCaluculationByStyle()
     }
     
 

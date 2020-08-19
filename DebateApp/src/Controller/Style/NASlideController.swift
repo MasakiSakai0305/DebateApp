@@ -33,7 +33,7 @@ class NASlideController: UIViewController ,SegementSlideContentScrollViewDelegat
         self.view.addSubview(tableView)
         
         print("resultCaluculation func called in NASlideController.viewDidLoad")
-        calc.resultCaluculation()
+        calc.resultCaluculationByStyle()
     }
 
 

@@ -19,7 +19,7 @@ class DrawGraph{
            chartView.usePercentValuesEnabled = true
            let calc = ResultCalculation()
         print("resultCaluculation func called in DrawGraph.setPieGraph")
-           calc.resultCaluculation()
+           calc.resultCaluculationByStyle()
            //let date : [Double] = [1,2,3,4,5]
            var entries: [PieChartDataEntry] = Array()
 

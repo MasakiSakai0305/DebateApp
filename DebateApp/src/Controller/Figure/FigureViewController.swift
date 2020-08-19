@@ -33,7 +33,7 @@ class FigureViewController: UIViewController {
         self.navigationController?.navigationBar.backgroundColor = .blue
          
         let calc = ResultCalculation()
-        calc.resultCaluculation()
+        calc.resultCaluculationByStyle()
         
         barChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
         pieChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
@@ -67,7 +67,7 @@ class FigureViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let calc = ResultCalculation()
-        calc.resultCaluculation()
+        calc.resultCaluculationByStyle()
         
         setPieGraph()
         self.view.bringSubviewToFront(pieChartView)
@@ -81,7 +81,7 @@ class FigureViewController: UIViewController {
     func setPieGraph() {
         pieChartView.usePercentValuesEnabled = true
         let calc = ResultCalculation()
-        calc.resultCaluculation()
+        calc.resultCaluculationByStyle()
         let values: [Double] = [calc.totalWinRate, 1 - calc.totalWinRate]
         let date : [Double] = [1,2,3,4,5]
         var entries: [ChartDataEntry] = Array()
