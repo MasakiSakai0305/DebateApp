@@ -22,9 +22,9 @@ class PMSlideController: UIViewController, SegementSlideContentScrollViewDelegat
         tableView.delegate = self
         tableView.frame = CGRect(x: 0, y: view.frame.size.height/15, width: view.frame.size.width, height: view.frame.size.height * 0.95)
         //スコアを描画するセル
-        tableView.register(UINib(nibName: "NAScoreCell", bundle: nil), forCellReuseIdentifier: "NAScore")
+        tableView.register(UINib(nibName: "PMScoreCell", bundle: nil), forCellReuseIdentifier: "PMScore")
         //勝敗を描画するセル
-        tableView.register(UINib(nibName: "NAPieChartViewCell", bundle: nil), forCellReuseIdentifier: "NA")
+        tableView.register(UINib(nibName: "PMPieChartViewCell", bundle: nil), forCellReuseIdentifier: "PMWinRate")
         self.view.addSubview(tableView)
         
         print("resultCaluculation func called in PMSlideController.viewDidLoad")
@@ -36,23 +36,23 @@ class PMSlideController: UIViewController, SegementSlideContentScrollViewDelegat
         
         switch indexPath[0] {
             case 0:
-                let NAScoreCell = tableView.dequeueReusableCell(withIdentifier: "NAScore", for: indexPath) as! NAScoreCell
-                NAScoreCell.frame.size = CGSize(width: view.frame.size.width, height: view.frame.size.height/2)
+                let PMScoreCell = tableView.dequeueReusableCell(withIdentifier: "PMScore", for: indexPath) as! PMScoreCell
+                PMScoreCell.frame.size = CGSize(width: view.frame.size.width, height: view.frame.size.height/2)
                 
-                NAScoreCell.width = view.frame.size.width
-                NAScoreCell.height = view.frame.size.height * 0.7
-                NAScoreCell.callDrawMethod()
-                return NAScoreCell
+                PMScoreCell.width = view.frame.size.width
+                PMScoreCell.height = view.frame.size.height * 0.7
+                PMScoreCell.callDrawMethod()
+                return PMScoreCell
                 
             case 1:
-                let NAWinRateCell = tableView.dequeueReusableCell(withIdentifier: "NA", for: indexPath) as! NAPieChartViewCell
-                NAWinRateCell.frame.size = CGSize(width: view.frame.size.width, height: view.frame.size.height/2)
+                let PMWinRateCell = tableView.dequeueReusableCell(withIdentifier: "PMWinRate", for: indexPath) as! PMPieChartViewCell
+                PMWinRateCell.frame.size = CGSize(width: view.frame.size.width, height: view.frame.size.height/2)
                 
-                NAWinRateCell.pieChartView.frame = CGRect(x: 0, y: 0, width: NAWinRateCell.frame.size.width, height: NAWinRateCell.frame.size.height * 0.9)
-                NAWinRateCell.resultLabel.text = "NA 勝利:\(Int(calc.NAWinCount)),  敗北:\(Int(calc.NALoseCount))"
-                print("calc.NAWinCount:", calc.NAWinCount)
-                NAWinRateCell.resultLabel.frame = CGRect(x:  NAWinRateCell.frame.size.width * 0.5, y: NAWinRateCell.frame.size.height * 0.8, width: NAWinRateCell.frame.size.width/2, height: NAWinRateCell.frame.size.height/5)
-                return NAWinRateCell
+                PMWinRateCell.PMPieChartView.frame = CGRect(x: 0, y: 0, width: PMWinRateCell.frame.size.width, height: PMWinRateCell.frame.size.height * 0.9)
+                PMWinRateCell.resultLabel.text = "PM 勝利:\(Int(calc.PMWinCount)),  敗北:\(Int(calc.PMLoseCount))"
+                print("calc.PMWinCount:", calc.PMWinCount)
+                PMWinRateCell.resultLabel.frame = CGRect(x:  PMWinRateCell.frame.size.width * 0.5, y: PMWinRateCell.frame.size.height * 0.8, width: PMWinRateCell.frame.size.width/2, height: PMWinRateCell.frame.size.height/5)
+                return PMWinRateCell
             
             default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "NAScore", for: indexPath) as! PieChartCell

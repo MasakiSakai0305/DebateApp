@@ -31,6 +31,10 @@
 		3A3D5AED249BAEB0005891D6 /* MOSlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5AEC249BAEB0005891D6 /* MOSlideController.swift */; };
 		3A3D5AEF249BAEBC005891D6 /* OWSlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5AEE249BAEBC005891D6 /* OWSlideController.swift */; };
 		3A3D5AF1249BAEC8005891D6 /* LORSlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D5AF0249BAEC8005891D6 /* LORSlideController.swift */; };
+		3A5AD3FD24ED4C6000A09C22 /* PMScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5AD3FB24ED4C6000A09C22 /* PMScoreCell.swift */; };
+		3A5AD3FE24ED4C6000A09C22 /* PMScoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A5AD3FC24ED4C6000A09C22 /* PMScoreCell.xib */; };
+		3A5AD40124ED4F3B00A09C22 /* PMPieChartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5AD3FF24ED4F3B00A09C22 /* PMPieChartViewCell.swift */; };
+		3A5AD40224ED4F3B00A09C22 /* PMPieChartViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A5AD40024ED4F3B00A09C22 /* PMPieChartViewCell.xib */; };
 		3A742712243B2C19005D6F78 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A742711243B2C19005D6F78 /* InitialViewController.swift */; };
 		3A742715243B51CB005D6F78 /* FeedBackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A742713243B51CB005D6F78 /* FeedBackCell.swift */; };
 		3A742716243B51CB005D6F78 /* FeedBackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A742714243B51CB005D6F78 /* FeedBackCell.xib */; };
@@ -100,6 +104,10 @@
 		3A3D5AEC249BAEB0005891D6 /* MOSlideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOSlideController.swift; sourceTree = "<group>"; };
 		3A3D5AEE249BAEBC005891D6 /* OWSlideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OWSlideController.swift; sourceTree = "<group>"; };
 		3A3D5AF0249BAEC8005891D6 /* LORSlideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LORSlideController.swift; sourceTree = "<group>"; };
+		3A5AD3FB24ED4C6000A09C22 /* PMScoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMScoreCell.swift; sourceTree = "<group>"; };
+		3A5AD3FC24ED4C6000A09C22 /* PMScoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PMScoreCell.xib; sourceTree = "<group>"; };
+		3A5AD3FF24ED4F3B00A09C22 /* PMPieChartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMPieChartViewCell.swift; sourceTree = "<group>"; };
+		3A5AD40024ED4F3B00A09C22 /* PMPieChartViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PMPieChartViewCell.xib; sourceTree = "<group>"; };
 		3A742711243B2C19005D6F78 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		3A742713243B51CB005D6F78 /* FeedBackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackCell.swift; sourceTree = "<group>"; };
 		3A742714243B51CB005D6F78 /* FeedBackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedBackCell.xib; sourceTree = "<group>"; };
@@ -196,6 +204,66 @@
 			path = MotionGenre;
 			sourceTree = "<group>";
 		};
+		3A5AD3F524ED4B7700A09C22 /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				3A97925624553FDD002AFDC5 /* NAScoreCell.swift */,
+				3A97925724553FDD002AFDC5 /* NAScoreCell.xib */,
+				3A97925A24554442002AFDC5 /* BPScoreCell.swift */,
+				3A97925B24554442002AFDC5 /* BPScoreCell.xib */,
+				3A97925E2455445C002AFDC5 /* AsianScoreCell.swift */,
+				3A97925F2455445C002AFDC5 /* AsianScoreCell.xib */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
+		3A5AD3F624ED4B9500A09C22 /* Motion Genre */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Motion Genre";
+			sourceTree = "<group>";
+		};
+		3A5AD3F724ED4BA800A09C22 /* Role */ = {
+			isa = PBXGroup;
+			children = (
+				3A5AD3FB24ED4C6000A09C22 /* PMScoreCell.swift */,
+				3A5AD3FC24ED4C6000A09C22 /* PMScoreCell.xib */,
+			);
+			path = Role;
+			sourceTree = "<group>";
+		};
+		3A5AD3F824ED4BCA00A09C22 /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				3AB6A140244EF03A0065CEBC /* AsianPieChartViewCell2.swift */,
+				3AB6A141244EF03A0065CEBC /* AsianPieChartViewCell2.xib */,
+				3AB6A12C24495CC90065CEBC /* PieChartCell.swift */,
+				3AB6A12D24495CC90065CEBC /* PieChartCell.xib */,
+				3AB6A138244EEFFE0065CEBC /* NAPieChartViewCell.swift */,
+				3AB6A139244EEFFE0065CEBC /* NAPieChartViewCell.xib */,
+				3AB6A13C244EF0270065CEBC /* BPPieChartViewCell.swift */,
+				3AB6A13D244EF0270065CEBC /* BPPieChartViewCell.xib */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
+		3A5AD3F924ED4BD300A09C22 /* Role */ = {
+			isa = PBXGroup;
+			children = (
+				3A5AD3FF24ED4F3B00A09C22 /* PMPieChartViewCell.swift */,
+				3A5AD40024ED4F3B00A09C22 /* PMPieChartViewCell.xib */,
+			);
+			path = Role;
+			sourceTree = "<group>";
+		};
+		3A5AD3FA24ED4BD900A09C22 /* Motion Genre */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Motion Genre";
+			sourceTree = "<group>";
+		};
 		3A7E52BC2446DBCB00174180 /* Figure */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,14 +290,9 @@
 		3A979250244FF2B5002AFDC5 /* WinRate */ = {
 			isa = PBXGroup;
 			children = (
-				3AB6A140244EF03A0065CEBC /* AsianPieChartViewCell2.swift */,
-				3AB6A141244EF03A0065CEBC /* AsianPieChartViewCell2.xib */,
-				3AB6A12C24495CC90065CEBC /* PieChartCell.swift */,
-				3AB6A12D24495CC90065CEBC /* PieChartCell.xib */,
-				3AB6A138244EEFFE0065CEBC /* NAPieChartViewCell.swift */,
-				3AB6A139244EEFFE0065CEBC /* NAPieChartViewCell.xib */,
-				3AB6A13C244EF0270065CEBC /* BPPieChartViewCell.swift */,
-				3AB6A13D244EF0270065CEBC /* BPPieChartViewCell.xib */,
+				3A5AD3FA24ED4BD900A09C22 /* Motion Genre */,
+				3A5AD3F924ED4BD300A09C22 /* Role */,
+				3A5AD3F824ED4BCA00A09C22 /* Style */,
 			);
 			path = WinRate;
 			sourceTree = "<group>";
@@ -237,14 +300,11 @@
 		3A979251244FF2E7002AFDC5 /* Score */ = {
 			isa = PBXGroup;
 			children = (
+				3A5AD3F524ED4B7700A09C22 /* Style */,
+				3A5AD3F724ED4BA800A09C22 /* Role */,
+				3A5AD3F624ED4B9500A09C22 /* Motion Genre */,
 				3A979252245287D9002AFDC5 /* TotalScoreCell.swift */,
 				3A979253245287D9002AFDC5 /* TotalScoreCell.xib */,
-				3A97925624553FDD002AFDC5 /* NAScoreCell.swift */,
-				3A97925724553FDD002AFDC5 /* NAScoreCell.xib */,
-				3A97925A24554442002AFDC5 /* BPScoreCell.swift */,
-				3A97925B24554442002AFDC5 /* BPScoreCell.xib */,
-				3A97925E2455445C002AFDC5 /* AsianScoreCell.swift */,
-				3A97925F2455445C002AFDC5 /* AsianScoreCell.xib */,
 			);
 			path = Score;
 			sourceTree = "<group>";
@@ -425,11 +485,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AB6A12F24495CC90065CEBC /* PieChartCell.xib in Resources */,
+				3A5AD40224ED4F3B00A09C22 /* PMPieChartViewCell.xib in Resources */,
 				3A97925D24554442002AFDC5 /* BPScoreCell.xib in Resources */,
 				3AB6A143244EF03A0065CEBC /* AsianPieChartViewCell2.xib in Resources */,
 				3A9792612455445C002AFDC5 /* AsianScoreCell.xib in Resources */,
 				3AB6A13B244EEFFE0065CEBC /* NAPieChartViewCell.xib in Resources */,
 				3AB6A13F244EF0270065CEBC /* BPPieChartViewCell.xib in Resources */,
+				3A5AD3FE24ED4C6000A09C22 /* PMScoreCell.xib in Resources */,
 				3A97E08E2435D7C200D4CCCB /* LaunchScreen.storyboard in Resources */,
 				3A97E08B2435D7C200D4CCCB /* Assets.xcassets in Resources */,
 				3A3D5AC324665876005891D6 /* TagCell.xib in Resources */,
@@ -516,11 +578,13 @@
 				3A375FC22462979400A57F29 /* TagViewController.swift in Sources */,
 				3A3D5AD52478C4DB005891D6 /* GenreBaseViewController.swift in Sources */,
 				3A3D5AE9249BAE94005891D6 /* LOSlideController.swift in Sources */,
+				3A5AD40124ED4F3B00A09C22 /* PMPieChartViewCell.swift in Sources */,
 				3A97927224598BF9002AFDC5 /* SideMenuStyleCell.swift in Sources */,
 				3A375FC4246297B000A57F29 /* ExTagListTableViewController.swift in Sources */,
 				3A97926B24584C35002AFDC5 /* SideMenuViewController.swift in Sources */,
 				3A3D5AD72478C6EE005891D6 /* MenuTableViewController.swift in Sources */,
 				3A3D5ABF2464EAC3005891D6 /* TagListTableViewController.swift in Sources */,
+				3A5AD3FD24ED4C6000A09C22 /* PMScoreCell.swift in Sources */,
 				3A97925C24554442002AFDC5 /* BPScoreCell.swift in Sources */,
 				3A3D5AE3249BAE3B005891D6 /* MGSlideController.swift in Sources */,
 				3AB6A137244EEEB50065CEBC /* DrawGraph.swift in Sources */,

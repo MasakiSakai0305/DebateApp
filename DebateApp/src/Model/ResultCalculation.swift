@@ -24,7 +24,7 @@ class ResultCalculation{
     var totalBPCount = 0.0
     var BPWinCount = 0.0
     var BPLoseCount = 0.0
-    
+
     var totalAsianCount = 0.0
     var AsianWinCount = 0.0
     var AsianLoseCount = 0.0
@@ -217,7 +217,7 @@ class ResultCalculation{
             }
         }
         
-        //集計
+        //勝利数・敗北数の集計
         PMTotalCount = PMWinCount + PMLoseCount
         DPMTotalCount = DPMWinCount + DPMLoseCount
         MGTotalCount = MGWinCount + MGLoseCount

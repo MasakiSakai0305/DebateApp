@@ -19,7 +19,8 @@ class DrawGraph{
            chartView.usePercentValuesEnabled = true
            let calc = ResultCalculation()
         print("resultCaluculation func called in DrawGraph.setPieGraph")
-           calc.resultCaluculationByStyle()
+        calc.resultCaluculationByStyle()
+        calc.resultCaluculationByRole()
            //let date : [Double] = [1,2,3,4,5]
            var entries: [PieChartDataEntry] = Array()
 
@@ -29,6 +30,7 @@ class DrawGraph{
                 let values: [Double] = [calc.winCount, calc.totalCount - calc.winCount]
                 entries.append(PieChartDataEntry(value: values[0], label: "勝ち"))
                 entries.append(PieChartDataEntry(value: values[1], label: "負け"))
+            //スタイル
            case "NA":
                 let NARate: [Double] = [calc.NAWinCount, calc.totalNACount - calc.NAWinCount]
                 entries.append(PieChartDataEntry(value: NARate[0], label: "勝ち"))
@@ -41,6 +43,12 @@ class DrawGraph{
                 let AsianRate: [Double] = [calc.AsianWinCount, calc.totalAsianCount - calc.AsianWinCount]
                 entries.append(PieChartDataEntry(value: AsianRate[0], label: "勝ち"))
                 entries.append(PieChartDataEntry(value: AsianRate[1], label: "負け"))
+            //ロール
+            case "PM":
+                let PMRate: [Double] = [calc.PMWinCount, calc.PMTotalCount - calc.PMWinCount]
+                entries.append(PieChartDataEntry(value: PMRate[0], label: "勝ち"))
+                entries.append(PieChartDataEntry(value: PMRate[1], label: "負け"))
+            
            default:
                print("Error :func setPieGraph(filter:String) in PieChartCell")
            }
